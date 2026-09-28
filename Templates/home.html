@@ -7,284 +7,836 @@
 <title>The Horse Farm - Balades à cheval</title>
 
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
-
-body{
-    font-family:Georgia,serif;
-    background:#f5f0e6;
-    color:#33291f;
-    line-height:1.6;
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
-header{
-    background:#30271f;
-    color:white;
-    padding:18px 20px;
-    position:sticky;
-    top:0;
-    z-index:10;
-    border-bottom:3px solid #b8844f;
+html {
+    scroll-behavior: smooth;
 }
 
-.nav{
-    max-width:1100px;
-    margin:auto;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    gap:20px;
+body {
+    font-family: Georgia, serif;
+    background: #f5f0e6;
+    color: #33291f;
+    line-height: 1.6;
 }
 
-.logo{
-    font-size:25px;
-    font-weight:bold;
-    letter-spacing:2px;
+header {
+    background: #30271f;
+    color: white;
+    padding: 18px 20px;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    border-bottom: 3px solid #b8844f;
 }
 
-.logo small{
-    display:block;
-    font-size:11px;
-    color:#d9b47b;
-    letter-spacing:3px;
+.nav {
+    max-width: 1100px;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
 }
 
-nav a{
-    color:white;
-    text-decoration:none;
-    margin-left:20px;
+.logo {
+    font-size: 25px;
+    font-weight: bold;
+    letter-spacing: 2px;
 }
 
-nav a:hover{color:#d9b47b}
+.logo small {
+    display: block;
+    font-size: 11px;
+    color: #d9b47b;
+    letter-spacing: 3px;
+}
 
-.hero{
-    min-height:620px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    text-align:center;
-    padding:50px 20px;
-    color:white;
+nav a {
+    color: white;
+    text-decoration: none;
+    margin-left: 18px;
+}
+
+nav a:hover {
+    color: #d9b47b;
+}
+
+.hero {
+    min-height: 620px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 50px 20px;
+    color: white;
     background:
-    linear-gradient(rgba(35,28,21,.45),rgba(35,28,21,.75)),
-    linear-gradient(135deg,#71865a,#3d5134 55%,#30271f);
+        linear-gradient(rgba(35,28,21,.45), rgba(35,28,21,.75)),
+        linear-gradient(135deg, #71865a, #3d5134 55%, #30271f);
 }
 
-.hero-content{max-width:800px}
-
-.hero small{
-    color:#e3bd7e;
-    text-transform:uppercase;
-    letter-spacing:4px;
+.hero-content {
+    max-width: 800px;
 }
 
-.hero h1{
-    font-size:clamp(48px,10vw,90px);
-    text-transform:uppercase;
-    letter-spacing:4px;
-    line-height:1;
-    margin:20px 0;
+.hero small {
+    color: #e3bd7e;
+    text-transform: uppercase;
+    letter-spacing: 4px;
 }
 
-.hero h2{
-    font-size:clamp(22px,5vw,34px);
-    font-weight:normal;
-    margin-bottom:15px;
+.hero h1 {
+    font-size: clamp(48px, 10vw, 90px);
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    line-height: 1;
+    margin: 20px 0;
 }
 
-.hero p{
-    font-size:18px;
-    max-width:650px;
-    margin:0 auto 30px;
+.hero h2 {
+    font-size: clamp(22px, 5vw, 34px);
+    font-weight: normal;
+    margin-bottom: 15px;
 }
 
-.button{
-    display:inline-block;
-    background:#a96836;
-    color:white;
-    border:0;
-    border-radius:6px;
-    padding:14px 25px;
-    text-decoration:none;
-    font-weight:bold;
-    cursor:pointer;
+.hero p {
+    font-size: 18px;
+    max-width: 650px;
+    margin: 0 auto 30px;
 }
 
-.button:hover{background:#7f4d29}
-
-section{padding:70px 20px}
-
-.container{
-    max-width:1100px;
-    margin:auto;
+.button {
+    display: inline-block;
+    background: #a96836;
+    color: white;
+    border: 0;
+    border-radius: 6px;
+    padding: 14px 25px;
+    text-decoration: none;
+    font-weight: bold;
+    cursor: pointer;
 }
 
-.title{
-    text-align:center;
-    margin-bottom:40px;
+.button:hover {
+    background: #7f4d29;
 }
 
-.title small{
-    color:#9b6737;
-    text-transform:uppercase;
-    letter-spacing:3px;
+section {
+    padding: 70px 20px;
 }
 
-.title h2{
-    font-size:40px;
-    margin-top:5px;
+.container {
+    max-width: 1100px;
+    margin: auto;
 }
 
-.title p{
-    max-width:650px;
-    margin:10px auto;
-    color:#6b5d4e;
+.title {
+    text-align: center;
+    margin-bottom: 40px;
 }
 
-#balades{background:#fffdf8}
-
-.cards{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:25px;
+.title small {
+    color: #9b6737;
+    text-transform: uppercase;
+    letter-spacing: 3px;
 }
 
-.card{
-    background:white;
-    border:1px solid #dfd1bd;
-    border-radius:10px;
-    overflow:hidden;
-    box-shadow:0 8px 25px rgba(50,40,30,.1);
+.title h2 {
+    font-size: 40px;
+    margin-top: 5px;
 }
 
-.card-top{
-    background:#435637;
-    color:white;
-    text-align:center;
-    padding:25px;
+.title p {
+    max-width: 650px;
+    margin: 10px auto;
+    color: #6b5d4e;
 }
 
-.card-top h3{font-size:28px}
-
-.price{
-    color:#e2bd7c;
-    font-size:40px;
-    font-weight:bold;
+#balades {
+    background: #fffdf8;
 }
 
-.card-body{padding:25px}
-
-.card-body ul{
-    list-style:none;
-    margin-bottom:20px;
+.cards {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
 }
 
-.card-body li{
-    padding:7px 0;
-    border-bottom:1px solid #eee5d8;
+.card {
+    background: white;
+    border: 1px solid #dfd1bd;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 8px 25px rgba(50,40,30,.1);
 }
 
-.card-body li:before{
-    content:"✓ ";
-    color:#718b55;
-    font-weight:bold;
+.card-top {
+    background: #435637;
+    color: white;
+    text-align: center;
+    padding: 25px;
 }
 
-#esprit{background:#e7dfd0}
-
-.about{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:45px;
-    align-items:center;
+.card-top h3 {
+    font-size: 28px;
 }
 
-.about h2{font-size:40px;margin-bottom:15px}
-
-.about p{margin-bottom:15px;color:#5e5144}
-
-.values{
-    display:grid;
-    gap:15px;
+.price {
+    color: #e2bd7c;
+    font-size: 40px;
+    font-weight: bold;
 }
 
-.value{
-    background:#fffaf1;
-    padding:20px;
-    border-left:5px solid #a96836;
+.card-body {
+    padding: 25px;
 }
 
-.value strong{
-    display:block;
-    font-size:18px;
+.card-body ul {
+    list-style: none;
+    margin-bottom: 20px;
 }
 
-#reservation{background:#fffdf8}
-
-.booking{
-    max-width:850px;
-    margin:auto;
-    background:white;
-    padding:30px;
-    border-radius:10px;
-    box-shadow:0 8px 30px rgba(50,40,30,.1);
-    border:1px solid #ded1bd;
+.card-body li {
+    padding: 7px 0;
+    border-bottom: 1px solid #eee5d8;
 }
 
-.booking h3{
-    text-align:center;
-    font-size:30px;
-    margin-bottom:10px;
+.card-body li:before {
+    content: "✓ ";
+    color: #718b55;
+    font-weight: bold;
 }
 
-.booking-intro{
-    text-align:center;
-    color:#6b5d4e;
-    margin-bottom:25px;
+#esprit {
+    background: #e7dfd0;
 }
 
-.form{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:18px;
+.about {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 45px;
+    align-items: center;
 }
 
-.field{display:flex;flex-direction:column}
-
-.full{grid-column:1/-1}
-
-label{
-    font-family:Arial,sans-serif;
-    font-weight:bold;
-    font-size:14px;
-    margin-bottom:6px;
+.about h2 {
+    font-size: 40px;
+    margin-bottom: 15px;
 }
 
-input,select,textarea{
-    width:100%;
-    padding:13px;
-    border:1px solid #cdbda7;
-    border-radius:5px;
-    font-size:16px;
-    background:#fffdf9;
+.about p {
+    margin-bottom: 15px;
+    color: #5e5144;
 }
 
-textarea{
-    min-height:90px;
-    resize:vertical;
+.values {
+    display: grid;
+    gap: 15px;
 }
 
-.summary{
-    margin-top:25px;
-    padding:18px;
-    background:#f1e8d9;
-    border-left:5px solid #a96836;
+.value {
+    background: #fffaf1;
+    padding: 20px;
+    border-left: 5px solid #a96836;
 }
 
-.row{
-    display:flex;
-    justify-content:space-between;
-    padding:5px 0;
+.value strong {
+    display: block;
+    font-size: 18px;
 }
 
-.total{
-    border-top:1px solid #d5c6
+#reservation {
+    background: #fffdf8;
+}
+
+.booking {
+    max-width: 850px;
+    margin: auto;
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 8px 30px rgba(50,40,30,.1);
+    border: 1px solid #ded1bd;
+}
+
+.booking h3 {
+    text-align: center;
+    font-size: 30px;
+    margin-bottom: 10px;
+}
+
+.booking-intro {
+    text-align: center;
+    color: #6b5d4e;
+    margin-bottom: 25px;
+}
+
+.form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+}
+
+.full {
+    grid-column: 1 / -1;
+}
+
+label {
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+    font-size: 14px;
+    margin-bottom: 6px;
+}
+
+input,
+select,
+textarea {
+    width: 100%;
+    padding: 13px;
+    border: 1px solid #cdbda7;
+    border-radius: 5px;
+    font-size: 16px;
+    background: #fffdf9;
+}
+
+textarea {
+    min-height: 90px;
+    resize: vertical;
+}
+
+.summary {
+    margin-top: 25px;
+    padding: 18px;
+    background: #f1e8d9;
+    border-left: 5px solid #a96836;
+}
+
+.row {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 0;
+}
+
+.total {
+    border-top: 1px solid #d5c6b3;
+    margin-top: 8px;
+    padding-top: 10px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.deposit {
+    color: #7f4d29;
+    font-weight: bold;
+}
+
+.submit {
+    width: 100%;
+    margin-top: 20px;
+    font-size: 17px;
+}
+
+.notice {
+    margin-top: 15px;
+    padding: 12px;
+    background: #f5f0e6;
+    border-radius: 5px;
+    font-size: 14px;
+    text-align: center;
+}
+
+.contact {
+    background: #30271f;
+    color: white;
+    text-align: center;
+}
+
+.contact h2 {
+    font-size: 38px;
+    margin-bottom: 20px;
+}
+
+.contact p {
+    margin: 7px 0;
+}
+
+.contact a {
+    color: #e3bd7e;
+}
+
+footer {
+    background: #211c18;
+    color: #cfc5b9;
+    text-align: center;
+    padding: 20px;
+    font-size: 13px;
+}
+
+@media (max-width: 750px) {
+
+    .nav {
+        flex-direction: column;
+    }
+
+    nav a {
+        margin: 0 7px;
+        font-size: 14px;
+    }
+
+    .cards,
+    .about,
+    .form {
+        grid-template-columns: 1fr;
+    }
+
+    .full {
+        grid-column: auto;
+    }
+
+    .hero {
+        min-height: 540px;
+    }
+
+    .hero h1 {
+        font-size: 48px;
+    }
+
+    section {
+        padding: 50px 15px;
+    }
+
+    .booking {
+        padding: 20px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="nav">
+        <div class="logo">
+            THE HORSE FARM
+            <small>PORT DE BOUC</small>
+        </div>
+
+        <nav>
+            <a href="#balades">Balades</a>
+            <a href="#esprit">Notre esprit</a>
+            <a href="#reservation">Réserver</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </div>
+</header>
+
+<section class="hero">
+    <div class="hero-content">
+        <small>Pension • Dressage • Élevage de Quarter Horse</small>
+
+        <h1>The Horse Farm</h1>
+
+        <h2>Balades à cheval</h2>
+
+        <p>
+            Venez découvrir les chevaux et profiter d'une balade
+            dans un esprit western, nature et respectueux du cheval.
+        </p>
+
+        <a class="button" href="#reservation">
+            Demander ma réservation
+        </a>
+    </div>
+</section>
+
+<section id="balades">
+    <div class="container">
+
+        <div class="title">
+            <small>Nos balades</small>
+            <h2>À cheval, tout simplement</h2>
+            <p>
+                Balades ouvertes à tous les niveaux.
+                Maximum 3 cavaliers par créneau.
+            </p>
+        </div>
+
+        <div class="cards">
+
+            <div class="card">
+                <div class="card-top">
+                    <h3>Balade 1 heure</h3>
+                    <div class="price">30 €</div>
+                </div>
+
+                <div class="card-body">
+                    <ul>
+                        <li>Tous niveaux</li>
+                        <li>Balade à cheval</li>
+                        <li>Maximum 3 cavaliers</li>
+                        <li>Acompte : 10 € / cavalier</li>
+                    </ul>
+
+                    <a class="button" href="#reservation">
+                        Choisir cette balade
+                    </a>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-top">
+                    <h3>Balade 2 heures</h3>
+                    <div class="price">50 €</div>
+                </div>
+
+                <div class="card-body">
+                    <ul>
+                        <li>Tous niveaux</li>
+                        <li>Balade à cheval</li>
+                        <li>Maximum 3 cavaliers</li>
+                        <li>Acompte : 20 € / cavalier</li>
+                    </ul>
+
+                    <a class="button" href="#reservation">
+                        Choisir cette balade
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<section id="esprit">
+    <div class="container">
+
+        <div class="about">
+
+            <div>
+                <h2>Notre esprit</h2>
+
+                <p>
+                    À The Horse Farm, le respect du cheval est au cœur
+                    de notre façon de travailler.
+                </p>
+
+                <p>
+                    Nous souhaitons vous faire découvrir les chevaux
+                    dans un cadre naturel et convivial, avec une approche
+                    adaptée à tous les niveaux.
+                </p>
+
+                <p>
+                    Notre univers est inspiré du monde western et
+                    particulièrement du Quarter Horse.
+                </p>
+            </div>
+
+            <div class="values">
+
+                <div class="value">
+                    <strong>🐴 Respect du cheval</strong>
+                    Le bien-être et le respect de nos chevaux sont essentiels.
+                </div>
+
+                <div class="value">
+                    <strong>🌿 Nature</strong>
+                    Des balades pour profiter du plein air et du paysage.
+                </div>
+
+                <div class="value">
+                    <strong>🤠 Esprit western</strong>
+                    Un univers authentique autour du cheval.
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<section id="reservation">
+    <div class="container">
+
+        <div class="title">
+            <small>Réservation</small>
+            <h2>Demander ma réservation</h2>
+            <p>
+                Choisissez votre balade, votre date et votre horaire.
+            </p>
+        </div>
+
+        <div class="booking">
+
+            <h3>Votre demande</h3>
+
+            <p class="booking-intro">
+                Votre réservation sera ensuite vérifiée et confirmée.
+            </p>
+
+            <form class="form" action="{{ url_for('reserve') }}" method="POST">
+
+                <div class="field">
+                    <label for="duration">Balade</label>
+
+                    <select id="duration" name="duration" required>
+                        <option value="">Choisir</option>
+                        <option value="1h">
+                            1 heure — 30 €
+                        </option>
+                        <option value="2h">
+                            2 heures — 50 €
+                        </option>
+                    </select>
+                </div>
+
+                <div class="field">
+                    <label for="riders">Nombre de cavaliers</label>
+
+                    <select id="riders" name="riders" required>
+                        <option value="">Choisir</option>
+                        <option value="1">1 cavalier</option>
+                        <option value="2">2 cavaliers</option>
+                        <option value="3">3 cavaliers</option>
+                    </select>
+                </div>
+
+                <div class="field">
+                    <label for="date">Date souhaitée</label>
+                    <input
+                        type="date"
+                        id="date"
+                        name="date"
+                        required
+                    >
+                </div>
+
+                <div class="field">
+                    <label for="time">Horaire</label>
+
+                    <select id="time" name="time" required>
+                        <option value="">Choisir une date d'abord</option>
+                        {% for slot in slots %}
+                        <option value="{{ slot }}">{{ slot }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="field">
+                    <label for="name">Nom et prénom</label>
+                    <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        placeholder="Votre nom"
+                        required
+                    >
+                </div>
+
+                <div class="field">
+                    <label for="phone">Téléphone</label>
+                    <input
+                        type="tel"
+                        id="phone"
+                        name="phone"
+                        placeholder="06..."
+                        required
+                    >
+                </div>
+
+                <div class="field full">
+                    <label for="email">E-mail</label>
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        placeholder="votre@email.fr"
+                        required
+                    >
+                </div>
+
+                <div class="summary full">
+
+                    <div class="row">
+                        <span>Nombre de cavaliers</span>
+                        <strong id="summaryRiders">—</strong>
+                    </div>
+
+                    <div class="row">
+                        <span>Prix total</span>
+                        <strong id="summaryTotal">—</strong>
+                    </div>
+
+                    <div class="row deposit">
+                        <span>Acompte indicatif</span>
+                        <strong id="summaryDeposit">—</strong>
+                    </div>
+
+                    <div class="row">
+                        <span>Solde sur place</span>
+                        <strong id="summaryBalance">—</strong>
+                    </div>
+
+                    <div class="notice">
+                        La demande de réservation est soumise à confirmation.
+                    </div>
+
+                </div>
+
+                <div class="full">
+                    <button class="button submit" type="submit">
+                        Demander ma réservation
+                    </button>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+</section>
+
+<section id="contact" class="contact">
+    <div class="container">
+
+        <h2>Nous contacter</h2>
+
+        <p>
+            📍 Chemin Plan Fossan Ouest, 13110 Port de Bouc
+        </p>
+
+        <p>
+            📞 <a href="tel:0648767010">06 48 76 70 10</a>
+        </p>
+
+        <p>
+            ✉️ <a href="mailto:lukyluke13@neuf.fr">
+                lukyluke13@neuf.fr
+            </a>
+        </p>
+
+    </div>
+</section>
+
+<footer>
+    © 2026 The Horse Farm — Tous droits réservés
+</footer>
+
+<script>
+
+const duration = document.getElementById("duration");
+const riders = document.getElementById("riders");
+const dateInput = document.getElementById("date");
+const timeSelect = document.getElementById("time");
+
+const summaryRiders = document.getElementById("summaryRiders");
+const summaryTotal = document.getElementById("summaryTotal");
+const summaryDeposit = document.getElementById("summaryDeposit");
+const summaryBalance = document.getElementById("summaryBalance");
+
+const prices = {
+    "1h": 30,
+    "2h": 50
+};
+
+const deposits = {
+    "1h": 10,
+    "2h": 20
+};
+
+function updateSummary() {
+
+    const selectedDuration = duration.value;
+    const numberOfRiders = parseInt(riders.value || "0");
+
+    if (!selectedDuration || !numberOfRiders) {
+        summaryRiders.textContent = "—";
+        summaryTotal.textContent = "—";
+        summaryDeposit.textContent = "—";
+        summaryBalance.textContent = "—";
+        return;
+    }
+
+    const total = prices[selectedDuration] * numberOfRiders;
+    const deposit = deposits[selectedDuration] * numberOfRiders;
+    const balance = total - deposit;
+
+    summaryRiders.textContent = numberOfRiders;
+    summaryTotal.textContent = total + " €";
+    summaryDeposit.textContent = deposit + " €";
+    summaryBalance.textContent = balance + " €";
+}
+
+duration.addEventListener("change", updateSummary);
+riders.addEventListener("change", updateSummary);
+
+const today = new Date();
+const year = today.getFullYear();
+const month = String(today.getMonth() + 1).padStart(2, "0");
+const day = String(today.getDate()).padStart(2, "0");
+
+dateInput.min = `${year}-${month}-${day}`;
+
+dateInput.addEventListener("change", async function() {
+
+    const selectedDate = this.value;
+
+    if (!selectedDate) {
+        return;
+    }
+
+    timeSelect.innerHTML =
+        '<option value="">Chargement des horaires...</option>';
+
+    try {
+
+        const response = await fetch(
+            "/availability?date=" +
+            encodeURIComponent(selectedDate)
+        );
+
+        const data = await response.json();
+
+        timeSelect.innerHTML =
+            '<option value="">Choisir un horaire</option>';
+
+        data.slots.forEach(function(slot) {
+
+            const option = document.createElement("option");
+
+            option.value = slot.time;
+
+            if (slot.remaining <= 0) {
+                option.textContent =
+                    slot.time + " — complet";
+                option.disabled = true;
+            } else {
+                option.textContent =
+                    slot.time +
+                    " — " +
+                    slot.remaining +
+                    " place(s) disponible(s)";
+            }
+
+            timeSelect.appendChild(option);
+        });
+
+    } catch (error) {
+
+        timeSelect.innerHTML =
+            '<option value="">Erreur de chargement</option>';
+
+    }
+});
+
+</script>
+
+</body>
+</html>
