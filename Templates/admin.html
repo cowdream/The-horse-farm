@@ -1,0 +1,255 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Administration - The Horse Farm</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Georgia, serif;
+            background: #f5f0e6;
+            color: #29251f;
+        }
+
+        header {
+            background: #24382c;
+            color: white;
+            padding: 25px;
+            text-align: center;
+            border-bottom: 4px solid #8b5e3c;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2rem;
+        }
+
+        header p {
+            margin: 6px 0 0;
+            letter-spacing: 2px;
+            font-size: 0.8rem;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        .box {
+            background: white;
+            padding: 25px;
+            margin-bottom: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+
+        h2 {
+            color: #24382c;
+            margin-top: 0;
+        }
+
+        .reservation {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            background: #faf8f3;
+        }
+
+        .reservation p {
+            margin: 8px 0;
+        }
+
+        .status {
+            font-weight: bold;
+            color: #8b5e3c;
+        }
+
+        button {
+            padding: 10px 18px;
+            margin: 8px 5px 0 0;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .confirm {
+            background: #24382c;
+        }
+
+        .cancel {
+            background: #9b3d32;
+        }
+
+        .logout {
+            display: inline-block;
+            background: #8b5e3c;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .horse {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .empty {
+            color: #777;
+            font-style: italic;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>THE HORSE FARM</h1>
+    <p>ESPACE ADMINISTRATEUR</p>
+</header>
+
+<div class="container">
+
+    <div class="box">
+
+        <h2>Réservations</h2>
+
+        {% if reservations %}
+
+            {% for reservation in reservations %}
+
+                <div class="reservation">
+
+                    <p>
+                        <strong>Date :</strong>
+                        {{ reservation["date"] }}
+                    </p>
+
+                    <p>
+                        <strong>Horaire :</strong>
+                        {{ reservation["time"] }}
+                    </p>
+
+                    <p>
+                        <strong>Balade :</strong>
+                        {{ reservation["duration"] }}
+                    </p>
+
+                    <p>
+                        <strong>Cavaliers :</strong>
+                        {{ reservation["riders"] }}
+                    </p>
+
+                    <p>
+                        <strong>Nom :</strong>
+                        {{ reservation["name"] }}
+                    </p>
+
+                    <p>
+                        <strong>Téléphone :</strong>
+                        {{ reservation["phone"] }}
+                    </p>
+
+                    <p>
+                        <strong>Email :</strong>
+                        {{ reservation["email"] }}
+                    </p>
+
+                    <p>
+                        <strong>Total :</strong>
+                        {{ reservation["total"] }} €
+                    </p>
+
+                    <p>
+                        <strong>Acompte :</strong>
+                        {{ reservation["deposit"] }} €
+                    </p>
+
+                    <p>
+                        <strong>Statut :</strong>
+                        <span class="status">
+                            {{ reservation["status"] }}
+                        </span>
+                    </p>
+
+                    {% if reservation["status"] == "pending" %}
+
+                        <form method="POST"
+                              action="/admin/reservation/{{ reservation['id'] }}/confirm"
+                              style="display:inline;">
+
+                            <button type="submit" class="confirm">
+                                Confirmer
+                            </button>
+
+                        </form>
+
+                        <form method="POST"
+                              action="/admin/reservation/{{ reservation['id'] }}/cancel"
+                              style="display:inline;">
+
+                            <button type="submit" class="cancel">
+                                Annuler
+                            </button>
+
+                        </form>
+
+                    {% endif %}
+
+                </div>
+
+            {% endfor %}
+
+        {% else %}
+
+            <p class="empty">
+                Aucune réservation pour le moment.
+            </p>
+
+        {% endif %}
+
+    </div>
+
+
+    <div class="box">
+
+        <h2>Chevaux</h2>
+
+        {% if horses %}
+
+            {% for horse in horses %}
+
+                <div class="horse">
+                    <strong>{{ horse["name"] }}</strong>
+                </div>
+
+            {% endfor %}
+
+        {% else %}
+
+            <p class="empty">
+                Aucun cheval enregistré.
+            </p>
+
+        {% endif %}
+
+    </div>
+
+
+    <a href="/admin/logout" class="logout">
+        Se déconnecter
+    </a>
+
+</div>
+
+</body>
+</html>
