@@ -32,18 +32,28 @@ app.secret_key = os.environ.get(
 )
 
 
-SUPABASE_URL = os.environ.get(
-    "SUPABASE_URL",
-    ""
-).rstrip("/")
+SUPABASE_URL = os.environ.get("SUPABASE_URL", "").rstrip("/")
+SUPABASE_SECRET_KEY = os.environ.get("SUPABASE_SECRET_KEY", "")
 
+# Lire le fichier secret Render si les variables d'environnement sont absentes
+secret_file = "/etc/secrets/supabase.env"
 
-SUPABASE_SECRET_KEY = os.environ.get(
-    "SUPABASE_SECRET_KEY",
-    ""
-)
-print("SUPABASE TEST URL:", bool(SUPABASE_URL))
-print("SUPABASE TEST KEY:", bool(SUPABASE_SECRET_KEY))
+if os.path.exists(secret_file):
+    with open(secret_file, "r", encoding="utf-8") as f:
+        for line in f:
+            line = line.strip()
+
+            if not line or "=" not in line:
+                continue
+
+            key, value = line.split("=", 1)
+
+            if key == "SUPABASE_URL" and not SUPABASE_URL:
+                SUPABASE_URL = value.strip().rstrip("/")
+
+            if key == "SUPABASE_SECRET_KEY" and not SUPABASE_SECRET_KEY:
+                SUPABASE_SECRET_KEY = value.strip()
+
 
 
 # =========================================================
