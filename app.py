@@ -46,7 +46,7 @@ if os.path.exists(secret_file):
             if not line or "=" not in line:
                 continue
 
-            key, value = line.split("=", 1)
+            key, value = [part.strip() for part in line.split("", 1)
 
             if key == "SUPABASE_URL" and not SUPABASE_URL:
                 SUPABASE_URL = value.strip().rstrip("/")
