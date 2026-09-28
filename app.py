@@ -54,6 +54,7 @@ if os.path.exists(secret_file):
             if key == "SUPABASE_SECRET_KEY" and not SUPABASE_SECRET_KEY:
                 SUPABASE_SECRET_KEY = value.strip()
 
+print("SUPABASE CONFIG :", bool(SUPABASE_URL), bool(SUPABASE_SECRET_KEY))
 
 
 # =========================================================
