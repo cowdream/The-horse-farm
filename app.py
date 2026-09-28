@@ -4,27 +4,65 @@ import json
 from urllib.request import Request, urlopen
 from urllib.parse import urlencode
 from urllib.error import HTTPError, URLError
-from flask import Flask, render_template, request, redirect, url_for, session, flash
 
-app = Flask(__name__, template_folder="Templates")
+from flask import (
+    Flask,
+    render_template,
+    request,
+    redirect,
+    url_for,
+    session,
+    flash
+)
+
+
+app = Flask(
+    __name__,
+    template_folder="Templates"
+)
+
+
+# =========================================================
+# CONFIGURATION
+# =========================================================
 
 app.secret_key = os.environ.get(
     "SECRET_KEY",
     "change-this-secret-key"
 )
 
-SUPABASE_URL = os.environ.get("SUPABASE_URL", "").rstrip("/")
-SUPABASE_SECRET_KEY = os.environ.get("SUPABASE_SECRET_KEY", "")
+
+SUPABASE_URL = os.environ.get(
+    "SUPABASE_URL",
+    ""
+).rstrip("/")
+
+
+SUPABASE_SECRET_KEY = os.environ.get(
+    "SUPABASE_SECRET_KEY",
+    ""
+)
+
+
+# =========================================================
+# PRIX
+# =========================================================
 
 PRICES = {
     "1h": 30,
     "2h": 50
 }
 
+
 DEPOSITS = {
     "1h": 10,
     "2h": 20
 }
+
+
+# =========================================================
+# CHEVAUX
+# =========================================================
 
 HORSES = [
     "Cheval 1",
@@ -32,12 +70,22 @@ HORSES = [
     "Cheval 3"
 ]
 
+
+# =========================================================
+# HORAIRES
+# =========================================================
+
 SLOTS = [
     "09:00",
     "10:00",
     "14:00",
-    "15:00",
+    "15:00"
 ]
+
+
+# =========================================================
+# MOT DE PASSE ADMIN
+# =========================================================
 
 ADMIN_PASSWORD = os.environ.get(
     "ADMIN_PASSWORD",
@@ -45,30 +93,69 @@ ADMIN_PASSWORD = os.environ.get(
 )
 
 
-def supabase_request(method, table, params=None, data=None):
-    if not SUPABASE_URL or not SUPABASE_SECRET_KEY:
-        raise RuntimeError("Variables Supabase manquantes.")
+# =========================================================
+# CONNEXION SUPABASE
+# =========================================================
 
-    url = f"{SUPABASE_URL}/rest/v1/{table}"
+def supabase_request(
+    method,
+    table,
+    params=None,
+    data=None
+):
+
+    # Diagnostic précis :
+    # on indique uniquement le nom de la variable manquante.
+    # La valeur secrète n'est jamais affichée.
+
+    missing = []
+
+    if not SUPABASE_URL:
+        missing.append("SUPABASE_URL")
+
+    if not SUPABASE_SECRET_KEY:
+        missing.append("SUPABASE_SECRET_KEY")
+
+    if missing:
+        raise RuntimeError(
+            "Variables Supabase manquantes : "
+            + ", ".join(missing)
+        )
+
+
+    url = (
+        f"{SUPABASE_URL}"
+        f"/rest/v1/{table}"
+    )
+
 
     if params:
         url += "?" + urlencode(params)
 
+
     headers = {
         "apikey": SUPABASE_SECRET_KEY,
+        "Authorization": f"Bearer {SUPABASE_SECRET_KEY}",
         "Content-Type": "application/json"
     }
+
 
     if method == "POST":
         headers["Prefer"] = "return=representation"
 
+
     if method == "PATCH":
         headers["Prefer"] = "return=representation"
 
+
     body = None
 
+
     if data is not None:
-        body = json.dumps(data).encode("utf-8")
+        body = json.dumps(data).encode(
+            "utf-8"
+        )
+
 
     req = Request(
         url,
@@ -77,26 +164,58 @@ def supabase_request(method, table, params=None, data=None):
         method=method
     )
 
+
     try:
-        with urlopen(req, timeout=15) as response:
-            raw = response.read().decode("utf-8")
+
+        with urlopen(
+            req,
+            timeout=15
+        ) as response:
+
+            raw = response.read().decode(
+                "utf-8"
+            )
+
 
             if not raw:
                 return []
 
+
             return json.loads(raw)
 
+
     except HTTPError as e:
-        error_body = e.read().decode("utf-8", errors="replace")
-        print("Supabase HTTP error:", e.code, error_body)
+
+        error_body = e.read().decode(
+            "utf-8",
+            errors="replace"
+        )
+
+        print(
+            "Supabase HTTP error:",
+            e.code,
+            error_body
+        )
+
         raise
+
 
     except URLError as e:
-        print("Supabase connection error:", e)
+
+        print(
+            "Supabase connection error:",
+            e
+        )
+
         raise
 
 
+# =========================================================
+# CHEVAUX DISPONIBLES
+# =========================================================
+
 def available_horses():
+
     rows = supabase_request(
         "GET",
         "horses",
@@ -107,10 +226,22 @@ def available_horses():
         }
     )
 
-    return [row["name"] for row in rows]
+
+    return [
+        row["name"]
+        for row in rows
+    ]
 
 
-def booked_count(date, time):
+# =========================================================
+# NOMBRE DE CAVALIERS DEJA RESERVES
+# =========================================================
+
+def booked_count(
+    date,
+    time
+):
+
     rows = supabase_request(
         "GET",
         "reservations",
@@ -122,16 +253,30 @@ def booked_count(date, time):
         }
     )
 
+
     total = 0
 
+
     for row in rows:
-        total += int(row.get("riders", 0))
+
+        total += int(
+            row.get(
+                "riders",
+                0
+            )
+        )
+
 
     return total
 
 
+# =========================================================
+# PAGE D'ACCUEIL
+# =========================================================
+
 @app.route("/")
 def home():
+
     return render_template(
         "home.html",
         prices=PRICES,
@@ -141,27 +286,51 @@ def home():
     )
 
 
+# =========================================================
+# DISPONIBILITES
+# =========================================================
+
 @app.route("/availability")
 def availability():
-    date = request.args.get("date", "")
+
+    date = request.args.get(
+        "date",
+        ""
+    )
+
 
     if not date:
+
         return {
             "date": date,
             "slots": []
         }
 
-    capacity = len(available_horses())
+
+    capacity = len(
+        available_horses()
+    )
+
 
     data = []
 
+
     for slot in SLOTS:
-        used = booked_count(date, slot)
+
+        used = booked_count(
+            date,
+            slot
+        )
+
 
         data.append({
             "time": slot,
-            "remaining": max(0, capacity - used)
+            "remaining": max(
+                0,
+                capacity - used
+            )
         })
+
 
     return {
         "date": date,
@@ -169,19 +338,67 @@ def availability():
     }
 
 
-@app.route("/reserve", methods=["POST"])
+# =========================================================
+# RESERVATION
+# =========================================================
+
+@app.route(
+    "/reserve",
+    methods=["POST"]
+)
 def reserve():
-    date = request.form.get("date", "").strip()
-    time = request.form.get("time", "").strip()
-    duration = request.form.get("duration", "").strip()
-    name = request.form.get("name", "").strip()
-    phone = request.form.get("phone", "").strip()
-    email = request.form.get("email", "").strip()
+
+    date = request.form.get(
+        "date",
+        ""
+    ).strip()
+
+
+    time = request.form.get(
+        "time",
+        ""
+    ).strip()
+
+
+    duration = request.form.get(
+        "duration",
+        ""
+    ).strip()
+
+
+    name = request.form.get(
+        "name",
+        ""
+    ).strip()
+
+
+    phone = request.form.get(
+        "phone",
+        ""
+    ).strip()
+
+
+    email = request.form.get(
+        "email",
+        ""
+    ).strip()
+
 
     try:
-        riders = int(request.form.get("riders", "0"))
+
+        riders = int(
+            request.form.get(
+                "riders",
+                "0"
+            )
+        )
+
     except ValueError:
+
         riders = 0
+
+
+    # Vérification des champs
 
     if (
         duration not in PRICES
@@ -191,89 +408,215 @@ def reserve():
         or not phone
         or not email
     ):
-        flash("Merci de remplir tous les champs.")
-        return redirect(url_for("home"))
 
-    if riders < 1 or riders > len(HORSES):
         flash(
-            "Le nombre de cavaliers doit être compris entre 1 et 3."
+            "Merci de remplir tous les champs."
         )
-        return redirect(url_for("home"))
 
-    capacity = len(available_horses())
+        return redirect(
+            url_for("home")
+        )
 
-    if riders > capacity - booked_count(date, time):
+
+    # Maximum 3 cavaliers
+
+    if (
+        riders < 1
+        or riders > len(HORSES)
+    ):
+
         flash(
-            "Ce créneau n'a plus assez de chevaux disponibles."
+            "Le nombre de cavaliers "
+            "doit être compris entre 1 et 3."
         )
-        return redirect(url_for("home"))
 
-    total = PRICES[duration] * riders
-    deposit = DEPOSITS[duration] * riders
+        return redirect(
+            url_for("home")
+        )
+
+
+    # Vérification des chevaux
+
+    capacity = len(
+        available_horses()
+    )
+
+
+    if riders > (
+        capacity
+        - booked_count(
+            date,
+            time
+        )
+    ):
+
+        flash(
+            "Ce créneau n'a plus assez "
+            "de chevaux disponibles."
+        )
+
+        return redirect(
+            url_for("home")
+        )
+
+
+    # Calcul du prix
+
+    total = (
+        PRICES[duration]
+        * riders
+    )
+
+
+    deposit = (
+        DEPOSITS[duration]
+        * riders
+    )
+
+
+    # Création de la réservation
 
     reservation = {
+
         "date": date,
+
         "time": time,
+
         "duration": duration,
+
         "riders": riders,
+
         "name": name,
+
         "phone": phone,
+
         "email": email,
+
         "total": total,
+
         "deposit": deposit,
+
         "status": "pending"
     }
 
+
     try:
+
         supabase_request(
             "POST",
             "reservations",
             data=reservation
         )
 
-    except Exception:
+
+    except Exception as e:
+
+        print(
+            "Erreur réservation:",
+            e
+        )
+
         flash(
-            "Impossible d'enregistrer la réservation. "
+            "Impossible d'enregistrer "
+            "la réservation. "
             "Veuillez réessayer."
         )
-        return redirect(url_for("home"))
+
+        return redirect(
+            url_for("home")
+        )
+
+
+    # Page de confirmation
 
     return render_template(
         "confirmation.html",
+
         date=date,
+
         time=time,
+
         duration=duration,
+
         riders=riders,
+
         name=name,
+
         total=total,
+
         deposit=deposit,
+
         balance=total - deposit
     )
 
 
-@app.route("/admin/login", methods=["GET", "POST"])
+# =========================================================
+# CONNEXION ADMIN
+# =========================================================
+
+@app.route(
+    "/admin/login",
+    methods=["GET", "POST"]
+)
 def admin_login():
+
     if request.method == "POST":
 
-        if request.form.get("password") == ADMIN_PASSWORD:
+        if (
+            request.form.get(
+                "password"
+            )
+            == ADMIN_PASSWORD
+        ):
+
             session["admin"] = True
-            return redirect(url_for("admin"))
 
-        flash("Mot de passe incorrect.")
+            return redirect(
+                url_for("admin")
+            )
 
-    return render_template("admin_login.html")
 
+        flash(
+            "Mot de passe incorrect."
+        )
+
+
+    return render_template(
+        "admin_login.html"
+    )
+
+
+# =========================================================
+# DECONNEXION ADMIN
+# =========================================================
 
 @app.route("/admin/logout")
 def admin_logout():
-    session.pop("admin", None)
-    return redirect(url_for("admin_login"))
 
+    session.pop(
+        "admin",
+        None
+    )
+
+
+    return redirect(
+        url_for("admin_login")
+    )
+
+
+# =========================================================
+# ESPACE ADMIN
+# =========================================================
 
 @app.route("/admin")
 def admin():
+
     if not session.get("admin"):
-        return redirect(url_for("admin_login"))
+
+        return redirect(
+            url_for("admin_login")
+        )
+
 
     reservations = supabase_request(
         "GET",
@@ -284,6 +627,7 @@ def admin():
         }
     )
 
+
     horses = supabase_request(
         "GET",
         "horses",
@@ -293,6 +637,7 @@ def admin():
         }
     )
 
+
     return render_template(
         "admin.html",
         reservations=reservations,
@@ -300,63 +645,123 @@ def admin():
     )
 
 
+# =========================================================
+# CONFIRMER / ANNULER UNE RESERVATION
+# =========================================================
+
 @app.route(
     "/admin/reservation/<int:rid>/<action>",
     methods=["POST"]
 )
-def reservation_action(rid, action):
+def reservation_action(
+    rid,
+    action
+):
 
     if not session.get("admin"):
-        return redirect(url_for("admin_login"))
+
+        return redirect(
+            url_for("admin_login")
+        )
+
 
     status = {
+
         "confirm": "confirmed",
+
         "cancel": "cancelled"
+
     }.get(action)
 
+
     if status:
+
         supabase_request(
+
             "PATCH",
+
             "reservations",
+
             {
                 "id": f"eq.{rid}"
             },
+
             {
                 "status": status
             }
         )
 
-    return redirect(url_for("admin"))
 
+    return redirect(
+        url_for("admin")
+    )
+
+
+# =========================================================
+# ACTIVER / DESACTIVER UN CHEVAL
+# =========================================================
 
 @app.route(
     "/admin/horse/<name>/<action>",
     methods=["POST"]
 )
-def horse_action(name, action):
+def horse_action(
+    name,
+    action
+):
 
-    if not session.get("admin") or name not in HORSES:
-        return redirect(url_for("admin_login"))
+    if (
+        not session.get("admin")
+        or name not in HORSES
+    ):
 
-    available = action == "enable"
+        return redirect(
+            url_for("admin_login")
+        )
+
+
+    available = (
+        action == "enable"
+    )
+
 
     supabase_request(
+
         "PATCH",
+
         "horses",
+
         {
             "name": f"eq.{name}"
         },
+
         {
             "available": available
         }
     )
 
-    return redirect(url_for("admin"))
 
+    return redirect(
+        url_for("admin")
+    )
+
+
+# =========================================================
+# LANCEMENT
+# =========================================================
 
 if __name__ == "__main__":
+
     app.run(
+
         host="0.0.0.0",
-        port=int(os.environ.get("PORT", 5000)),
+
+        port=int(
+            os.environ.get(
+                "PORT",
+                5000
+            )
+        ),
+
         debug=False
     )
