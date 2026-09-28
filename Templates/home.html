@@ -1,14 +1,35 @@
-<!DOCTYPE html>
-<html lang="fr>
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-content="width=device-width,
-initial-scale=1.0">
-    <title>The Horse Farm</title>
-</head>
-<body>
-    <h1>The Horse Farm</h1>
-    <p>Réservation de balades à cheval</p>
+
+
+    ride.addEventListener("change", updateSummary);
+    riders.addEventListener("change", updateSummary);
+
+
+    document.getElementById("bookingForm").addEventListener("submit", function(event) {
+
+        event.preventDefault();
+
+        alert(
+            "Votre demande de réservation est prête à être envoyée. " +
+            "La confirmation définitive sera effectuée par The Horse Farm."
+        );
+
+    });
+
+
+    // Empêche de choisir une date passée
+    const dateInput = document.getElementById("date");
+
+    const today = new Date();
+
+    const year = today.getFullYear();
+    const month = String(today.getMonth() + 1).padStart(2, "0");
+    const day = String(today.getDate()).padStart(2, "0");
+
+    dateInput.min = `${year}-${month}-${day}`;
+
+    updateSummary();
+
+</script>
+
 </body>
 </html>
