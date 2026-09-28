@@ -1,0 +1,180 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Réservation — The Horse Farm</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Georgia, serif;
+            background: #f5f0e6;
+            color: #29251f;
+        }
+
+        header {
+            background: #24382c;
+            color: white;
+            padding: 25px;
+            text-align: center;
+            border-bottom: 4px solid #8b5e3c;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2rem;
+        }
+
+        header p {
+            margin: 6px 0 0;
+            letter-spacing: 2px;
+            font-size: 0.8rem;
+        }
+
+        .container {
+            max-width: 750px;
+            margin: 50px auto;
+            padding: 0 20px;
+        }
+
+        .box {
+            background: white;
+            padding: 35px;
+            border-radius: 10px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.08);
+        }
+
+        h2 {
+            text-align: center;
+            color: #24382c;
+            font-size: 2rem;
+            margin-top: 0;
+        }
+
+        .success {
+            text-align: center;
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+        }
+
+        .details {
+            border-top: 1px solid #ddd;
+            border-bottom: 1px solid #ddd;
+            padding: 20px 0;
+        }
+
+        .row {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            padding: 9px 0;
+        }
+
+        .row strong {
+            color: #24382c;
+        }
+
+        .amounts {
+            margin-top: 25px;
+            padding: 20px;
+            background: #efe6d5;
+            border-radius: 8px;
+        }
+
+        .total {
+            font-size: 1.3rem;
+            font-weight: bold;
+        }
+
+        .deposit {
+            color: #8b5e3c;
+            font-weight: bold;
+        }
+
+        .balance {
+            font-size: 1.15rem;
+            font-weight: bold;
+        }
+
+        .note {
+            margin-top: 25px;
+            padding: 18px;
+            background: #24382c;
+            color: white;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .button {
+            display: block;
+            width: fit-content;
+            margin: 30px auto 0;
+            padding: 14px 25px;
+            background: #8b5e3c;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-family: Arial, sans-serif;
+            font-weight: bold;
+        }
+
+        @media (max-width: 600px) {
+            .box {
+                padding: 25px 18px;
+            }
+
+            .row {
+                flex-direction: column;
+                gap: 2px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>THE HORSE FARM</h1>
+    <p>PORT DE BOUC</p>
+</header>
+
+<div class="container">
+
+    <div class="box">
+
+        <h2>Votre demande est enregistrée !</h2>
+
+        <div class="success">
+            Merci <strong>{{ name }}</strong>.<br>
+            Votre demande de réservation a bien été enregistrée.
+        </div>
+
+        <div class="details">
+
+            <div class="row">
+                <strong>Balade</strong>
+                <span>{{ duration }}</span>
+            </div>
+
+            <div class="row">
+                <strong>Date</strong>
+                <span>{{ date }}</span>
+            </div>
+
+            <div class="row">
+                <strong>Horaire</strong>
+                <span>{{ time }}</span>
+            </div>
+
+            <div class="row">
+                <strong>Cavaliers</strong>
+                <span>{{ riders }}</span>
+            </div>
+
+        </div>
+
+        <div class="amounts">
+
+            <div class="row
