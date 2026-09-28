@@ -42,6 +42,8 @@ SUPABASE_SECRET_KEY = os.environ.get(
     "SUPABASE_SECRET_KEY",
     ""
 )
+print("SUPABASE TEST URL:", bool(SUPABASE_URL))
+print("SUPABASE TEST KEY:", bool(SUPABASE_SECRET_KEY))
 
 
 # =========================================================
