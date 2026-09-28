@@ -36,7 +36,7 @@ SUPABASE_URL = os.environ.get("SUPABASE_URL", "").rstrip("/")
 SUPABASE_SECRET_KEY = os.environ.get("SUPABASE_SECRET_KEY", "")
 
 # Lire le fichier secret Render si les variables d'environnement sont absentes
-secret_file = "/etc/secrets/supabase.env"
+secret_file = "supabase.env"
 print("FICHIER SECRET EXISTE :", os.path.exists(secret_file))
 if os.path.exists(secret_file):
     with open(secret_file, "r", encoding="utf-8") as f:
