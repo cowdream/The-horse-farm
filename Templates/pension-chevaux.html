@@ -1,0 +1,238 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pension pour chevaux | The Horse Farm</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Georgia, "Times New Roman", serif;
+            color: #2d1a0f;
+            background: #e7d0a5;
+        }
+
+        header {
+            background: #3b2114;
+            color: #f4e4c1;
+            text-align: center;
+            padding: 35px 20px;
+            border-bottom: 8px solid #8a5a2b;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 42px;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+        }
+
+        header p {
+            margin: 10px 0 0;
+            font-size: 18px;
+            letter-spacing: 2px;
+        }
+
+        nav {
+            background: #24140d;
+            padding: 12px;
+            text-align: center;
+        }
+
+        nav a {
+            display: inline-block;
+            color: #f4e4c1;
+            text-decoration: none;
+            margin: 5px;
+            padding: 10px 15px;
+            border: 1px solid #b88945;
+            border-radius: 4px;
+        }
+
+        nav a:hover {
+            background: #5a321e;
+        }
+
+        .container {
+            max-width: 1050px;
+            margin: 30px auto;
+            padding: 0 18px;
+        }
+
+        .intro {
+            background: #f8edda;
+            padding: 35px 25px;
+            text-align: center;
+            border: 3px solid #5b351d;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.18);
+        }
+
+        .intro h2 {
+            margin-top: 0;
+            color: #5b2918;
+            font-size: 34px;
+        }
+
+        .intro p {
+            font-size: 19px;
+            line-height: 1.7;
+        }
+
+        .sections {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 25px;
+        }
+
+        .card {
+            background: #f8edda;
+            padding: 25px;
+            border: 2px solid #8a5a2b;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .card h3 {
+            color: #5b2918;
+            font-size: 24px;
+            margin-top: 0;
+            border-bottom: 2px solid #b88945;
+            padding-bottom: 10px;
+        }
+
+        .card ul {
+            padding-left: 22px;
+            line-height: 1.9;
+            font-size: 17px;
+        }
+
+        .respect {
+            margin-top: 25px;
+            background: #3b2114;
+            color: #f4e4c1;
+            padding: 30px 20px;
+            text-align: center;
+            border: 5px solid #8a5a2b;
+        }
+
+        .respect h2 {
+            margin-top: 0;
+            font-size: 28px;
+        }
+
+        footer {
+            margin-top: 35px;
+            background: #24140d;
+            color: #f4e4c1;
+            text-align: center;
+            padding: 25px 15px;
+        }
+
+        footer strong {
+            font-size: 22px;
+            letter-spacing: 2px;
+        }
+
+        @media (max-width: 600px) {
+            header h1 {
+                font-size: 30px;
+            }
+
+            .intro h2 {
+                font-size: 27px;
+            }
+
+            nav a {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>THE HORSE FARM</h1>
+    <p>ÉCURIE &amp; RANCH — ESPRIT WESTERN</p>
+</header>
+
+<nav>
+    <a href="/">Accueil</a>
+    <a href="/pension-chevaux">Pension</a>
+</nav>
+
+<div class="container">
+
+    <section class="intro">
+        <h2>Pension pour chevaux</h2>
+
+        <p>
+            Offrez à votre cheval un cadre naturel et serein,
+            dans l'esprit du ranch et avec une attention particulière
+            portée au respect et au bien-être du cheval.
+        </p>
+    </section>
+
+    <section class="sections">
+
+        <article class="card">
+            <h3>Nos installations</h3>
+
+            <ul>
+                <li>Paddocks individuels ou doubles avec abris</li>
+                <li>Carrière éclairée</li>
+                <li>Rond de longe</li>
+                <li>Marcheur</li>
+                <li>Aires de pansage</li>
+                <li>Sellerie fonctionnelle</li>
+            </ul>
+        </article>
+
+        <article class="card">
+            <h3>Un environnement naturel</h3>
+
+            <ul>
+                <li>En pleine nature</li>
+                <li>Nombreux chemins de balade</li>
+                <li>Ambiance conviviale et familiale</li>
+                <li>Présence &amp; surveillance H24</li>
+            </ul>
+        </article>
+
+        <article class="card">
+            <h3>Notre philosophie</h3>
+
+            <ul>
+                <li>Respect du cheval</li>
+                <li>Approche éthologique</li>
+                <li>Approche physiologique</li>
+                <li>Une attention adaptée à chaque cheval</li>
+            </ul>
+        </article>
+
+    </section>
+
+    <section class="respect">
+        <h2>LÀ OÙ LE RESPECT DU CHEVAL RENCONTRE L'ESPRIT DU FAR WEST</h2>
+
+        <p>
+            The Horse Farm — Votre partenaire de confiance.
+        </p>
+    </section>
+
+</div>
+
+<footer>
+    <strong>THE HORSE FARM</strong>
+    <br>
+    Votre partenaire de confiance
+</footer>
+
+</body>
+</html>
