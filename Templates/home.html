@@ -340,7 +340,7 @@ duration.addEventListener("change",function(){
 
 riders.addEventListener("change",updateSummary);
 dateInput.addEventListener("change",loadTimes);
-
+updateSummary();
 const today=new Date();
 dateInput.min=
     today.getFullYear()+"-"+
