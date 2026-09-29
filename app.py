@@ -307,6 +307,9 @@ def elevage_quarter_horse():
 @app.route("/debourrage-travail-cheval")
 def debourrage_travail_cheval():
     return render_template("debourrage-travail-cheval.html")
+@app.route("/cadre-unique")
+def cadre_unique():
+    return render_template("cadre-unique.html")
 # =========================================================
 # DISPONIBILITES
 # =========================================================
