@@ -520,6 +520,51 @@ def reserve():
             "reservations",
             data=reservation
         )
+        # Notification Telegram
+        try:
+            import urllib.parse
+            import urllib.request
+
+            telegram_token = ""
+            telegram_chat_id = ""
+
+            with open("/etc/secrets/telegram.env", "r") as f:
+                for line in f:
+                    line = line.strip()
+                    if not line or "=" not in line:
+                        continue
+                    key, value = line.split("=", 1)
+                    if key.strip() == "TELEGRAM_BOT_TOKEN":
+                        telegram_token = value.strip()
+                    elif key.strip() == "TELEGRAM_CHAT_ID":
+                        telegram_chat_id = value.strip()
+
+            if telegram_token and telegram_chat_id:
+                message = (
+                    "🔔 Nouvelle réservation – The Horse Farm\n\n"
+                    f"Nom : {reservation.get('name', '')}\n"
+                    f"Téléphone : {reservation.get('phone', '')}\n"
+                    f"Date : {reservation.get('date', '')}\n"
+                    f"Heure : {reservation.get('time', '')}\n"
+                    f"Cavaliers : {reservation.get('riders', '')}\n"
+                    f"Total : {reservation.get('total', '')} €\n"
+                    f"Acompte : {reservation.get('deposit', '')} €"
+                )
+
+                data = urllib.parse.urlencode({
+                    "chat_id": telegram_chat_id,
+                    "text": message
+                }).encode()
+
+                url = f"https://api.telegram.org/bot{telegram_token}/sendMessage"
+
+                urllib.request.urlopen(
+                    urllib.request.Request(url, data=data),
+                    timeout=10
+                )
+
+        except Exception as telegram_error:
+            print("Erreur notification Telegram :", telegram_error)
 
 
     except Exception as e:
