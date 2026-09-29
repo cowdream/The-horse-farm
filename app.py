@@ -309,7 +309,7 @@ def debourrage_travail_cheval():
     return render_template("debourrage-travail-cheval.html")
 @app.route("/cadre-unique")
 def cadre_unique():
-    return render_template("cadre-unique.html")
+    return render_template("Cadre-unique.html")
 # =========================================================
 # DISPONIBILITES
 # =========================================================
