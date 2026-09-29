@@ -297,6 +297,9 @@ def home():
         slots=SLOTS,
         max_riders=len(HORSES)
     )
+@app.route("/pension-chevaux")
+def pension_chevaux():
+    return render_template("pension-chevaux.html")
 
 
 # =========================================================
