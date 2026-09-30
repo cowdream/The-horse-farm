@@ -152,6 +152,42 @@
                 font-size: 14px;
             }
         }
+    .pension-gallery {
+    max-width: 1100px;
+    margin: 40px auto;
+    padding: 20px;
+    text-align: center;
+}
+
+.pension-gallery h2 {
+    font-size: 32px;
+    margin-bottom: 25px;
+}
+
+.pension-photos {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.pension-photos img {
+    width: 100%;
+    height: 320px;
+    object-fit: cover;
+    border-radius: 12px;
+    box-shadow: 0 5px 18px rgba(0,0,0,0.25);
+}
+
+@media (max-width: 700px) {
+    .pension-photos {
+        grid-template-columns: 1fr;
+    }
+
+    .pension-photos img {
+        height: 280px;
+    }
+}
+
     </style>
 </head>
 
@@ -166,6 +202,21 @@
     <a href="/">Accueil</a>
     <a href="/pension-chevaux">Pension</a>
 </nav>
+    <section class="pension-gallery">
+
+    <h2>Notre pension</h2>
+
+    <div class="pension-photos">
+
+        <img src="/static/pension-1.jpg" alt="Pension pour chevaux">
+        <img src="/static/pension-2-1.jpg" alt="Paddocks de la pension">
+        <img src="/static/pension-3.jpg" alt="Installations de la pension">
+        <img src="/static/pension-4.jpg" alt="Installations équestres">
+
+    </div>
+
+</section>
+
 
 <div class="container">
 
