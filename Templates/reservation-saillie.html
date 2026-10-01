@@ -213,7 +213,13 @@
 
     <div class="reservation">
     <h2>Demande de réservation de saillie</h2>
-
+<div style="background:#f1dfb7; color:#32180f; padding:20px; margin:20px auto 30px; border-radius:10px; max-width:750px; text-align:left;">
+    <h3 style="text-align:center; margin-top:0;">Conditions de saillie</h3>
+    <p>• Saillie uniquement en <strong>monte en main</strong>.</p>
+    <p>• <strong>Test de métrite exigé</strong> avant la saillie.</p>
+    <p>• Pension : <strong>forfait de 50 € pour 5 jours</strong>, en supplément du prix de la saillie.</p>
+    <p>• <strong>Garantie poulain vivant.</strong></p>
+</div>
     <form id="saillieForm">
 
         <p>
@@ -229,7 +235,15 @@
             <label for="date_saillie"><strong>Date souhaitée :</strong></label><br>
             <input type="date" id="date_saillie" name="date_saillie" required>
         </p>
+<p>
+    <label for="nom_jument"><strong>Nom de la jument :</strong></label><br>
+    <input type="text" id="nom_jument" name="nom_jument" required>
+</p>
 
+<p>
+    <label for="numero_sire"><strong>N° SIRE de la jument :</strong></label><br>
+    <input type="text" id="numero_sire" name="numero_sire" required>
+</p>
         <p>
             <label for="nom"><strong>Nom et prénom :</strong></label><br>
             <input type="text" id="nom" name="nom" required>
