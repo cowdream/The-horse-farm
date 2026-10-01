@@ -212,15 +212,87 @@
     </div>
 
     <div class="reservation">
-        <h2>Demande de réservation de saillie</h2>
+    <h2>Demande de réservation de saillie</h2>
 
-        <div class="calendar">📅</div>
+    <form id="saillieForm">
 
         <p>
-            Sélectionnez prochainement votre étalon et la période souhaitée.
-            Chaque demande sera confirmée par The Horse Farm selon les disponibilités.
+            <label for="etalon"><strong>Choisissez votre étalon :</strong></label><br><br>
+            <select id="etalon" name="etalon" required onchange="calculSaillie()">
+                <option value="">-- Choisir un étalon --</option>
+                <option value="rockin">ROCKIN CHEX TIME — 700 €</option>
+                <option value="ribbon">ROCK BLUE RIBBON — 500 €</option>
+            </select>
         </p>
-    </div>
+
+        <p>
+            <label for="date_saillie"><strong>Date souhaitée :</strong></label><br>
+            <input type="date" id="date_saillie" name="date_saillie" required>
+        </p>
+
+        <p>
+            <label for="nom"><strong>Nom et prénom :</strong></label><br>
+            <input type="text" id="nom" name="nom" required>
+        </p>
+
+        <p>
+            <label for="telephone"><strong>Téléphone :</strong></label><br>
+            <input type="tel" id="telephone" name="telephone" required>
+        </p>
+
+        <p>
+            <label for="email"><strong>E-mail :</strong></label><br>
+            <input type="email" id="email" name="email" required>
+        </p>
+
+        <div id="tarifs" style="display:none; margin:25px 0; line-height:1.8;">
+            <div>Prix de la saillie : <strong><span id="prixSaillie">0</span> €</strong></div>
+            <div>Pension obligatoire — forfait 5 jours : <strong>50 €</strong></div>
+            <div>Prix total : <strong><span id="prixTotal">0</span> €</strong></div>
+            <div>Acompte : <strong><span id="acompte">0</span> €</strong></div>
+            <div>Solde restant : <strong><span id="solde">0</span> €</strong></div>
+        </div>
+
+        <p style="font-size:15px;">
+            La réservation sera confirmée par The Horse Farm selon les disponibilités.
+            L'acompte n'est pas payé directement sur le site.
+        </p>
+
+        <button type="submit">Demander ma réservation de saillie</button>
+
+    </form>
+</div>
+
+<script>
+function calculSaillie() {
+    const etalon = document.getElementById("etalon").value;
+
+    let prix = 0;
+    let acompte = 0;
+    const pension = 50;
+
+    if (etalon === "rockin") {
+        prix = 700;
+        acompte = 200;
+    } else if (etalon === "ribbon") {
+        prix = 500;
+        acompte = 150;
+    }
+
+    if (prix > 0) {
+        const total = prix + pension;
+        const solde = total - acompte;
+
+        document.getElementById("prixSaillie").textContent = prix;
+        document.getElementById("prixTotal").textContent = total;
+        document.getElementById("acompte").textContent = acompte;
+        document.getElementById("solde").textContent = solde;
+        document.getElementById("tarifs").style.display = "block";
+    } else {
+        document.getElementById("tarifs").style.display = "none";
+    }
+}
+</script>
 
 </div>
 
