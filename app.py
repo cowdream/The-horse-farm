@@ -304,8 +304,89 @@ def pension_chevaux():
 def elevage_quarter_horse():
     return render_template("elevage-quarter-horse.html")
 
-@app.route("/reservation-saillie")
+@app.route("/reservation-saillie", methods=["GET", "POST"])
 def reservation_saillie():
+    if request.method == "POST":
+        etalon_code = request.form.get("etalon", "")
+        date_saillie = request.form.get("date_saillie", "")
+        nom_jument = request.form.get("nom_jument", "")
+        numero_sire = request.form.get("numero_sire", "")
+        nom = request.form.get("nom", "")
+        telephone = request.form.get("telephone", "")
+        email = request.form.get("email", "")
+
+        if etalon_code == "rockin":
+            etalon = "ROCKIN CHEX TIME"
+            prix_saillie = 700
+            acompte = 200
+        elif etalon_code == "ribbon":
+            etalon = "ROCK BLUE RIBBON"
+            prix_saillie = 500
+            acompte = 150
+        else:
+            etalon = "Non renseigné"
+            prix_saillie = 0
+            acompte = 0
+
+        pension = 50
+        total = prix_saillie + pension
+        solde = total - acompte
+
+        try:
+            import urllib.parse
+            import urllib.request
+
+            telegram_token = ""
+            telegram_chat_id = ""
+
+            with open("/etc/secrets/telegram.env", "r") as f:
+                for line in f:
+                    line = line.strip()
+                    if not line or "=" not in line:
+                        continue
+                    key, value = line.split("=", 1)
+                    if key.strip() == "TELEGRAM_BOT_TOKEN":
+                        telegram_token = value.strip()
+                    elif key.strip() == "TELEGRAM_CHAT_ID":
+                        telegram_chat_id = value.strip()
+
+            if telegram_token and telegram_chat_id:
+                message = (
+                    "🐴 Nouvelle demande de saillie - The Horse Farm\n\n"
+                    f"Étalon : {etalon}\n"
+                    f"Date souhaitée : {date_saillie}\n"
+                    f"Jument : {nom_jument}\n"
+                    f"N° SIRE : {numero_sire}\n\n"
+                    f"Client : {nom}\n"
+                    f"Téléphone : {telephone}\n"
+                    f"E-mail : {email}\n\n"
+                    f"Prix saillie : {prix_saillie} €\n"
+                    f"Pension 5 jours : {pension} €\n"
+                    f"Total : {total} €\n"
+                    f"Acompte : {acompte} €\n"
+                    f"Solde : {solde} €"
+                )
+
+                data = urllib.parse.urlencode({
+                    "chat_id": telegram_chat_id,
+                    "text": message
+                }).encode()
+
+                url = f"https://api.telegram.org/bot{telegram_token}/sendMessage"
+
+                urllib.request.urlopen(
+                    urllib.request.Request(url, data=data),
+                    timeout=10
+                )
+
+        except Exception as telegram_error:
+            print("Erreur notification Telegram :", telegram_error)
+
+        return render_template(
+            "reservation-saillie.html",
+            success=True
+        )
+
     return render_template("reservation-saillie.html")
 
 @app.route("/debourrage-travail-cheval")
