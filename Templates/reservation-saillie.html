@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Réservation de saillie - The Horse Farm</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Georgia, "Times New Roman", serif;
+            background: #f1dfb7;
+            color: #32180f;
+        }
+
+        header {
+            background: #2a0d08;
+            color: white;
+            text-align: center;
+            padding: 45px 20px 35px;
+            border-bottom: 5px solid #a65318;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 48px;
+            letter-spacing: 3px;
+        }
+
+        header p {
+            margin: 15px 0 0;
+            font-size: 21px;
+            letter-spacing: 2px;
+        }
+
+        nav {
+            background: #160b08;
+            text-align: center;
+            padding: 20px;
+        }
+
+        nav a {
+            display: inline-block;
+            color: white;
+            text-decoration: none;
+            border: 1px solid #a66b3d;
+            border-radius: 7px;
+            padding: 12px 22px;
+            margin: 5px;
+            font-weight: bold;
+        }
+
+        .container {
+            max-width: 1050px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .title {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .title h2 {
+            font-size: 38px;
+            margin-bottom: 10px;
+        }
+
+        .title p {
+            font-size: 19px;
+            line-height: 1.6;
+        }
+
+        .stallions {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+        }
+
+        .stallion {
+            background: rgba(255,255,255,.55);
+            border: 1px solid #8a5635;
+            border-radius: 12px;
+            padding: 18px;
+            text-align: center;
+        }
+
+        .stallion img {
+            width: 100%;
+            height: 330px;
+            object-fit: cover;
+            border-radius: 9px;
+        }
+
+        .stallion h3 {
+            font-size: 25px;
+            margin: 16px 0 10px;
+        }
+
+        .pedigree {
+            display: inline-block;
+            color: #5b351f;
+            font-weight: bold;
+            text-decoration: none;
+            margin-bottom: 12px;
+        }
+
+        .reservation {
+            margin-top: 40px;
+            padding: 30px;
+            background: #2a0d08;
+            color: white;
+            border-radius: 12px;
+            text-align: center;
+            border: 2px solid #a66b3d;
+        }
+
+        .reservation h2 {
+            margin-top: 0;
+            font-size: 30px;
+        }
+
+        .reservation p {
+            font-size: 18px;
+            line-height: 1.6;
+        }
+
+        .calendar {
+            font-size: 48px;
+            margin: 15px 0;
+        }
+
+        footer {
+            margin-top: 45px;
+            background: #160b08;
+            color: white;
+            text-align: center;
+            padding: 25px;
+        }
+
+        @media (max-width: 700px) {
+            header h1 {
+                font-size: 34px;
+            }
+
+            .stallions {
+                grid-template-columns: 1fr;
+            }
+
+            .stallion img {
+                height: 280px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>THE HORSE FARM</h1>
+    <p>ÉCURIE &amp; RANCH — ESPRIT WESTERN</p>
+</header>
+
+<nav>
+    <a href="/">Accueil</a>
+    <a href="/elevage-quarter-horse">Élevage</a>
+</nav>
+
+<div class="container">
+
+    <div class="title">
+        <h2>Réservation de saillie</h2>
+        <p>
+            Découvrez nos deux étalons et contactez The Horse Farm
+            pour organiser votre projet de saillie.
+        </p>
+    </div>
+
+    <div class="stallions">
+
+        <div class="stallion">
+            <img src="/static/IMG_20260929_224038.jpg"
+                 alt="ROCKIN CHEX TIME">
+
+            <h3>ROCKIN CHEX TIME</h3>
+
+            <a class="pedigree"
+               href="/static/ROCKIN-CHEX-TIME-pedigree-A-LENDROIT.jpg"
+               target="_blank">
+                📄 Voir le pedigree
+            </a>
+        </div>
+
+        <div class="stallion">
+            <img src="/static/IMG_20260929_230143.jpg"
+                 alt="ROCK BLUE RIBBON">
+
+            <h3>ROCK BLUE RIBBON</h3>
+
+            <a class="pedigree"
+               href="/static/ROCK-BLUE-RIBBON-pedigree-lisible.jpg"
+               target="_blank">
+                📄 Voir le pedigree
+            </a>
+        </div>
+
+    </div>
+
+    <div class="reservation">
+        <h2>Demande de réservation de saillie</h2>
+
+        <div class="calendar">📅</div>
+
+        <p>
+            Sélectionnez prochainement votre étalon et la période souhaitée.
+            Chaque demande sera confirmée par The Horse Farm selon les disponibilités.
+        </p>
+    </div>
+
+</div>
+
+<footer>
+    <strong>THE HORSE FARM</strong><br>
+    Élevage de Quarter Horses et Paint Horses
+</footer>
+
+</body>
+</html>
