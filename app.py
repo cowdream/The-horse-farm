@@ -304,6 +304,10 @@ def pension_chevaux():
 def elevage_quarter_horse():
     return render_template("elevage-quarter-horse.html")
 
+@app.route("/reservation-saillie")
+def reservation_saillie():
+    return render_template("reservation-saillie.html")
+
 @app.route("/debourrage-travail-cheval")
 def debourrage_travail_cheval():
     return render_template("debourrage-travail-cheval.html")
