@@ -303,7 +303,7 @@ def pension_chevaux():
 @app.route("/elevage-quarter-horse")
 def elevage_quarter_horse():
     return render_template("elevage-quarter-horse.html")
-    @app.route("/rockin-stylin-w")
+@app.route("/rockin-stylin-w")
 def rockin_stylin_w():
     return render_template("rockin-stylin-w.html")
 
