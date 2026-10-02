@@ -300,6 +300,10 @@ def home():
 @app.route("/pension-chevaux")
 def pension_chevaux():
     return render_template("pension-chevaux.html")
+
+@app.route("/cadre-unique")
+def cadre_unique():
+    return render_template("cadre-unique.html")
 @app.route("/elevage-quarter-horse")
 def elevage_quarter_horse():
     return render_template("elevage-quarter-horse.html")
