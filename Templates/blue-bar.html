@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blue Bar | The Horse Farm</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Georgia, "Times New Roman", serif;
+            background: #e7d0a5;
+            color: #2d1a0f;
+            text-align: center;
+        }
+
+        header {
+            background: #3b2114;
+            color: #f4e4c1;
+            padding: 25px 15px;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 2.2em;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 30px auto;
+            padding: 20px;
+        }
+
+        .photos {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .photos img {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .pedigree {
+            margin-top: 35px;
+            padding: 35px 20px;
+            background: rgba(255,255,255,0.65);
+            border-radius: 8px;
+        }
+
+        .pedigree h2 {
+            margin-bottom: 15px;
+        }
+
+        .en-cours {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #a65318;
+        }
+
+        .retour {
+            display: inline-block;
+            margin: 30px 0;
+            padding: 12px 20px;
+            background: #3b2114;
+            color: #f4e4c1;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        @media (max-width: 700px) {
+            .photos {
+                grid-template-columns: 1fr;
+            }
+
+            .photos img {
+                height: auto;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>BLUE BAR</h1>
+</header>
+
+<div class="container">
+
+    <div class="photos">
+        <img src="/static/file_0000000008588210a99f6955e218b597.jpg"
+             alt="Blue Bar">
+
+        <img src="/static/file_00000000a7a08210bd203d08e6c8c1fc.jpg"
+             alt="Blue Bar">
+    </div>
+
+    <div class="pedigree">
+        <h2>PEDIGREE</h2>
+        <div class="en-cours">EN COURS</div>
+    </div>
+
+    <a class="retour" href="/elevage-quarter-horse">
+        ← Retour à l'élevage
+    </a>
+
+</div>
+
+</body>
+</html>
