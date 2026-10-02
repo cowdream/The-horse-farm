@@ -407,9 +407,6 @@ def reservation_saillie():
 @app.route("/debourrage-travail-cheval")
 def debourrage_travail_cheval():
     return render_template("debourrage-travail-cheval.html")
-@app.route("/cadre-unique")
-def cadre_unique():
-    return render_template("Cadre-unique.html")
 # =========================================================
 # DISPONIBILITES
 # =========================================================
