@@ -307,6 +307,10 @@ def elevage_quarter_horse():
 def rockin_stylin_w():
     return render_template("rockin-stylin-w.html")
 
+@app.route("/w-rocket-ote-dualrey")
+def w_rocket_ote_dualrey():
+    return render_template("w-rocket-ote-dualrey.html")
+
 @app.route("/reservation-saillie", methods=["GET", "POST"])
 def reservation_saillie():
     if request.method == "POST":
