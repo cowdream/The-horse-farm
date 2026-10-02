@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>W Rocket Ote Dualrey | The Horse Farm</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Georgia, "Times New Roman", serif;
+            background: #e7d0a5;
+            color: #2d1a0f;
+            text-align: center;
+        }
+
+        header {
+            background: #3b2114;
+            color: #f4e4c1;
+            padding: 25px 15px;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 2.2em;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 30px auto;
+            padding: 20px;
+        }
+
+        .photos {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .photos img {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .pedigree {
+            margin-top: 35px;
+        }
+
+        .pedigree img {
+            width: 100%;
+            max-width: 900px;
+            height: auto;
+            border-radius: 6px;
+        }
+
+        .retour {
+            display: inline-block;
+            margin: 30px 0;
+            padding: 12px 20px;
+            background: #3b2114;
+            color: #f4e4c1;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        @media (max-width: 700px) {
+            .photos {
+                grid-template-columns: 1fr;
+            }
+
+            .photos img {
+                height: auto;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>W ROCKET OTE DUALREY</h1>
+</header>
+
+<div class="container">
+
+    <div class="photos">
+        <img src="/static/file_00000000781881f4b4956a7dbadd414b.jpg"
+             alt="W Rocket Ote Dualrey">
+
+        <img src="/static/file_0000000031f0820aa4f0119bcf9462b2.jpg"
+             alt="W Rocket Ote Dualrey">
+    </div>
+
+    <div class="pedigree">
+        <h2>Pedigree</h2>
+
+        <a href="/static/file_000000001020820a8a2193e3621bb79d.jpg"
+           target="_blank">
+            <img src="/static/file_000000001020820a8a2193e3621bb79d.jpg"
+                 alt="Pedigree de W Rocket Ote Dualrey">
+        </a>
+
+        <p><strong>Cliquer sur le pedigree pour l'afficher en grand.</strong></p>
+    </div>
+
+    <a class="retour" href="/elevage-quarter-horse">
+        ← Retour à l'élevage
+    </a>
+
+</div>
+
+</body>
+</html>
