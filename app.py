@@ -311,6 +311,10 @@ def rockin_stylin_w():
 def w_rocket_ote_dualrey():
     return render_template("w-rocket-ote-dualrey.html")
 
+@app.route("/blue-bar")
+def blue_bar():
+    return render_template("blue-bar.html")
+
 @app.route("/reservation-saillie", methods=["GET", "POST"])
 def reservation_saillie():
     if request.method == "POST":
