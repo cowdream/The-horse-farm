@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Un cadre unique - The Horse Farm</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Georgia, "Times New Roman", serif;
+            background: #f4efe6;
+            color: #3b2a1d;
+        }
+
+        .hero {
+            min-height: 420px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 40px 20px;
+            background:
+                linear-gradient(rgba(35, 22, 12, .35), rgba(35, 22, 12, .50)),
+                url("/static/IMG_20260929_230207.jpg") center/cover no-repeat;
+            color: white;
+        }
+
+        .hero h1 {
+            margin: 0;
+            font-size: clamp(2.5rem, 7vw, 5rem);
+            text-shadow: 0 3px 10px rgba(0,0,0,.65);
+        }
+
+        .hero p {
+            max-width: 750px;
+            margin: 20px auto 0;
+            font-size: 1.25rem;
+            line-height: 1.6;
+            text-shadow: 0 2px 7px rgba(0,0,0,.8);
+        }
+
+        .intro {
+            max-width: 950px;
+            margin: 0 auto;
+            padding: 55px 22px;
+            text-align: center;
+        }
+
+        .intro h2 {
+            font-size: 2rem;
+            margin-top: 0;
+            color: #6b3f20;
+        }
+
+        .intro p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .nature {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 10px 22px 50px;
+        }
+
+        .bloc {
+            background: rgba(255,255,255,.72);
+            border-radius: 16px;
+            padding: 32px;
+            margin-bottom: 28px;
+            box-shadow: 0 5px 18px rgba(55,35,20,.10);
+        }
+
+        .bloc h2 {
+            margin-top: 0;
+            color: #7a481f;
+            font-size: 1.8rem;
+        }
+
+        .bloc p {
+            line-height: 1.8;
+            font-size: 1.05rem;
+        }
+
+        .citation {
+            max-width: 850px;
+            margin: 10px auto 55px;
+            padding: 30px 25px;
+            text-align: center;
+            font-size: 1.35rem;
+            font-style: italic;
+            line-height: 1.7;
+            color: #604126;
+            border-top: 1px solid #b89a70;
+            border-bottom: 1px solid #b89a70;
+        }
+
+        .back {
+            text-align: center;
+            padding: 0 20px 55px;
+        }
+
+        .back a {
+            display: inline-block;
+            padding: 13px 24px;
+            background: #5b351e;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+
+        .back a:hover {
+            background: #7a4a28;
+        }
+
+        @media (max-width: 650px) {
+            .hero {
+                min-height: 330px;
+            }
+
+            .bloc {
+                padding: 24px 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<section class="hero">
+    <div>
+        <h1>Un cadre unique</h1>
+        <p>
+            Entre étang, garrigue et grands espaces,
+            découvrez l'environnement naturel de The Horse Farm.
+        </p>
+    </div>
+</section>
+
+<section class="intro">
+    <h2>Au cœur d'un environnement privilégié</h2>
+
+    <p>
+        Aux portes de l'étang du Pourra et de la forêt de Castillon,
+        The Horse Farm bénéficie d'un environnement naturel remarquable,
+        où le cheval trouve toute sa place.
+    </p>
+
+    <p>
+        Ici, les paysages de Provence accompagnent le quotidien :
+        étang, roselières, garrigue, chemins et grands espaces composent
+        un cadre propice au calme, au travail du cheval et aux balades.
+    </p>
+</section>
+
+<section class="nature">
+
+    <div class="bloc">
+        <h2>L'étang du Pourra</h2>
+        <p>
+            À proximité immédiate de The Horse Farm, l'étang du Pourra
+            offre un paysage naturel préservé, rythmé par l'eau,
+            les roselières et une faune particulièrement riche.
+        </p>
+    </div>
+
+    <div class="bloc">
+        <h2>Entre garrigue et forêt de Castillon</h2>
+        <p>
+            Autour de l'écurie, la végétation méditerranéenne,
+            les espaces ouverts et la forêt de Castillon dessinent
+            un paysage typiquement provençal.
+        </p>
+    </div>
+
+    <div class="bloc">
+        <h2>Des chemins à parcourir à cheval</h2>
+        <p>
+            Les chemins environnants permettent de profiter pleinement
+            de ce territoire à cheval, dans un environnement naturel
+            entre étangs, collines et garrigue.
+        </p>
+    </div>
+
+    <div class="bloc">
+        <h2>Un territoire chargé d'histoire</h2>
+        <p>
+            À quelques kilomètres se trouve également le site de
+            Saint-Blaise, témoin de l'histoire ancienne de ce territoire
+            situé entre les étangs et les collines de Provence.
+        </p>
+    </div>
+
+</section>
+
+<div class="citation">
+    « Un lieu où la nature, les chevaux et les grands espaces
+    se rencontrent. »
+</div>
+
+<div class="back">
+    <a href="/">← Retour à The Horse Farm</a>
+</div>
+
+</body>
+</html>
