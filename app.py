@@ -63,12 +63,14 @@ print("SUPABASE CONFIG :", bool(SUPABASE_URL), bool(SUPABASE_SECRET_KEY))
 
 PRICES = {
     "1h": 30,
+    "1h30": 40,
     "2h": 50
 }
 
 
 DEPOSITS = {
     "1h": 10,
+    "1h30": 15,
     "2h": 20
 }
 
