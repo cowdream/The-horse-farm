@@ -303,6 +303,10 @@ def home():
 def pension_chevaux():
     return render_template("pension-chevaux.html")
 
+    @app.route("/notre-betail")
+def notre_betail():
+    return render_template("notre-betail.html")
+
 @app.route("/cadre-unique")
 def cadre_unique():
     return render_template("cadre-unique.html")
