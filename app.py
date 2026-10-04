@@ -654,6 +654,7 @@ def reserve():
                     "🔔 Nouvelle réservation – The Horse Farm\n\n"
                     f"Nom : {reservation.get('name', '')}\n"
                     f"Téléphone : {reservation.get('phone', '')}\n"
+                    f"Balade : {reservation.get('duration', '')}\n"
                     f"Date : {reservation.get('date', '')}\n"
                     f"Heure : {reservation.get('time', '')}\n"
                     f"Cavaliers : {reservation.get('riders', '')}\n"
