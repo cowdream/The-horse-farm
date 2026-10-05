@@ -509,6 +509,9 @@ def reserve():
         "email",
         ""
     ).strip()
+        weight1 = request.form.get("weight1", "").strip()
+    weight2 = request.form.get("weight2", "").strip()
+    weight3 = request.form.get("weight3", "").strip()
 
 
     try:
@@ -618,6 +621,9 @@ def reserve():
         "phone": phone,
 
         "email": email,
+        "weight1": weight1,
+        "weight2": weight2,
+        "weight3": weight3,
 
         "total": total,
 
@@ -662,6 +668,9 @@ def reserve():
                     f"Date : {reservation.get('date', '')}\n"
                     f"Heure : {reservation.get('time', '')}\n"
                     f"Cavaliers : {reservation.get('riders', '')}\n"
+                    (f"Poids cavalier 1 : {reservation.get('weight1', '')}\n" if reservation.get('weight1') else "")
++ (f"Poids cavalier 2 : {reservation.get('weight2', '')}\n" if reservation.get('weight2') else "")
++ (f"Poids cavalier 3 : {reservation.get('weight3', '')}\n" if reservation.get('weight3') else "")
                     f"Total : {reservation.get('total', '')} €\n"
                     f"Acompte : {reservation.get('deposit', '')} €"
                 )
