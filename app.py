@@ -668,9 +668,9 @@ def reserve():
                     f"Date : {reservation.get('date', '')}\n"
                     f"Heure : {reservation.get('time', '')}\n"
                     f"Cavaliers : {reservation.get('riders', '')}\n"
-                    (f"Poids cavalier 1 : {reservation.get('weight1', '')}\n" if reservation.get('weight1') else "")
-+ (f"Poids cavalier 2 : {reservation.get('weight2', '')}\n" if reservation.get('weight2') else "")
-+ (f"Poids cavalier 3 : {reservation.get('weight3', '')}\n" if reservation.get('weight3') else "")
+                    f"Poids cavalier 1 : {reservation.get('weight1', '')}\n"
+                    f"Poids cavalier 2 : {reservation.get('weight2', '')}\n"
+                    f"Poids cavalier 3 : {reservation.get('weight3', '')}\n"
                     f"Total : {reservation.get('total', '')} €\n"
                     f"Acompte : {reservation.get('deposit', '')} €"
                 )
