@@ -509,7 +509,7 @@ def reserve():
         "email",
         ""
     ).strip()
-        weight1 = request.form.get("weight1", "").strip()
+    weight1 = request.form.get("weight1", "").strip()
     weight2 = request.form.get("weight2", "").strip()
     weight3 = request.form.get("weight3", "").strip()
 
