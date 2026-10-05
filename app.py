@@ -12,7 +12,8 @@ from flask import (
     redirect,
     url_for,
     session,
-    flash
+    flash,
+    send_from_directory,
 )
 
 
@@ -299,6 +300,10 @@ def home():
         slots=SLOTS,
         max_riders=len(HORSES)
     )
+@app.route("/googlea90b9845a26ddfda.html")
+def google_verification():
+    return send_from_directory(".", "googlea90b9845a26ddfda.html")
+
 @app.route("/pension-chevaux")
 def pension_chevaux():
     return render_template("pension-chevaux.html")
