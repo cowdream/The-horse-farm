@@ -250,9 +250,42 @@ Confiance, patience et respect guident notre approche, dans un environnement nat
 <input type="tel" id="phone" name="phone" placeholder="06..." required>
 </div>
 
-<div class="field full">
-<label for="email">E-mail</label>
-<input type="email" id="email" name="email" placeholder="votre@email.fr" required>
+<div class="field">
+    <label for="email">E-mail</label>
+    <input type="email" id="email" name="email" placeholder="votre@email.fr" required>
+</div>
+
+<div class="field" id="weightsField">
+    <label>Poids approximatif du/des cavalier(s)</label>
+
+    <select id="weight1" name="weight1" required>
+        <option value="">Cavalier 1 — choisir</option>
+        <option value="moins-50">Moins de 50 kg</option>
+        <option value="50-65">50 à 65 kg</option>
+        <option value="65-80">65 à 80 kg</option>
+        <option value="80-95">80 à 95 kg</option>
+        <option value="plus-95">Plus de 95 kg</option>
+    </select>
+
+    <select id="weight2" name="weight2" style="display:none; margin-top:8px;">
+        <option value="">Cavalier 2 — choisir</option>
+        <option value="moins-50">Moins de 50 kg</option>
+        <option value="50-65">50 à 65 kg</option>
+        <option value="65-80">65 à 80 kg</option>
+        <option value="80-95">80 à 95 kg</option>
+        <option value="plus-95">Plus de 95 kg</option>
+    </select>
+
+    <select id="weight3" name="weight3" style="display:none; margin-top:8px;">
+        <option value="">Cavalier 3 — choisir</option>
+        <option value="moins-50">Moins de 50 kg</option>
+        <option value="50-65">50 à 65 kg</option>
+        <option value="65-80">65 à 80 kg</option>
+        <option value="80-95">80 à 95 kg</option>
+        <option value="plus-95">Plus de 95 kg</option>
+    </select>
+
+    <small>Pour nous permettre de vous attribuer le cheval le plus adapté.</small>
 </div>
 
 <div class="summary full">
@@ -310,6 +343,9 @@ const duration=document.getElementById("duration");
 const riders=document.getElementById("riders");
 const dateInput=document.getElementById("date");
 const timeSelect=document.getElementById("time");
+const weight1=document.getElementById("weight1");
+const weight2=document.getElementById("weight2");
+const weight3=document.getElementById("weight3");
 
 const summaryRiders=document.getElementById("summaryRiders");
 const summaryTotal=document.getElementById("summaryTotal");
@@ -407,7 +443,20 @@ duration.addEventListener("change",function(){
     loadTimes();
 });
 
-riders.addEventListener("change",updateSummary);
+riders.addEventListener("change", function(){
+    updateSummary();
+
+    const n = parseInt(riders.value || "0");
+
+    weight2.style.display = n >= 2 ? "block" : "none";
+    weight3.style.display = n >= 3 ? "block" : "none";
+
+    weight2.required = n >= 2;
+    weight3.required = n >= 3;
+
+    if(n < 2) weight2.value = "";
+    if(n < 3) weight3.value = "";
+});
 dateInput.addEventListener("change",loadTimes);
 updateSummary();
 const today=new Date();
