@@ -164,22 +164,19 @@
 
 <header>
     <h1>THE HORSE FARM</h1>
-    <p>ÉCURIE &amp; RANCH — ESPRIT WESTERN</p>
+    <p data-i18n="tagline">ÉCURIE &amp; RANCH — ESPRIT WESTERN</p>
 </header>
 
 <nav>
-    <a href="/">Accueil</a>
-    <a href="/elevage-quarter-horse">Élevage</a>
+    <a href="/" data-i18n="home">Accueil</a>
+    <a href="/elevage-quarter-horse" data-i18n="breeding">Élevage</a>
 </nav>
 
 <div class="container">
 
     <div class="title">
-        <h2>Réservation de saillie</h2>
-        <p>
-            Découvrez nos deux étalons et contactez The Horse Farm
-            pour organiser votre projet de saillie.
-        </p>
+        <h2 data-i18n="title">Réservation de saillie</h2>
+        <p data-i18n="intro">Découvrez nos deux étalons et contactez The Horse Farm pour organiser votre projet de saillie.</p>
     </div>
 
     <div class="stallions">
@@ -193,7 +190,7 @@
             <a class="pedigree"
                href="/static/ROCKIN-CHEX-TIME-pedigree-A-LENDROIT.jpg"
                target="_blank">
-                📄 Voir le pedigree
+                <span data-i18n="pedigree">📄 Voir le pedigree</span>
             </a>
         </div>
 
@@ -206,74 +203,71 @@
             <a class="pedigree"
                href="/static/ROCK-BLUE-RIBBON-pedigree-lisible.jpg"
                target="_blank">
-                📄 Voir le pedigree
+                <span data-i18n="pedigree">📄 Voir le pedigree</span>
             </a>
         </div>
 
     </div>
 
     <div class="reservation">
-    <h2>Demande de réservation de saillie</h2>
+    <h2 data-i18n="formtitle">Demande de réservation de saillie</h2>
 <div style="background:#f1dfb7; color:#32180f; padding:20px; margin:20px auto 30px; border-radius:10px; max-width:750px; text-align:left;">
-    <h3 style="text-align:center; margin-top:0;">Conditions de saillie</h3>
-    <p>• Saillie uniquement en <strong>monte en main</strong>.</p>
-    <p>• <strong>Test de métrite exigé</strong> avant la saillie.</p>
-    <p>• Pension : <strong>forfait de 50 € pour 5 jours</strong>, en supplément du prix de la saillie.</p>
-    <p>• <strong>Garantie poulain vivant 24 heures.</strong></p>
+    <h3 style="text-align:center; margin-top:0;" data-i18n="conditions">Conditions de saillie</h3>
+    <p data-i18n="condition1">• Saillie uniquement en monte en main.</p>
+    <p data-i18n="condition2">• Test de métrite exigé avant la saillie.</p>
+    <p data-i18n="condition3">• Pension : forfait de 50 € pour 5 jours, en supplément du prix de la saillie.</p>
+    <p data-i18n="condition4">• Garantie poulain vivant 24 heures.</p>
 </div>
     <form id="saillieForm" method="POST" action="/reservation-saillie">
 
         <p>
-            <label for="etalon"><strong>Choisissez votre étalon :</strong></label><br><br>
+            <label for="etalon"><strong data-i18n="choose">Choisissez votre étalon :</strong></label><br><br>
             <select id="etalon" name="etalon" required onchange="calculSaillie()">
-                <option value="">-- Choisir un étalon --</option>
+                <option value="" data-i18n="chooseoption">-- Choisir un étalon --</option>
                 <option value="rockin">ROCKIN CHEX TIME — 700 €</option>
                 <option value="ribbon">ROCK BLUE RIBBON — 500 €</option>
             </select>
         </p>
 
         <p>
-            <label for="date_saillie"><strong>Date souhaitée :</strong></label><br>
+            <label for="date_saillie"><strong data-i18n="date">Date souhaitée :</strong></label><br>
             <input type="date" id="date_saillie" name="date_saillie" required>
         </p>
 <p>
-    <label for="nom_jument"><strong>Nom de la jument :</strong></label><br>
+    <label for="nom_jument"><strong data-i18n="mare">Nom de la jument :</strong></label><br>
     <input type="text" id="nom_jument" name="nom_jument" required>
 </p>
 
 <p>
-    <label for="numero_sire"><strong>N° SIRE de la jument :</strong></label><br>
+    <label for="numero_sire"><strong data-i18n="sire">N° SIRE de la jument :</strong></label><br>
     <input type="text" id="numero_sire" name="numero_sire" required>
 </p>
         <p>
-            <label for="nom"><strong>Nom et prénom :</strong></label><br>
+            <label for="nom"><strong data-i18n="fullname">Nom et prénom :</strong></label><br>
             <input type="text" id="nom" name="nom" required>
         </p>
 
         <p>
-            <label for="telephone"><strong>Téléphone :</strong></label><br>
+            <label for="telephone"><strong data-i18n="phone">Téléphone :</strong></label><br>
             <input type="tel" id="telephone" name="telephone" required>
         </p>
 
         <p>
-            <label for="email"><strong>E-mail :</strong></label><br>
+            <label for="email"><strong data-i18n="email">E-mail :</strong></label><br>
             <input type="email" id="email" name="email" required>
         </p>
 
         <div id="tarifs" style="display:none; margin:25px 0; line-height:1.8;">
-            <div>Prix de la saillie : <strong><span id="prixSaillie">0</span> €</strong></div>
-            <div>Pension obligatoire — forfait 5 jours : <strong>50 €</strong></div>
-            <div>Prix total : <strong><span id="prixTotal">0</span> €</strong></div>
-            <div>Acompte : <strong><span id="acompte">0</span> €</strong></div>
-            <div>Solde restant : <strong><span id="solde">0</span> €</strong></div>
+            <div><span data-i18n="price">Prix de la saillie :</span> <strong><span id="prixSaillie">0</span> €</strong></div>
+            <div><span data-i18n="boarding">Pension obligatoire — forfait 5 jours :</span> <strong>50 €</strong></div>
+            <div><span data-i18n="total">Prix total :</span> <strong><span id="prixTotal">0</span> €</strong></div>
+            <div><span data-i18n="deposit">Acompte :</span> <strong><span id="acompte">0</span> €</strong></div>
+            <div><span data-i18n="balance">Solde restant :</span> <strong><span id="solde">0</span> €</strong></div>
         </div>
 
-        <p style="font-size:15px;">
-            La réservation sera confirmée par The Horse Farm selon les disponibilités.
-            L'acompte n'est pas payé directement sur le site.
-        </p>
+        <p style="font-size:15px;" data-i18n="confirmation">La réservation sera confirmée par The Horse Farm selon les disponibilités. L'acompte n'est pas payé directement sur le site.</p>
 
-        <button type="submit">Demander ma réservation de saillie</button>
+        <button type="submit" data-i18n="submit">Demander ma réservation de saillie</button>
 
     </form>
 </div>
@@ -313,8 +307,243 @@ function calculSaillie() {
 
 <footer>
     <strong>THE HORSE FARM</strong><br>
-    Élevage de Quarter Horses et Paint Horses
+    <span data-i18n="footer">Élevage de Quarter Horses et Paint Horses</span>
 </footer>
+
+<script>
+/* Text-only translations: form field names, POST endpoint and prices remain unchanged. */
+const horseFarmSaillieTranslations = {
+  "fr": {
+    "tagline": "ÉCURIE & RANCH — ESPRIT WESTERN",
+    "home": "Accueil",
+    "breeding": "Élevage",
+    "title": "Réservation de saillie",
+    "intro": "Découvrez nos deux étalons et contactez The Horse Farm pour organiser votre projet de saillie.",
+    "pedigree": "📄 Voir le pedigree",
+    "formtitle": "Demande de réservation de saillie",
+    "conditions": "Conditions de saillie",
+    "condition1": "• Saillie uniquement en monte en main.",
+    "condition2": "• Test de métrite exigé avant la saillie.",
+    "condition3": "• Pension : forfait de 50 € pour 5 jours, en supplément du prix de la saillie.",
+    "condition4": "• Garantie poulain vivant 24 heures.",
+    "choose": "Choisissez votre étalon :",
+    "chooseoption": "-- Choisir un étalon --",
+    "date": "Date souhaitée :",
+    "mare": "Nom de la jument :",
+    "sire": "N° SIRE de la jument :",
+    "fullname": "Nom et prénom :",
+    "phone": "Téléphone :",
+    "email": "E-mail :",
+    "price": "Prix de la saillie :",
+    "boarding": "Pension obligatoire — forfait 5 jours :",
+    "total": "Prix total :",
+    "deposit": "Acompte :",
+    "balance": "Solde restant :",
+    "confirmation": "La réservation sera confirmée par The Horse Farm selon les disponibilités. L'acompte n'est pas payé directement sur le site.",
+    "submit": "Demander ma réservation de saillie",
+    "footer": "Élevage de Quarter Horses et Paint Horses"
+  },
+  "en": {
+    "tagline": "STABLES & RANCH — WESTERN SPIRIT",
+    "home": "Home",
+    "breeding": "Breeding",
+    "title": "Stallion breeding reservation",
+    "intro": "Discover our two stallions and contact The Horse Farm to arrange your breeding plans.",
+    "pedigree": "📄 View pedigree",
+    "formtitle": "Stallion breeding reservation request",
+    "conditions": "Breeding conditions",
+    "condition1": "• Covering by in-hand mating only.",
+    "condition2": "• A contagious equine metritis test is required before breeding.",
+    "condition3": "• Boarding: €50 for 5 days, in addition to the stud fee.",
+    "condition4": "• Live foal guarantee for 24 hours.",
+    "choose": "Choose your stallion:",
+    "chooseoption": "-- Choose a stallion --",
+    "date": "Preferred date:",
+    "mare": "Mare’s name:",
+    "sire": "Mare’s SIRE registration number:",
+    "fullname": "Full name:",
+    "phone": "Phone:",
+    "email": "Email:",
+    "price": "Stud fee:",
+    "boarding": "Mandatory boarding — 5-day package:",
+    "total": "Total price:",
+    "deposit": "Deposit:",
+    "balance": "Remaining balance:",
+    "confirmation": "The Horse Farm will confirm the booking subject to availability. The deposit is not paid directly on the website.",
+    "submit": "Request my breeding reservation",
+    "footer": "Quarter Horse and Paint Horse breeding"
+  },
+  "de": {
+    "tagline": "STALL & RANCH — WESTERN-FLAIR",
+    "home": "Startseite",
+    "breeding": "Zucht",
+    "title": "Deckanfrage",
+    "intro": "Entdecken Sie unsere beiden Hengste und kontaktieren Sie The Horse Farm, um Ihre Deckung zu planen.",
+    "pedigree": "📄 Abstammung ansehen",
+    "formtitle": "Anfrage zur Deckreservierung",
+    "conditions": "Deckbedingungen",
+    "condition1": "• Deckung ausschließlich an der Hand.",
+    "condition2": "• Vor der Deckung ist ein Test auf kontagiöse equine Metritis erforderlich.",
+    "condition3": "• Unterbringung: 50 € für 5 Tage, zusätzlich zur Decktaxe.",
+    "condition4": "• Lebendfohlengarantie für 24 Stunden.",
+    "choose": "Wählen Sie Ihren Hengst:",
+    "chooseoption": "-- Hengst auswählen --",
+    "date": "Wunschtermin:",
+    "mare": "Name der Stute:",
+    "sire": "SIRE-Registrierungsnummer der Stute:",
+    "fullname": "Vor- und Nachname:",
+    "phone": "Telefon:",
+    "email": "E-Mail:",
+    "price": "Decktaxe:",
+    "boarding": "Obligatorische Unterbringung — 5 Tage:",
+    "total": "Gesamtpreis:",
+    "deposit": "Anzahlung:",
+    "balance": "Restbetrag:",
+    "confirmation": "The Horse Farm bestätigt die Reservierung je nach Verfügbarkeit. Die Anzahlung wird nicht direkt auf der Website bezahlt.",
+    "submit": "Deckreservierung anfragen",
+    "footer": "Quarter-Horse- und Paint-Horse-Zucht"
+  },
+  "es": {
+    "tagline": "CUADRAS Y RANCHO — ESPÍRITU WESTERN",
+    "home": "Inicio",
+    "breeding": "Cría",
+    "title": "Reserva de cubrición",
+    "intro": "Descubra nuestros dos sementales y contacte con The Horse Farm para organizar su proyecto de cubrición.",
+    "pedigree": "📄 Ver pedigrí",
+    "formtitle": "Solicitud de reserva de cubrición",
+    "conditions": "Condiciones de cubrición",
+    "condition1": "• Cubrición únicamente mediante monta dirigida a mano.",
+    "condition2": "• Se exige una prueba de metritis contagiosa equina antes de la cubrición.",
+    "condition3": "• Pensión: 50 € por 5 días, además del precio de la cubrición.",
+    "condition4": "• Garantía de potro vivo durante 24 horas.",
+    "choose": "Elija su semental:",
+    "chooseoption": "-- Elegir semental --",
+    "date": "Fecha deseada:",
+    "mare": "Nombre de la yegua:",
+    "sire": "N.º SIRE de la yegua:",
+    "fullname": "Nombre y apellidos:",
+    "phone": "Teléfono:",
+    "email": "Correo electrónico:",
+    "price": "Precio de la cubrición:",
+    "boarding": "Pensión obligatoria — 5 días:",
+    "total": "Precio total:",
+    "deposit": "Depósito:",
+    "balance": "Saldo pendiente:",
+    "confirmation": "The Horse Farm confirmará la reserva según disponibilidad. El depósito no se paga directamente en el sitio web.",
+    "submit": "Solicitar reserva de cubrición",
+    "footer": "Cría de Quarter Horse y Paint Horse"
+  },
+  "it": {
+    "tagline": "SCUDERIA E RANCH — SPIRITO WESTERN",
+    "home": "Home",
+    "breeding": "Allevamento",
+    "title": "Prenotazione monta",
+    "intro": "Scopri i nostri due stalloni e contatta The Horse Farm per organizzare il tuo progetto di monta.",
+    "pedigree": "📄 Vedi pedigree",
+    "formtitle": "Richiesta di prenotazione monta",
+    "conditions": "Condizioni di monta",
+    "condition1": "• Monta esclusivamente a mano.",
+    "condition2": "• È richiesto un test per la metrite equina contagiosa prima della monta.",
+    "condition3": "• Pensione: 50 € per 5 giorni, oltre al prezzo della monta.",
+    "condition4": "• Garanzia puledro vivo per 24 ore.",
+    "choose": "Scegli lo stallone:",
+    "chooseoption": "-- Scegli uno stallone --",
+    "date": "Data desiderata:",
+    "mare": "Nome della fattrice:",
+    "sire": "N° SIRE della fattrice:",
+    "fullname": "Nome e cognome:",
+    "phone": "Telefono:",
+    "email": "E-mail:",
+    "price": "Prezzo della monta:",
+    "boarding": "Pensione obbligatoria — 5 giorni:",
+    "total": "Prezzo totale:",
+    "deposit": "Acconto:",
+    "balance": "Saldo residuo:",
+    "confirmation": "The Horse Farm confermerà la prenotazione in base alla disponibilità. L’acconto non viene pagato direttamente sul sito.",
+    "submit": "Richiedi prenotazione monta",
+    "footer": "Allevamento di Quarter Horse e Paint Horse"
+  },
+  "nl": {
+    "tagline": "STAL & RANCH — WESTERN SFEER",
+    "home": "Home",
+    "breeding": "Fokkerij",
+    "title": "Dekreservering",
+    "intro": "Ontdek onze twee hengsten en neem contact op met The Horse Farm om uw dekking te plannen.",
+    "pedigree": "📄 Bekijk stamboom",
+    "formtitle": "Aanvraag dekreservering",
+    "conditions": "Dekvoorwaarden",
+    "condition1": "• Dekking uitsluitend aan de hand.",
+    "condition2": "• Een test op besmettelijke baarmoederontsteking (CEM) is vereist vóór de dekking.",
+    "condition3": "• Pension: € 50 voor 5 dagen, boven op het dekgeld.",
+    "condition4": "• Garantie op een levend veulen gedurende 24 uur.",
+    "choose": "Kies uw hengst:",
+    "chooseoption": "-- Kies een hengst --",
+    "date": "Gewenste datum:",
+    "mare": "Naam van de merrie:",
+    "sire": "SIRE-registratienummer van de merrie:",
+    "fullname": "Voor- en achternaam:",
+    "phone": "Telefoon:",
+    "email": "E-mail:",
+    "price": "Dekgeld:",
+    "boarding": "Verplicht pension — 5 dagen:",
+    "total": "Totaalprijs:",
+    "deposit": "Aanbetaling:",
+    "balance": "Resterend saldo:",
+    "confirmation": "The Horse Farm bevestigt de reservering afhankelijk van de beschikbaarheid. De aanbetaling wordt niet rechtstreeks via de website betaald.",
+    "submit": "Dekreservering aanvragen",
+    "footer": "Quarter Horse- en Paint Horse-fokkerij"
+  }
+};
+function horseFarmSaillieLanguage() {
+    const allowed = ['fr','en','de','es','it','nl'];
+    const normalize = function(value) {
+        const code = String(value || '').toLowerCase().trim().split(/[-_]/)[0];
+        return allowed.includes(code) ? code : '';
+    };
+    const query = new URLSearchParams(window.location.search);
+    const fromUrl = normalize(query.get('lang'));
+    if (fromUrl) return fromUrl;
+    try {
+        for (const key of ['horsefarm_language','siteLanguage','lang']) {
+            const saved = normalize(localStorage.getItem(key));
+            if (saved) return saved;
+        }
+        const session = normalize(sessionStorage.getItem('horsefarm_language'));
+        if (session) return session;
+    } catch (error) {}
+    return normalize(navigator.language) || 'fr';
+}
+function horseFarmTranslateSaillie() {
+    const language = horseFarmSaillieLanguage();
+    document.documentElement.lang = language;
+    try {
+        localStorage.setItem('horsefarm_language', language);
+        localStorage.setItem('siteLanguage', language);
+        localStorage.setItem('lang', language);
+        sessionStorage.setItem('horsefarm_language', language);
+    } catch (error) {}
+    const words = horseFarmSaillieTranslations[language];
+    document.querySelectorAll('[data-i18n]').forEach(function(element) {
+        const key = element.getAttribute('data-i18n');
+        if (Object.prototype.hasOwnProperty.call(words, key)) {
+            element.textContent = words[key];
+        }
+    });
+    document.querySelectorAll('a[href^="/"]:not([href^="/static/"])').forEach(function(link) {
+        try {
+            const url = new URL(link.getAttribute('href'), window.location.origin);
+            url.searchParams.set('lang', language);
+            link.setAttribute('href', url.pathname + url.search + url.hash);
+        } catch (error) {}
+    });
+}
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', horseFarmTranslateSaillie);
+} else {
+    horseFarmTranslateSaillie();
+}
+window.addEventListener('pageshow', horseFarmTranslateSaillie);
+</script>
 
 </body>
 </html>
