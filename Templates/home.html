@@ -105,6 +105,7 @@ const horseFarmTranslations = {
   "card_train": "Débourrage & travail du cheval",
   "book_sub": "Choisissez votre balade, votre date et votre horaire.",
   "book_confirm": "Votre demande sera confirmée après vérification de la disponibilité de nos chevaux.",
+   "advance_notice": "Réservation obligatoire au minimum 24 heures à l’avance.",
   "field_ride": "Balade",
   "choose": "Choisir",
   "opt_1": "1 heure — 30 €",
@@ -182,6 +183,7 @@ const horseFarmTranslations = {
   "card_train": "Starting & training horses",
   "book_sub": "Choose your ride, date and time.",
   "book_confirm": "Your request will be confirmed after we check our horses' availability.",
+   "advance_notice": "Bookings must be requested at least 24 hours in advance.",
   "field_ride": "Ride",
   "choose": "Choose",
   "opt_1": "1 hour — €30",
@@ -259,6 +261,7 @@ const horseFarmTranslations = {
   "card_train": "Anreiten & Pferdeausbildung",
   "book_sub": "Wählen Sie Ihren Ausritt, das Datum und die Uhrzeit.",
   "book_confirm": "Ihre Anfrage wird nach Prüfung der Verfügbarkeit unserer Pferde bestätigt.",
+   "advance_notice": "Reservierungen müssen mindestens 24 Stunden im Voraus angefragt werden.",
   "field_ride": "Ausritt",
   "choose": "Auswählen",
   "opt_1": "1 Stunde — 30 €",
@@ -336,6 +339,7 @@ const horseFarmTranslations = {
   "card_train": "Doma y entrenamiento del caballo",
   "book_sub": "Elige tu paseo, fecha y horario.",
   "book_confirm": "Confirmaremos tu solicitud tras comprobar la disponibilidad de nuestros caballos.",
+   "advance_notice": "Las reservas deben solicitarse con al menos 24 horas de antelación.",
   "field_ride": "Paseo",
   "choose": "Elegir",
   "opt_1": "1 hora — 30 €",
@@ -413,6 +417,7 @@ const horseFarmTranslations = {
   "card_train": "Doma e addestramento del cavallo",
   "book_sub": "Scegli la passeggiata, la data e l'orario.",
   "book_confirm": "La richiesta sarà confermata dopo aver verificato la disponibilità dei cavalli.",
+   "advance_notice": "Le prenotazioni devono essere richieste con almeno 24 ore di anticipo.",
   "field_ride": "Passeggiata",
   "choose": "Scegli",
   "opt_1": "1 ora — 30 €",
@@ -490,6 +495,7 @@ const horseFarmTranslations = {
   "card_train": "Zadelmak maken en paardentraining",
   "book_sub": "Kies uw buitenrit, datum en tijd.",
   "book_confirm": "Uw aanvraag wordt bevestigd nadat we de beschikbaarheid van onze paarden hebben gecontroleerd.",
+   "advance_notice": "Reserveringen moeten minstens 24 uur van tevoren worden aangevraagd.",
   "field_ride": "Buitenrit",
   "choose": "Kiezen",
   "opt_1": "1 uur — €30",
@@ -739,6 +745,7 @@ Confiance, patience et respect guident notre approche, dans un environnement nat
 <h2 data-i18n="book_request">Demander ma réservation</h2>
 <p data-i18n="book_sub">Choisissez votre balade, votre date et votre horaire.</p>
 <p data-i18n="book_confirm" style="color:#7a481f;font-weight:bold;">Votre demande sera confirmée après vérification de la disponibilité de nos chevaux.</p>
+<p data-i18n="advance_notice" style="color:#7a481f;font-weight:bold;">Réservation obligatoire au minimum 24 heures à l’avance.</p>
 </div>
 <div class="booking">
 <form action="{{ url_for('reserve') }}" class="form" method="POST">
@@ -871,6 +878,41 @@ const summaryBalance=document.getElementById("summaryBalance");
 const prices={ "1h":30, "1h30":40, "2h":50 };
 const deposits={ "1h":10, "1h30":15, "2h":20 };
 
+// Compare booking times in the farm's local timezone (Europe/Paris).
+function farmNowParts(){
+    const parts = new Intl.DateTimeFormat('en-GB', {
+        timeZone:'Europe/Paris',year:'numeric',month:'2-digit',day:'2-digit',
+        hour:'2-digit',minute:'2-digit',hourCycle:'h23'
+    }).formatToParts(new Date());
+    const values={}; parts.forEach(p=>{values[p.type]=p.value;});
+    return values;
+}
+function bookingAtLeast24HoursAway(day, time){
+    if(!day || !time) return false;
+    // Derive the UTC instant for a wall-clock time in Europe/Paris,
+    // including the current seasonal UTC offset.
+    const [y,m,d]=day.split('-').map(Number);
+    const [h,min]=time.split(':').map(Number);
+    if(!y||!m||!d||!Number.isFinite(h)||!Number.isFinite(min)) return false;
+    const wallUTC=Date.UTC(y,m-1,d,h,min);
+    let instant=wallUTC;
+    for(let i=0;i<3;i++){
+        const fields=new Intl.DateTimeFormat('en-GB',{
+            timeZone:'Europe/Paris',year:'numeric',month:'2-digit',day:'2-digit',
+            hour:'2-digit',minute:'2-digit',hourCycle:'h23'
+        }).formatToParts(new Date(instant));
+        const v={}; fields.forEach(p=>{v[p.type]=p.value;});
+        const represented=Date.UTC(+v.year,+v.month-1,+v.day,+v.hour,+v.minute);
+        instant+=wallUTC-represented;
+    }
+    return instant-Date.now()>=24*60*60*1000;
+}
+function updateDateMinimum(){
+    const p=farmNowParts();
+    dateInput.min=`${p.year}-${p.month}-${p.day}`;
+}
+
+
 function updateSummary(){
     const d=duration.value;
     const r=parseInt(riders.value||"0");
@@ -928,6 +970,7 @@ async function loadTimes(){
         data.slots.forEach(function(slot){
 
             if(!allowed.includes(slot.time)) return;
+            if(!bookingAtLeast24HoursAway(dateInput.value,slot.time)) return;
 
             const option=document.createElement("option");
 
@@ -973,13 +1016,16 @@ riders.addEventListener("change", function(){
     if(n < 2) weight2.value = "";
     if(n < 3) weight3.value = "";
 });
+document.querySelector('form[action="{{ url_for('reserve') }}"]').addEventListener('submit',function(event){
+    if(!bookingAtLeast24HoursAway(dateInput.value,timeSelect.value)){
+        event.preventDefault();
+        alert(i18nText('advance_notice'));
+        loadTimes();
+    }
+});
 dateInput.addEventListener("change",loadTimes);
 updateSummary();
-const today=new Date();
-dateInput.min=
-    today.getFullYear()+"-"+
-    String(today.getMonth()+1).padStart(2,"0")+"-"+
-    String(today.getDate()).padStart(2,"0");
+updateDateMinimum();
 
 </script>
 </body>
