@@ -146,7 +146,7 @@ function traduireSite(langue) {
   localStorage.setItem("horsefarm_langue", langue);
 }
 document.addEventListener("DOMContentLoaded", function() {
-  const langue = localStorage.getItem("horsefarm_langue") || "fr";
+  const langue = "fr";
   const menu = document.getElementById("langue-site");
 
   if (menu && traductions[langue]) {
