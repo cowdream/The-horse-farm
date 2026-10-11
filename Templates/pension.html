@@ -539,7 +539,7 @@ function traduireSite(language) {
   if (picker) picker.value = chosen;
   // Transmettre immédiatement la langue aux liens internes, même si le visiteur
   // change de langue plusieurs fois avant de naviguer.
-  document.querySelectorAll('a[href^="/"]').forEach(function(link) {
+  document.querySelectorAll('a[href^="/"]:not([href^="/static/"])').forEach(function(link) {
     try {
       const url = new URL(link.getAttribute('href'), window.location.origin);
       url.searchParams.set('lang', chosen);
@@ -557,7 +557,7 @@ function traduireSite(language) {
   } catch(e) {}
   stored = stored.slice(0,2).toLowerCase();
   const browser = (navigator.language || 'fr').slice(0,2).toLowerCase();
-  const initial = supported.includes(stored) ? stored : supported.includes(explicit) ? explicit : supported.includes(browser) ? browser : 'fr';
+  const initial = supported.includes(explicit) ? explicit : supported.includes(stored) ? stored : supported.includes(browser) ? browser : 'fr';
   function apply() { traduireSite(initial); }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', apply);
   else apply();
