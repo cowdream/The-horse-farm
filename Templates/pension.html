@@ -537,29 +537,28 @@ function traduireSite(language) {
   });
   const picker = document.getElementById('langue-site');
   if (picker) picker.value = chosen;
+  // Transmettre immédiatement la langue aux liens internes, même si le visiteur
+  // change de langue plusieurs fois avant de naviguer.
+  document.querySelectorAll('a[href^="/"]').forEach(function(link) {
+    try {
+      const url = new URL(link.getAttribute('href'), window.location.origin);
+      url.searchParams.set('lang', chosen);
+      link.setAttribute('href', url.pathname + url.search + url.hash);
+    } catch(e) {}
+  });
 }
 (function initPensionLanguage() {
   const supported = ['fr','en','de','es','it','nl'];
   const params = new URLSearchParams(window.location.search);
-  const explicit = params.get('lang') || params.get('language');
+  const explicit = (params.get('lang') || params.get('language') || '').slice(0,2).toLowerCase();
   let stored = '';
   try {
-    stored = sessionStorage.getItem('horsefarm_language') || localStorage.getItem('horsefarm_language') || localStorage.getItem('siteLanguage') || localStorage.getItem('lang') || '';
+    stored = localStorage.getItem('horsefarm_language') || localStorage.getItem('siteLanguage') || localStorage.getItem('lang') || sessionStorage.getItem('horsefarm_language') || '';
   } catch(e) {}
+  stored = stored.slice(0,2).toLowerCase();
   const browser = (navigator.language || 'fr').slice(0,2).toLowerCase();
   const initial = supported.includes(explicit) ? explicit : supported.includes(stored) ? stored : supported.includes(browser) ? browser : 'fr';
-  function apply() {
-    traduireSite(initial);
-    document.querySelectorAll('a[href^="/"]').forEach(function(link) {
-      link.addEventListener('click', function() {
-        try {
-          const url = new URL(link.href);
-          url.searchParams.set('lang', document.documentElement.lang);
-          link.href = url.pathname + url.search + url.hash;
-        } catch(e) {}
-      });
-    });
-  }
+  function apply() { traduireSite(initial); }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', apply);
   else apply();
 })();
