@@ -1,12 +1,12 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Un cadre unique à Port-de-Bouc | The Horse Farm</title>
-    <meta name="description" content="Découvrez le cadre naturel unique de The Horse Farm à Port-de-Bouc, près de Saint-Mitre-les-Remparts et Martigues : un environnement privilégié pour les chevaux, entre nature et étang.">
-
-    <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Un cadre unique à Port-de-Bouc | The Horse Farm</title>
+<meta content="Découvrez le cadre naturel unique de The Horse Farm à Port-de-Bouc, près de Saint-Mitre-les-Remparts et Martigues : un environnement privilégié pour les chevaux, entre nature et étang." name="description"/>
+<style>
         * {
             box-sizing: border-box;
         }
@@ -132,105 +132,70 @@
             }
         }
     </style>
-</head>
-
-<body>
-
+<style>.horsefarm-language-picker{position:absolute;top:12px;right:12px;z-index:9999}.horsefarm-language-picker select{padding:8px 10px;border-radius:6px;font-size:14px;max-width:175px;background:#fff;color:#2d1a0f;border:1px solid #8a5a2b;box-shadow:0 2px 7px #0003}@media(max-width:600px){.horsefarm-language-picker{top:8px;right:8px}.horsefarm-language-picker select{font-size:13px;max-width:155px}}</style></head>
+<body><div class="horsefarm-language-picker"><select aria-label="Choisir la langue / Choose language" id="langue-site" onchange="traduireSite(this.value)"><option value="fr">🇫🇷 Français</option><option value="en">🇬🇧 English</option><option value="de">🇩🇪 Deutsch</option><option value="es">🇪🇸 Español</option><option value="it">🇮🇹 Italiano</option><option value="nl">🇳🇱 Nederlands</option></select></div>
 <section class="hero">
-    <div>
-        <h1>Un cadre unique</h1>
-        <p>
+<div>
+<h1 data-i18n="hero_title">Un cadre unique</h1>
+<p data-i18n="hero_sub">
             Entre étang, garrigue et grands espaces,
             découvrez l'environnement naturel de The Horse Farm.
         </p>
-    </div>
+</div>
 </section>
-
 <section class="intro">
-    <h2>Au cœur d'un environnement privilégié</h2>
-
-    <p>
-        Aux portes de l'étang du Pourra et de la forêt de Castillon,
-        The Horse Farm bénéficie d'un environnement naturel remarquable,
-        où le cheval trouve toute sa place.
-    </p>
-
-    <p>
-        Ici, les paysages de Provence accompagnent le quotidien :
-        étang, roselières, garrigue, chemins et grands espaces composent
-        un cadre propice au calme, au travail du cheval et aux balades.
-    </p>
+<h2 data-i18n="intro_title">Au cœur d'un environnement privilégié</h2>
+<p data-i18n="intro_one">Aux portes de l’étang du Pourra et de la forêt de Castillon, The Horse Farm bénéficie d’un environnement naturel remarquable, où le cheval trouve toute sa place.</p>
+<p data-i18n="intro_two">Ici, les paysages de Provence accompagnent le quotidien : étang, roselières, garrigue, chemins et grands espaces composent un cadre propice au calme, au travail du cheval et aux balades.</p>
 </section>
-
 <section class="nature">
-
-    <div class="bloc">
-    <h2>L'étang du Pourra</h2>
-
-    <div style="display:grid; grid-template-columns:1fr 1fr; gap:18px; align-items:start;">
-
-        <div>
-            <img src="/static/file_0000000008a881f4ae10e8c46bb84451.jpg"
-                 alt="Vue aérienne de l'étang du Pourra"
-                 style="width:100%; border-radius:12px; display:block;">
-            <p style="font-size:0.8rem; text-align:center; margin-top:6px;">
+<div class="bloc">
+<h2 data-i18n="lake">L'étang du Pourra</h2>
+<div style="display:grid; grid-template-columns:1fr 1fr; gap:18px; align-items:start;">
+<div>
+<img alt="Vue aérienne de l'étang du Pourra" src="/static/file_0000000008a881f4ae10e8c46bb84451.jpg" style="width:100%; border-radius:12px; display:block;"/>
+<p data-i18n="caption_lake" style="font-size:0.8rem; text-align:center; margin-top:6px;">
                 Vue aérienne de l'étang du Pourra — Google Earth
             </p>
-            <h2 style="color:#7a481f; margin:22px 0 10px; font-size:1.55rem; line-height:1.2;">
+<h2 data-i18n="trails_title" style="color:#7a481f; margin:22px 0 10px; font-size:1.55rem; line-height:1.2;">
     Des chemins à parcourir à cheval
 </h2>
-
-<p style="line-height:1.55; margin:0; font-size:1rem;">
-    Les chemins environnants permettent de profiter pleinement de ces territoires à cheval,
-    dans un environnement naturel, entre étang, collines et garrigue.
-    <a href="/static/file_0000000079088210b6edb542a695656d.png"
-       target="_blank"
-       style="color:#7a481f; font-weight:bold; text-decoration:underline;">
+<p style="line-height:1.55; margin:0; font-size:1rem;"><span data-i18n="trails_text">Les chemins environnants permettent de profiter pleinement de ces territoires à cheval,
+    dans un environnement naturel, entre étang, collines et garrigue. </span><a data-i18n="trails_link" href="/static/file_0000000079088210b6edb542a695656d.png" style="color:#7a481f; font-weight:bold; text-decoration:underline;" target="_blank">
         Voir les chemins de balade →
     </a>
 </p>
 </div>
-
-        <div>
-            <img src="/static/file_00000000e1c0820a87d148366215469b.png"
-                 alt="Vue aérienne de The Horse Farm"
-                 style="width:100%; border-radius:12px; display:block;">
-            <p style="font-size:0.8rem; text-align:center; margin-top:6px;">
+<div>
+<img alt="Vue aérienne de The Horse Farm" src="/static/file_00000000e1c0820a87d148366215469b.png" style="width:100%; border-radius:12px; display:block;"/>
+<p style="font-size:0.8rem; text-align:center; margin-top:6px;">
                 The Horse Farm — Google Earth
             </p>
-        </div>
-
-    </div>
 </div>
-
-    <div class="bloc" style="padding:0; overflow:hidden;">
-    <img src="/static/file_0000000005d8820aba5cfdd8b1a7c796.png"
-         alt="Faune et flore de l'étang du Pourra"
-         style="width:100%; display:block; border-radius:16px;">
 </div>
-
-    <div class="bloc" style="padding:0; overflow:hidden;">
-    <img src="/static/saint_blaise_sans_bandes_blanches.png"
-         alt="Site archéologique de Saint-Blaise"
-         style="width:100%; display:block; border-radius:16px;">
 </div>
-
-    <div class="bloc" style="padding:0; overflow:hidden;">
-    <img src="/static/file_00000000c9fc8210a00d772b061dfb39.png"
-         alt="Figuerolles, entre plage et chevaux"
-         style="width:100%; display:block; border-radius:16px;">
+<div class="bloc" style="padding:0; overflow:hidden;">
+<img alt="Faune et flore de l'étang du Pourra" src="/static/file_0000000005d8820aba5cfdd8b1a7c796.png" style="width:100%; display:block; border-radius:16px;"/>
 </div>
-
+<div class="bloc" style="padding:0; overflow:hidden;">
+<img alt="Site archéologique de Saint-Blaise" src="/static/saint_blaise_sans_bandes_blanches.png" style="width:100%; display:block; border-radius:16px;"/>
+</div>
+<div class="bloc" style="padding:0; overflow:hidden;">
+<img alt="Figuerolles, entre plage et chevaux" src="/static/file_00000000c9fc8210a00d772b061dfb39.png" style="width:100%; display:block; border-radius:16px;"/>
+</div>
 </section>
-
-<div class="citation">
-    « Un lieu où la nature, les chevaux et les grands espaces
-    se rencontrent. »
-</div>
-
+<div class="citation" data-i18n="quote">« Un lieu où la nature, les chevaux et les grands espaces se rencontrent. »</div>
 <div class="back">
-    <a href="/">← Retour à The Horse Farm</a>
+<a data-i18n="back" href="/">← Retour à The Horse Farm</a>
 </div>
-
-</body>
+<script>const horseFarmTranslations = {"fr": {"hero_title": "Un cadre unique", "hero_sub": "Entre étang, garrigue et grands espaces, découvrez l’environnement naturel de The Horse Farm.", "intro_title": "Au cœur d’un environnement privilégié", "intro_one": "Aux portes de l’étang du Pourra et de la forêt de Castillon, The Horse Farm bénéficie d’un environnement naturel remarquable, où le cheval trouve toute sa place.", "intro_two": "Ici, les paysages de Provence accompagnent le quotidien : étang, roselières, garrigue, chemins et grands espaces composent un cadre propice au calme, au travail du cheval et aux balades.", "lake": "L’étang du Pourra", "caption_lake": "Vue aérienne de l’étang du Pourra — Google Earth", "trails_title": "Des chemins à parcourir à cheval", "trails_text": "Les chemins environnants permettent de profiter pleinement de ces territoires à cheval, dans un environnement naturel, entre étang, collines et garrigue. ", "trails_link": "Voir les chemins de balade →", "caption_farm": "The Horse Farm — Google Earth", "quote": "« Un lieu où la nature, les chevaux et les grands espaces se rencontrent. »", "back": "← Retour à The Horse Farm"}, "en": {"hero_title": "A unique setting", "hero_sub": "Between the lagoon, scrubland and wide-open spaces, discover the natural surroundings of The Horse Farm.", "intro_title": "In the heart of an exceptional natural setting", "intro_one": "On the edge of the Étang du Pourra and the Castillon forest, The Horse Farm enjoys remarkable natural surroundings where horses truly belong.", "intro_two": "Here, the landscapes of Provence are part of everyday life: the lagoon, reed beds, scrubland, trails and open spaces provide a peaceful setting for horse training and rides.", "lake": "The Étang du Pourra", "caption_lake": "Aerial view of the Étang du Pourra — Google Earth", "trails_title": "Trails to explore on horseback", "trails_text": "The surrounding trails invite you to explore this beautiful countryside on horseback, among the lagoon, hills and scrubland. ", "trails_link": "View riding trails →", "caption_farm": "The Horse Farm — Google Earth", "quote": "“A place where nature, horses and wide-open spaces come together.”", "back": "← Back to The Horse Farm"}, "de": {"hero_title": "Eine einzigartige Umgebung", "hero_sub": "Zwischen See, Garrigue und weiten Landschaften: Entdecken Sie die Natur rund um The Horse Farm.", "intro_title": "Inmitten einer besonderen Naturlandschaft", "intro_one": "Am Étang du Pourra und am Wald von Castillon gelegen, bietet The Horse Farm eine bemerkenswerte natürliche Umgebung, in der Pferde ihren Platz finden.", "intro_two": "Hier prägt die Landschaft der Provence den Alltag: See, Schilfgürtel, Garrigue, Wege und weite Flächen schaffen ideale Bedingungen für Ruhe, Pferdearbeit und Ausritte.", "lake": "Der Étang du Pourra", "caption_lake": "Luftaufnahme des Étang du Pourra — Google Earth", "trails_title": "Reitwege zum Entdecken", "trails_text": "Die umliegenden Wege laden dazu ein, die Landschaft zwischen See, Hügeln und Garrigue auf dem Pferderücken zu erkunden. ", "trails_link": "Reitwege ansehen →", "caption_farm": "The Horse Farm — Google Earth", "quote": "„Ein Ort, an dem Natur, Pferde und weite Landschaften zusammenkommen.“", "back": "← Zurück zu The Horse Farm"}, "es": {"hero_title": "Un entorno único", "hero_sub": "Entre laguna, monte mediterráneo y grandes espacios, descubre el entorno natural de The Horse Farm.", "intro_title": "En el corazón de un entorno privilegiado", "intro_one": "A las puertas del Étang du Pourra y del bosque de Castillon, The Horse Farm disfruta de un entorno natural extraordinario donde los caballos encuentran su lugar.", "intro_two": "Aquí, los paisajes de Provenza forman parte de la vida cotidiana: laguna, cañaverales, monte, caminos y grandes espacios ofrecen tranquilidad, trabajo con caballos y paseos.", "lake": "La laguna del Pourra", "caption_lake": "Vista aérea del Étang du Pourra — Google Earth", "trails_title": "Caminos para recorrer a caballo", "trails_text": "Los caminos cercanos permiten disfrutar a caballo de estos paisajes naturales, entre laguna, colinas y monte mediterráneo. ", "trails_link": "Ver rutas a caballo →", "caption_farm": "The Horse Farm — Google Earth", "quote": "«Un lugar donde se encuentran la naturaleza, los caballos y los grandes espacios».", "back": "← Volver a The Horse Farm"}, "it": {"hero_title": "Un ambiente unico", "hero_sub": "Tra laguna, macchia mediterranea e grandi spazi, scopri l’ambiente naturale di The Horse Farm.", "intro_title": "Nel cuore di un ambiente privilegiato", "intro_one": "Alle porte dell’Étang du Pourra e della foresta di Castillon, The Horse Farm gode di uno straordinario ambiente naturale in cui i cavalli trovano il loro posto.", "intro_two": "Qui i paesaggi della Provenza accompagnano la vita quotidiana: laguna, canneti, macchia mediterranea, sentieri e grandi spazi creano un ambiente ideale per la tranquillità, il lavoro con i cavalli e le passeggiate.", "lake": "L’Étang du Pourra", "caption_lake": "Vista aerea dell’Étang du Pourra — Google Earth", "trails_title": "Sentieri da percorrere a cavallo", "trails_text": "I sentieri circostanti permettono di esplorare a cavallo questi paesaggi naturali, tra laguna, colline e macchia mediterranea. ", "trails_link": "Visualizza i percorsi a cavallo →", "caption_farm": "The Horse Farm — Google Earth", "quote": "«Un luogo dove natura, cavalli e grandi spazi si incontrano».", "back": "← Torna a The Horse Farm"}, "nl": {"hero_title": "Een unieke omgeving", "hero_sub": "Tussen het meer, de mediterrane natuur en uitgestrekte landschappen: ontdek de natuurlijke omgeving van The Horse Farm.", "intro_title": "Midden in een bijzondere natuurlijke omgeving", "intro_one": "Aan de rand van het Étang du Pourra en het bos van Castillon ligt The Horse Farm in een prachtige natuurlijke omgeving waar paarden helemaal op hun plek zijn.", "intro_two": "Hier maken de landschappen van de Provence deel uit van het dagelijks leven: het meer, rietvelden, struikgewas, paden en open ruimtes bieden rust en volop mogelijkheden voor paardentraining en buitenritten.", "lake": "Het Étang du Pourra", "caption_lake": "Luchtfoto van het Étang du Pourra — Google Earth", "trails_title": "Ruiterpaden om te ontdekken", "trails_text": "Via de omliggende paden kun je te paard genieten van het landschap tussen het meer, de heuvels en de mediterrane natuur. ", "trails_link": "Bekijk de ruiterpaden →", "caption_farm": "The Horse Farm — Google Earth", "quote": "“Een plek waar natuur, paarden en uitgestrekte landschappen samenkomen.”", "back": "← Terug naar The Horse Farm"}};
+function traduireSite(language){
+ const chosen=Object.prototype.hasOwnProperty.call(horseFarmTranslations,language)?language:'fr';
+ const words=horseFarmTranslations[chosen];document.documentElement.lang=chosen;
+ try{localStorage.setItem('horsefarm_language',chosen);localStorage.setItem('siteLanguage',chosen);localStorage.setItem('lang',chosen);sessionStorage.setItem('horsefarm_language',chosen);}catch(e){}
+ document.querySelectorAll('[data-i18n]').forEach(function(el){const key=el.getAttribute('data-i18n');if(Object.prototype.hasOwnProperty.call(words,key))el.textContent=words[key];});
+ const picker=document.getElementById('langue-site');if(picker)picker.value=chosen;
+}
+(function(){const supported=['fr','en','de','es','it','nl'];const params=new URLSearchParams(window.location.search);const explicit=params.get('lang')||params.get('language');let stored='';try{stored=sessionStorage.getItem('horsefarm_language')||localStorage.getItem('horsefarm_language')||localStorage.getItem('siteLanguage')||localStorage.getItem('lang')||'';}catch(e){}const browser=(navigator.language||'fr').slice(0,2).toLowerCase();const initial=supported.includes(explicit)?explicit:supported.includes(stored)?stored:supported.includes(browser)?browser:'fr';traduireSite(initial);
+ document.querySelectorAll('a[href^="/"]').forEach(function(link){link.addEventListener('click',function(){try{const url=new URL(link.href);url.searchParams.set('lang',document.documentElement.lang);link.href=url.pathname+url.search+url.hash;}catch(e){}});});})();</script></body>
 </html>
