@@ -532,6 +532,18 @@ const horseFarmTranslations = {
  }
 };
 let currentHorseFarmLanguage = 'fr';
+function synchroniserLiensLangue() {
+  document.querySelectorAll('a[href]').forEach(function(link) {
+    const raw = link.getAttribute('href');
+    if (!raw || raw.startsWith('#') || raw.startsWith('mailto:') || raw.startsWith('tel:')) return;
+    try {
+      const url = new URL(raw, window.location.href);
+      if (url.origin !== window.location.origin) return;
+      url.searchParams.set('lang', currentHorseFarmLanguage);
+      link.setAttribute('href', url.pathname + url.search + url.hash);
+    } catch (error) {}
+  });
+}
 function i18nText(key) {
   return (horseFarmTranslations[currentHorseFarmLanguage] || horseFarmTranslations.fr)[key] || horseFarmTranslations.fr[key] || key;
 }
@@ -565,6 +577,7 @@ function traduireSite(language) {
   }
   const menu = document.getElementById('langue-site');
   if (menu) menu.value = currentHorseFarmLanguage;
+  synchroniserLiensLangue();
   // Refresh available-time labels without altering the selected booking details.
   if (typeof loadTimes === 'function' && document.getElementById('date')?.value && document.getElementById('duration')?.value) {
     loadTimes();
@@ -581,8 +594,8 @@ document.addEventListener('DOMContentLoaded', function() {
   const explicit = params.get('lang') || params.get('language');
   let stored = '';
   try {
-    stored = sessionStorage.getItem('horsefarm_language') ||
-      localStorage.getItem('horsefarm_language') ||
+    stored = localStorage.getItem('horsefarm_language') ||
+      sessionStorage.getItem('horsefarm_language') ||
       localStorage.getItem('siteLanguage') ||
       localStorage.getItem('lang') || '';
   } catch (error) {}
@@ -592,16 +605,8 @@ document.addEventListener('DOMContentLoaded', function() {
     supported.includes(browser) ? browser : 'fr';
   traduireSite(initial);
 
-  // Carry the chosen language to every internal page when navigating.
-  document.querySelectorAll('a[href^="/"]').forEach(function(link) {
-    link.addEventListener('click', function() {
-      try {
-        const url = new URL(link.href);
-        url.searchParams.set('lang', currentHorseFarmLanguage);
-        link.href = url.pathname + url.search + url.hash;
-      } catch (error) {}
-    });
-  });
+   // Links are synchronized immediately when the flag changes.
+
 });
 </script><header>
 <div class="logo notranslate" translate="no">
