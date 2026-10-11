@@ -557,7 +557,7 @@ function traduireSite(language) {
   } catch(e) {}
   stored = stored.slice(0,2).toLowerCase();
   const browser = (navigator.language || 'fr').slice(0,2).toLowerCase();
-  const initial = supported.includes(explicit) ? explicit : supported.includes(stored) ? stored : supported.includes(browser) ? browser : 'fr';
+  const initial = supported.includes(stored) ? stored : supported.includes(explicit) ? explicit : supported.includes(browser) ? browser : 'fr';
   function apply() { traduireSite(initial); }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', apply);
   else apply();
