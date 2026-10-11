@@ -126,69 +126,277 @@
                 object-fit: cover;
             }
         }
+
+        .horsefarm-language-picker { position:fixed; top:12px; right:12px; z-index:9999; }
+        .horsefarm-language-picker select { padding:8px 10px; border-radius:6px; font-size:14px; max-width:175px; background:#fff; color:#2d1a0f; border:1px solid #8a5a2b; box-shadow:0 2px 7px #0003; }
+        @media(max-width:600px) { .horsefarm-language-picker { top:8px; right:8px; } .horsefarm-language-picker select { font-size:13px; max-width:155px; } }
     </style>
 </head>
 <body>
+    <div class="horsefarm-language-picker"><select id="langue-site" aria-label="Choisir la langue / Choose language" onchange="traduireSite(this.value)"><option value="fr">🇫🇷 Français</option><option value="en">🇬🇧 English</option><option value="de">🇩🇪 Deutsch</option><option value="es">🇪🇸 Español</option><option value="it">🇮🇹 Italiano</option><option value="nl">🇳🇱 Nederlands</option></select></div>
     <section class="hero">
         <div class="hero-content">
-            <h1>Débourrage & travail du cheval</h1>
-            <p>Comprendre, accompagner et faire progresser chaque cheval dans le respect et à son rythme.</p>
+            <h1 data-i18n="hero_title">Débourrage & travail du cheval</h1>
+            <p data-i18n="hero_sub">Comprendre, accompagner et faire progresser chaque cheval dans le respect et à son rythme.</p>
         </div>
     </section>
 <div class="fond-debourrage">
     <section class="intro">
-        <h2>Une relation fondée sur la confiance</h2>
-        <p>Chaque cheval est unique. Le travail est adapté à son caractère, à son histoire, à ses besoins et à son évolution.</p>
-        <p>Nous privilégions une progression calme et réfléchie, depuis le travail à pied jusqu'au travail monté et aux sorties en extérieur. La confiance, la patience et la compréhension du cheval restent au centre de chaque étape.</p>
+        <h2 data-i18n="intro_title">Une relation fondée sur la confiance</h2>
+        <p data-i18n="intro1">Chaque cheval est unique. Le travail est adapté à son caractère, à son histoire, à ses besoins et à son évolution.</p>
+        <p data-i18n="intro2">Nous privilégions une progression calme et réfléchie, depuis le travail à pied jusqu'au travail monté et aux sorties en extérieur. La confiance, la patience et la compréhension du cheval restent au centre de chaque étape.</p>
         <div class="important">
-            Le travail est réalisé sans mors, sans badine et sans éperons. L’objectif est de construire une véritable coopération avec le cheval, fondée sur la confiance, la compréhension et le respect mutuel : je te fais confiance, tu me fais confiance. (On parle alors de leadership) : je contrôle le mouvement, je suis leadership. Il n’y a pas de relation dominant-dominé avec le cheval!
+            <span data-i18n="important">Le travail est réalisé sans mors, sans badine et sans éperons. L’objectif est de construire une véritable coopération avec le cheval, fondée sur la confiance, la compréhension et le respect mutuel : je te fais confiance, tu me fais confiance. (On parle alors de leadership) : je contrôle le mouvement, je suis leadership. Il n’y a pas de relation dominant-dominé avec le cheval!</span>
         </div>
     </section>
 
     <section class="gallery">
         <article class="photo">
             <img src="/static/IMG_20260929_224523.jpg" alt="Travail basé sur la confiance avec le cheval">
-            <div class="photo-text"><h3>La confiance</h3><p>Avant toute chose, nous construisons une relation calme et cohérente afin que le cheval puisse comprendre ce qui lui est demandé sans précipitation.</p></div>
+            <div class="photo-text"><h3 data-i18n="h1">La confiance</h3><p data-i18n="p1">Avant toute chose, nous construisons une relation calme et cohérente afin que le cheval puisse comprendre ce qui lui est demandé sans précipitation.</p></div>
         </article>
         <article class="photo">
             <img src="/static/IMG_20260930_172858.jpg" alt="Travail à pied du cheval">
-            <div class="photo-text"><h3>Le travail à pied</h3><p>Le travail à pied permet d'établir les bases de la communication, de l'attention et du respect mutuel.</p></div>
+            <div class="photo-text"><h3 data-i18n="h2">Le travail à pied</h3><p data-i18n="p2">Le travail à pied permet d'établir les bases de la communication, de l'attention et du respect mutuel.</p></div>
         </article>
         <article class="photo">
             <img src="/static/IMG_20260930_172925.jpg" alt="Préparation progressive du cheval">
-            <div class="photo-text"><h3>La préparation</h3><p>Chaque nouvelle étape est introduite progressivement, en observant les réactions du cheval et en respectant son rythme d'apprentissage.</p></div>
+            <div class="photo-text"><h3 data-i18n="h3">La préparation</h3><p data-i18n="p3">Chaque nouvelle étape est introduite progressivement, en observant les réactions du cheval et en respectant son rythme d'apprentissage.</p></div>
         </article>
         <article class="photo">
             <img src="/static/IMG_20260930_174123.jpg" alt="Début du travail monté">
-            <div class="photo-text"><h3>Le travail monté</h3><p>Le passage au travail monté se fait dans la continuité des acquis obtenus à pied, sans brusquer le cheval.</p></div>
+            <div class="photo-text"><h3 data-i18n="h4">Le travail monté</h3><p data-i18n="p4">Le passage au travail monté se fait dans la continuité des acquis obtenus à pied, sans brusquer le cheval.</p></div>
         </article>
         <article class="photo">
             <img src="/static/IMG_20260929_224518.jpg" alt="Progression dans le travail du cheval">
-            <div class="photo-text"><h3>Une progression personnalisée</h3><p>Débourrage, remise au travail ou rééducation : les séances sont adaptées au cheval et aux difficultés rencontrées.</p></div>
+            <div class="photo-text"><h3 data-i18n="h5">Une progression personnalisée</h3><p data-i18n="p5">Débourrage, remise au travail ou rééducation : les séances sont adaptées au cheval et aux difficultés rencontrées.</p></div>
         </article>
         <article class="photo">
             <img src="/static/file_0000000054f882108ced16e337572236.jpg" alt="Travail du cheval en extérieur">
-            <div class="photo-text"><h3>Vers l'extérieur</h3><p>Le travail se poursuit dans différentes situations afin de développer un cheval serein, attentif et confiant dans son environnement.</p></div>
+            <div class="photo-text"><h3 data-i18n="h6">Vers l'extérieur</h3><p data-i18n="p6">Le travail se poursuit dans différentes situations afin de développer un cheval serein, attentif et confiant dans son environnement.</p></div>
         </article>
     </section>
     <p style="text-align:center; color:#7a481f; font-style:italic; font-size:1.25rem; margin:35px 20px;">
-    « Avant de demander au cheval de nous comprendre, apprenons d’abord à l’écouter. »
+    <span data-i18n="quote">« Avant de demander au cheval de nous comprendre, apprenons d’abord à l’écouter. »</span>
 </p>
 
     <section class="respect">
-        <h2>UN TRAVAIL FONDÉ SUR LE RESPECT ET LA CONFIANCE</h2>
-        <p>Chaque cheval nous apprend à observer, comprendre et nous adapter.</p>
-<p>Notre objectif : construire un cheval confiant, disponible et serein, tout en préservant sa personnalité.</p>
+        <h2 data-i18n="respect_title">UN TRAVAIL FONDÉ SUR LE RESPECT ET LA CONFIANCE</h2>
+        <p data-i18n="respect1">Chaque cheval nous apprend à observer, comprendre et nous adapter.</p>
+<p data-i18n="respect2">Notre objectif : construire un cheval confiant, disponible et serein, tout en préservant sa personnalité.</p>
     </section>
     <div style="text-align:center; margin:30px 0 10px;">
-    <a href="/#contact" style="display:inline-block; padding:12px 28px; background:#7a481f; color:white; text-decoration:none; font-weight:bold; border-radius:6px;">
+    <a href="/#contact" style="display:inline-block; padding:12px 28px; background:#7a481f; color:white; text-decoration:none; font-weight:bold; border-radius:6px;" data-i18n="contact">
         Nous contacter
     </a>
 </div>
 
     <div class="back">
-        <a href="/">← Retour à The Horse Farm</a>
+        <a href="/" data-i18n="back">← Retour à The Horse Farm</a>
     </div>
     </div>
+
+<script>
+const horseFarmDebourrageTranslations = {
+  "fr": {
+    "hero_title": "Débourrage & travail du cheval",
+    "hero_sub": "Comprendre, accompagner et faire progresser chaque cheval dans le respect et à son rythme.",
+    "intro_title": "Une relation fondée sur la confiance",
+    "intro1": "Chaque cheval est unique. Le travail est adapté à son caractère, à son histoire, à ses besoins et à son évolution.",
+    "intro2": "Nous privilégions une progression calme et réfléchie, depuis le travail à pied jusqu'au travail monté et aux sorties en extérieur. La confiance, la patience et la compréhension du cheval restent au centre de chaque étape.",
+    "important": "Le travail est réalisé sans mors, sans badine et sans éperons. L’objectif est de construire une véritable coopération avec le cheval, fondée sur la confiance, la compréhension et le respect mutuel : je te fais confiance, tu me fais confiance. (On parle alors de leadership) : je contrôle le mouvement, je suis leadership. Il n’y a pas de relation dominant-dominé avec le cheval!",
+    "h1": "La confiance",
+    "p1": "Avant toute chose, nous construisons une relation calme et cohérente afin que le cheval puisse comprendre ce qui lui est demandé sans précipitation.",
+    "h2": "Le travail à pied",
+    "p2": "Le travail à pied permet d'établir les bases de la communication, de l'attention et du respect mutuel.",
+    "h3": "La préparation",
+    "p3": "Chaque nouvelle étape est introduite progressivement, en observant les réactions du cheval et en respectant son rythme d'apprentissage.",
+    "h4": "Le travail monté",
+    "p4": "Le passage au travail monté se fait dans la continuité des acquis obtenus à pied, sans brusquer le cheval.",
+    "h5": "Une progression personnalisée",
+    "p5": "Débourrage, remise au travail ou rééducation : les séances sont adaptées au cheval et aux difficultés rencontrées.",
+    "h6": "Vers l'extérieur",
+    "p6": "Le travail se poursuit dans différentes situations afin de développer un cheval serein, attentif et confiant dans son environnement.",
+    "quote": "« Avant de demander au cheval de nous comprendre, apprenons d’abord à l’écouter. »",
+    "respect_title": "UN TRAVAIL FONDÉ SUR LE RESPECT ET LA CONFIANCE",
+    "respect1": "Chaque cheval nous apprend à observer, comprendre et nous adapter.",
+    "respect2": "Notre objectif : construire un cheval confiant, disponible et serein, tout en préservant sa personnalité.",
+    "contact": "Nous contacter",
+    "back": "← Retour à The Horse Farm"
+  },
+  "en": {
+    "hero_title": "Horse starting & training",
+    "hero_sub": "Understand, support and help each horse progress with respect and at its own pace.",
+    "intro_title": "A relationship built on trust",
+    "intro1": "Every horse is unique. Training is adapted to its temperament, history, needs and progress.",
+    "intro2": "We favour calm, thoughtful progress, from groundwork to ridden work and outdoor rides. Trust, patience and understanding remain at the heart of every step.",
+    "important": "We work without a bit, whip or spurs. Our aim is to build genuine cooperation with the horse, based on trust, understanding and mutual respect: I trust you, you trust me. This is about leadership: guiding movement through clear communication, not a dominant–subordinate relationship.",
+    "h1": "Trust",
+    "p1": "First and foremost, we build a calm, consistent relationship so the horse can understand what is being asked without being rushed.",
+    "h2": "Groundwork",
+    "p2": "Groundwork establishes the foundations of communication, attention and mutual respect.",
+    "h3": "Preparation",
+    "p3": "Each new step is introduced gradually, observing the horse’s reactions and respecting its learning pace.",
+    "h4": "Ridden work",
+    "p4": "Ridden work builds on what the horse has learned on the ground, without rushing it.",
+    "h5": "Individual progress",
+    "p5": "Starting, retraining or rehabilitation: sessions are tailored to each horse and the challenges encountered.",
+    "h6": "Moving outdoors",
+    "p6": "Work continues in different situations to develop a calm, attentive and confident horse in its surroundings.",
+    "quote": "“Before asking the horse to understand us, let us first learn to listen to it.”",
+    "respect_title": "TRAINING BUILT ON RESPECT AND TRUST",
+    "respect1": "Every horse teaches us to observe, understand and adapt.",
+    "respect2": "Our goal is a confident, willing and calm horse, while preserving its personality.",
+    "contact": "Contact us",
+    "back": "← Back to The Horse Farm"
+  },
+  "de": {
+    "hero_title": "Anreiten & Pferdetraining",
+    "hero_sub": "Jedes Pferd verstehen, begleiten und respektvoll in seinem eigenen Tempo fördern.",
+    "intro_title": "Eine Beziehung auf der Grundlage von Vertrauen",
+    "intro1": "Jedes Pferd ist einzigartig. Die Arbeit wird an seinen Charakter, seine Geschichte, seine Bedürfnisse und seine Entwicklung angepasst.",
+    "intro2": "Wir setzen auf eine ruhige, durchdachte Entwicklung – von der Bodenarbeit über die Arbeit unter dem Sattel bis hin zu Ausritten. Vertrauen, Geduld und Verständnis stehen dabei im Mittelpunkt.",
+    "important": "Wir arbeiten ohne Gebiss, Gerte und Sporen. Ziel ist eine echte Zusammenarbeit mit dem Pferd, die auf Vertrauen, Verständnis und gegenseitigem Respekt beruht: Ich vertraue dir, du vertraust mir. Dabei geht es um Führung und klare Bewegungssignale, nicht um ein Verhältnis von Dominanz und Unterordnung.",
+    "h1": "Vertrauen",
+    "p1": "Zuerst schaffen wir eine ruhige und verlässliche Beziehung, damit das Pferd ohne Zeitdruck versteht, was von ihm erwartet wird.",
+    "h2": "Bodenarbeit",
+    "p2": "Die Bodenarbeit schafft die Grundlagen für Kommunikation, Aufmerksamkeit und gegenseitigen Respekt.",
+    "h3": "Vorbereitung",
+    "p3": "Jeder neue Schritt wird behutsam eingeführt. Wir beobachten die Reaktionen des Pferdes und achten auf sein Lerntempo.",
+    "h4": "Arbeit unter dem Sattel",
+    "p4": "Die Arbeit unter dem Sattel knüpft an die am Boden erworbenen Fähigkeiten an, ohne das Pferd zu überfordern.",
+    "h5": "Individuelle Entwicklung",
+    "p5": "Anreiten, Wiederaufbau oder Rehabilitation: Jede Einheit wird auf das Pferd und seine Herausforderungen abgestimmt.",
+    "h6": "Schritt für Schritt ins Gelände",
+    "p6": "Die Arbeit wird in verschiedenen Situationen fortgesetzt, damit das Pferd in seiner Umgebung gelassen, aufmerksam und selbstsicher wird.",
+    "quote": "„Bevor wir vom Pferd verlangen, uns zu verstehen, sollten wir lernen, ihm zuzuhören.“",
+    "respect_title": "ARBEIT AUF DER GRUNDLAGE VON RESPEKT UND VERTRAUEN",
+    "respect1": "Jedes Pferd lehrt uns, zu beobachten, zu verstehen und uns anzupassen.",
+    "respect2": "Unser Ziel: ein selbstsicheres, aufmerksames und gelassenes Pferd, dessen Persönlichkeit erhalten bleibt.",
+    "contact": "Kontakt",
+    "back": "← Zurück zu The Horse Farm"
+  },
+  "es": {
+    "hero_title": "Doma inicial y trabajo del caballo",
+    "hero_sub": "Comprender, acompañar y ayudar a cada caballo a progresar con respeto y a su ritmo.",
+    "intro_title": "Una relación basada en la confianza",
+    "intro1": "Cada caballo es único. El trabajo se adapta a su carácter, historia, necesidades y evolución.",
+    "intro2": "Favorecemos una progresión tranquila y reflexiva, desde el trabajo pie a tierra hasta el trabajo montado y las salidas al exterior. La confianza, la paciencia y la comprensión son esenciales en cada etapa.",
+    "important": "Trabajamos sin bocado, fusta ni espuelas. El objetivo es construir una verdadera cooperación con el caballo, basada en la confianza, la comprensión y el respeto mutuo: yo confío en ti, tú confías en mí. Se trata de liderazgo y de guiar el movimiento, no de una relación de dominación y sumisión.",
+    "h1": "La confianza",
+    "p1": "Ante todo, construimos una relación tranquila y coherente para que el caballo comprenda lo que se le pide sin prisas.",
+    "h2": "Trabajo pie a tierra",
+    "p2": "El trabajo pie a tierra establece las bases de la comunicación, la atención y el respeto mutuo.",
+    "h3": "La preparación",
+    "p3": "Cada nueva etapa se introduce gradualmente, observando las reacciones del caballo y respetando su ritmo de aprendizaje.",
+    "h4": "Trabajo montado",
+    "p4": "El trabajo montado continúa lo aprendido pie a tierra, sin forzar al caballo.",
+    "h5": "Progreso personalizado",
+    "p5": "Doma inicial, vuelta al trabajo o rehabilitación: las sesiones se adaptan a cada caballo y a las dificultades que encuentre.",
+    "h6": "Hacia el exterior",
+    "p6": "El trabajo continúa en distintas situaciones para desarrollar un caballo tranquilo, atento y seguro en su entorno.",
+    "quote": "«Antes de pedirle al caballo que nos comprenda, aprendamos primero a escucharlo».",
+    "respect_title": "UN TRABAJO BASADO EN EL RESPETO Y LA CONFIANZA",
+    "respect1": "Cada caballo nos enseña a observar, comprender y adaptarnos.",
+    "respect2": "Nuestro objetivo: un caballo seguro, dispuesto y tranquilo, conservando su personalidad.",
+    "contact": "Contáctanos",
+    "back": "← Volver a The Horse Farm"
+  },
+  "it": {
+    "hero_title": "Doma e lavoro del cavallo",
+    "hero_sub": "Comprendere, accompagnare e far progredire ogni cavallo con rispetto e secondo i suoi tempi.",
+    "intro_title": "Un rapporto fondato sulla fiducia",
+    "intro1": "Ogni cavallo è unico. Il lavoro viene adattato al suo carattere, alla sua storia, ai suoi bisogni e alla sua evoluzione.",
+    "intro2": "Privilegiamo un percorso calmo e ragionato, dal lavoro da terra al lavoro montato e alle uscite all’aperto. Fiducia, pazienza e comprensione sono al centro di ogni fase.",
+    "important": "Lavoriamo senza imboccatura, frustino né speroni. L’obiettivo è costruire una vera collaborazione con il cavallo, fondata su fiducia, comprensione e rispetto reciproco: io mi fido di te, tu ti fidi di me. Si tratta di una guida chiara del movimento, non di un rapporto tra dominante e dominato.",
+    "h1": "La fiducia",
+    "p1": "Prima di tutto costruiamo un rapporto calmo e coerente, affinché il cavallo capisca ciò che gli viene chiesto senza fretta.",
+    "h2": "Lavoro da terra",
+    "p2": "Il lavoro da terra pone le basi della comunicazione, dell’attenzione e del rispetto reciproco.",
+    "h3": "La preparazione",
+    "p3": "Ogni nuova fase viene introdotta gradualmente, osservando le reazioni del cavallo e rispettando i suoi tempi di apprendimento.",
+    "h4": "Lavoro montato",
+    "p4": "Il lavoro montato prosegue quanto appreso da terra, senza forzare il cavallo.",
+    "h5": "Un percorso personalizzato",
+    "p5": "Doma, ripresa del lavoro o riabilitazione: le sessioni sono adattate a ogni cavallo e alle difficoltà incontrate.",
+    "h6": "Verso l’esterno",
+    "p6": "Il lavoro continua in situazioni diverse per sviluppare un cavallo sereno, attento e sicuro nel proprio ambiente.",
+    "quote": "«Prima di chiedere al cavallo di capirci, impariamo ad ascoltarlo».",
+    "respect_title": "UN LAVORO FONDATO SUL RISPETTO E SULLA FIDUCIA",
+    "respect1": "Ogni cavallo ci insegna a osservare, comprendere e adattarci.",
+    "respect2": "Il nostro obiettivo: un cavallo fiducioso, disponibile e sereno, preservandone la personalità.",
+    "contact": "Contattaci",
+    "back": "← Torna a The Horse Farm"
+  },
+  "nl": {
+    "hero_title": "Zadelmak maken & paardentraining",
+    "hero_sub": "Elk paard begrijpen, begeleiden en met respect in zijn eigen tempo laten groeien.",
+    "intro_title": "Een band gebaseerd op vertrouwen",
+    "intro1": "Elk paard is uniek. De training wordt aangepast aan zijn karakter, verleden, behoeften en ontwikkeling.",
+    "intro2": "We kiezen voor een rustige, doordachte opbouw, van grondwerk tot rijden en buitenritten. Vertrouwen, geduld en begrip staan centraal in elke fase.",
+    "important": "We werken zonder bit, zweep of sporen. Ons doel is echte samenwerking met het paard, gebaseerd op vertrouwen, begrip en wederzijds respect: ik vertrouw jou, jij vertrouwt mij. Het gaat om duidelijke leiding bij beweging, niet om een verhouding van overheersing en onderwerping.",
+    "h1": "Vertrouwen",
+    "p1": "Allereerst bouwen we een rustige en consequente band op, zodat het paard zonder haast begrijpt wat er wordt gevraagd.",
+    "h2": "Grondwerk",
+    "p2": "Grondwerk legt de basis voor communicatie, aandacht en wederzijds respect.",
+    "h3": "Voorbereiding",
+    "p3": "Elke nieuwe stap wordt geleidelijk ingevoerd, waarbij we de reacties van het paard volgen en zijn leertempo respecteren.",
+    "h4": "Werk onder het zadel",
+    "p4": "Het rijden bouwt voort op wat het paard vanaf de grond heeft geleerd, zonder het te overhaasten.",
+    "h5": "Persoonlijke begeleiding",
+    "p5": "Zadelmak maken, opnieuw trainen of revalidatie: elke sessie wordt afgestemd op het paard en de uitdagingen die zich voordoen.",
+    "h6": "Naar buiten",
+    "p6": "De training gaat verder in verschillende situaties om een rustig, oplettend en zelfverzekerd paard te ontwikkelen.",
+    "quote": "‘Voordat we het paard vragen ons te begrijpen, moeten we eerst leren naar hem te luisteren.’",
+    "respect_title": "TRAINING GEBASEERD OP RESPECT EN VERTROUWEN",
+    "respect1": "Elk paard leert ons observeren, begrijpen en aanpassen.",
+    "respect2": "Ons doel: een zelfverzekerd, bereidwillig en rustig paard, met behoud van zijn eigen karakter.",
+    "contact": "Contact opnemen",
+    "back": "← Terug naar The Horse Farm"
+  }
+};
+const horseFarmSupportedLanguages = ['fr','en','de','es','it','nl'];
+function traduireSite(language) {
+  const chosen = horseFarmSupportedLanguages.includes(language) ? language : 'fr';
+  const words = horseFarmDebourrageTranslations[chosen];
+  document.documentElement.lang = chosen;
+  document.querySelectorAll('[data-i18n]').forEach(function(el) {
+    const key = el.getAttribute('data-i18n');
+    if (Object.prototype.hasOwnProperty.call(words, key)) el.textContent = words[key];
+  });
+  const picker = document.getElementById('langue-site');
+  if (picker) picker.value = chosen;
+  try {
+    localStorage.setItem('horsefarm_language', chosen);
+    localStorage.setItem('siteLanguage', chosen);
+    localStorage.setItem('lang', chosen);
+    sessionStorage.setItem('horsefarm_language', chosen);
+  } catch(e) {}
+}
+(function initLanguage() {
+  const params = new URLSearchParams(window.location.search);
+  const explicit = (params.get('lang') || params.get('language') || '').toLowerCase().slice(0,2);
+  let stored = '';
+  try {
+    stored = sessionStorage.getItem('horsefarm_language') || localStorage.getItem('horsefarm_language') || localStorage.getItem('siteLanguage') || localStorage.getItem('lang') || '';
+  } catch(e) {}
+  const browser = (navigator.language || 'fr').slice(0,2).toLowerCase();
+  const initial = horseFarmSupportedLanguages.includes(explicit) ? explicit : horseFarmSupportedLanguages.includes(stored) ? stored : horseFarmSupportedLanguages.includes(browser) ? browser : 'fr';
+  function apply() {
+    traduireSite(initial);
+    document.querySelectorAll('a[href^="/"]').forEach(function(link) {
+      link.addEventListener('click', function() {
+        try {
+          const url = new URL(link.href);
+          url.searchParams.set('lang', document.documentElement.lang);
+          link.href = url.pathname + url.search + url.hash;
+        } catch(e) {}
+      });
+    });
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', apply);
+  else apply();
+})();
+</script>
 </body>
 </html>
