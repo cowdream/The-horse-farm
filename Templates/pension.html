@@ -208,7 +208,7 @@
 <section class="pension-gallery">
 <h2 data-i18n="gallery">Notre pension</h2>
 <div class="pension-photos">
-<img alt="Pension pour chevaux" src="/static/pension-1.jpg"/>
+<img data-i18n-alt="intro_title" alt="Pension pour chevaux" src="/static/pension-1.jpg"/>
 <img alt="Paddocks de la pension" src="/static/pension-2-1.jpg"/>
 <img alt="Installations de la pension" src="/static/pension-3.jpg"/>
 <img alt="Installations équestres" src="/static/pension-4.jpg"/>
@@ -521,8 +521,25 @@ const horseFarmPensionTranslations = {
     "footer": "Uw vertrouwde partner"
   }
 };
+const horseFarmLanguages = ['fr','en','de','es','it','nl'];
+function horseFarmNormalizeLanguage(value) {
+  const code = String(value || '').slice(0, 2).toLowerCase();
+  return horseFarmLanguages.includes(code) ? code : '';
+}
+function horseFarmCurrentLanguage() {
+  const params = new URLSearchParams(window.location.search);
+  const explicit = horseFarmNormalizeLanguage(params.get('lang') || params.get('language'));
+  let saved = '';
+  try {
+    saved = horseFarmNormalizeLanguage(localStorage.getItem('horsefarm_language')) ||
+            horseFarmNormalizeLanguage(localStorage.getItem('siteLanguage')) ||
+            horseFarmNormalizeLanguage(localStorage.getItem('lang')) ||
+            horseFarmNormalizeLanguage(sessionStorage.getItem('horsefarm_language'));
+  } catch(e) {}
+  return explicit || saved || horseFarmNormalizeLanguage(navigator.language) || 'fr';
+}
 function traduireSite(language) {
-  const chosen = Object.prototype.hasOwnProperty.call(horseFarmPensionTranslations, language) ? language : 'fr';
+  const chosen = horseFarmNormalizeLanguage(language) || 'fr';
   const words = horseFarmPensionTranslations[chosen];
   document.documentElement.lang = chosen;
   try {
@@ -533,12 +550,16 @@ function traduireSite(language) {
   } catch(e) {}
   document.querySelectorAll('[data-i18n]').forEach(function(el) {
     const key = el.getAttribute('data-i18n');
-    if (Object.prototype.hasOwnProperty.call(words, key)) el.textContent = words[key];
+    if (Object.prototype.hasOwnProperty.call(words, key)) {
+      el.textContent = words[key];
+    }
   });
   const picker = document.getElementById('langue-site');
   if (picker) picker.value = chosen;
-  // Transmettre immédiatement la langue aux liens internes, même si le visiteur
-  // change de langue plusieurs fois avant de naviguer.
+  document.querySelectorAll('[data-i18n-alt]').forEach(function(el) {
+    const key = el.getAttribute('data-i18n-alt');
+    if (Object.prototype.hasOwnProperty.call(words, key)) el.setAttribute('alt', words[key]);
+  });
   document.querySelectorAll('a[href^="/"]:not([href^="/static/"])').forEach(function(link) {
     try {
       const url = new URL(link.getAttribute('href'), window.location.origin);
@@ -548,17 +569,17 @@ function traduireSite(language) {
   });
 }
 (function initPensionLanguage() {
-  const supported = ['fr','en','de','es','it','nl'];
-  const params = new URLSearchParams(window.location.search);
-  const explicit = (params.get('lang') || params.get('language') || '').slice(0,2).toLowerCase();
-  let stored = '';
-  try {
-    stored = localStorage.getItem('horsefarm_language') || localStorage.getItem('siteLanguage') || localStorage.getItem('lang') || sessionStorage.getItem('horsefarm_language') || '';
-  } catch(e) {}
-  stored = stored.slice(0,2).toLowerCase();
-  const browser = (navigator.language || 'fr').slice(0,2).toLowerCase();
-  const initial = supported.includes(explicit) ? explicit : supported.includes(stored) ? stored : supported.includes(browser) ? browser : 'fr';
-  function apply() { traduireSite(initial); }
+  function apply() {
+    const picker = document.getElementById('langue-site');
+    if (picker) {
+      picker.removeAttribute('onchange');
+      picker.addEventListener('change', function() { traduireSite(this.value); });
+    }
+    traduireSite(horseFarmCurrentLanguage());
+    window.addEventListener('pageshow', function() {
+      traduireSite(horseFarmCurrentLanguage());
+    });
+  }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', apply);
   else apply();
 })();
