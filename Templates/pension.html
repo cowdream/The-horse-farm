@@ -417,7 +417,7 @@ const horseFarmPensionTranslations = {
     "price_paddock": "Pensión en paddock con refugio: ",
     "price_box": "Pensión en box: ",
     "price_work": "Pensión con trabajo: ",
-    "price_start": "Paarden zadelmak maken: ",
+    "price_start": "Forfait de doma inicial: ",
     "from250": "desde 250 € / mes",
     "from450": "desde 450 € / mes",
     "from490": "desde 490 € / mes",
@@ -525,6 +525,7 @@ function traduireSite(language) {
   const chosen = Object.prototype.hasOwnProperty.call(horseFarmPensionTranslations,language) ? language : 'fr';
   const words = horseFarmPensionTranslations[chosen];
   document.documentElement.lang=chosen;
+  try { localStorage.setItem('horsefarm_language', chosen); localStorage.setItem('siteLanguage', chosen); } catch(e) {}
   document.querySelectorAll('[data-i18n]').forEach(function(el) {
     const key=el.getAttribute('data-i18n');
     if(Object.prototype.hasOwnProperty.call(words,key)) el.textContent=words[key];
@@ -533,7 +534,14 @@ function traduireSite(language) {
 }
 document.addEventListener('DOMContentLoaded',function(){
   const urlLanguage=new URLSearchParams(window.location.search).get('lang');
-  traduireSite(urlLanguage || 'fr');
+  let savedLanguage = 'fr';
+  try { savedLanguage = localStorage.getItem('horsefarm_language') || localStorage.getItem('siteLanguage') || localStorage.getItem('lang') || 'fr'; } catch(e) {}
+  traduireSite(urlLanguage || savedLanguage);
+  document.querySelectorAll('a[href^="/"]').forEach(function(link) {
+    link.addEventListener('click', function() {
+      try { const url = new URL(link.href); url.searchParams.set('lang', document.documentElement.lang); link.href = url.pathname + url.search + url.hash; } catch(e) {}
+    });
+  });
 });
 </script></body>
 </html>
