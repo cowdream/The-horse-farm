@@ -144,37 +144,183 @@
 
     <div class="box">
 
-        <h2>Votre demande est enregistrée !</h2>
+        <h2 data-i18n="title">Votre demande est enregistrée !</h2>
 
         <div class="success">
-            Merci <strong>{{ name }}</strong>.<br>
-            Votre demande de réservation a bien été enregistrée.
+            <span data-i18n="thanks">Merci pour votre confiance !</span><br>
+            <span data-i18n="hello">Merci</span> <strong>{{ name }}</strong>.<br>
+            <span data-i18n="registered">Votre demande de réservation a bien été enregistrée.</span>
+            <p data-i18n="contact">Nous vous contacterons par téléphone afin de confirmer les disponibilités, valider votre réservation et convenir ensemble des modalités de versement de l'acompte.</p>
+            <p><strong data-i18n="pending">Votre réservation sera confirmée après notre échange.</strong></p>
+            <p data-i18n="soon">À très bientôt chez The Horse Farm !</p>
         </div>
 
         <div class="details">
 
             <div class="row">
-                <strong>Balade</strong>
+                <strong data-i18n="ride">Balade</strong>
                 <span>{{ duration }}</span>
             </div>
 
             <div class="row">
-                <strong>Date</strong>
+                <strong data-i18n="date">Date</strong>
                 <span>{{ date }}</span>
             </div>
 
             <div class="row">
-                <strong>Horaire</strong>
+                <strong data-i18n="time">Horaire</strong>
                 <span>{{ time }}</span>
             </div>
 
             <div class="row">
-                <strong>Cavaliers</strong>
+                <strong data-i18n="riders">Cavaliers</strong>
                 <span>{{ riders }}</span>
             </div>
 
         </div>
 
         <div class="amounts">
-
-            <div class="row
+            <div class="row total"><strong data-i18n="total">Prix total</strong><span>{{ total }} €</span></div>
+            <div class="row deposit"><strong data-i18n="deposit">Acompte à prévoir</strong><span>{{ deposit }} €</span></div>
+            <div class="row balance"><strong data-i18n="balance">Solde à régler sur place</strong><span>{{ balance }} €</span></div>
+        </div>
+        <div class="note" data-i18n="note">Aucun paiement n’est effectué sur ce site. L’acompte sera convenu par téléphone.</div>
+        <a class="button" href="/" data-i18n="home">Retour à l’accueil</a>
+    </div>
+</div>
+<script>
+const confirmationTranslations = {
+  "fr": {
+    "title": "Votre demande est enregistrée !",
+    "thanks": "Merci pour votre confiance !",
+    "hello": "Merci",
+    "registered": "Votre demande de réservation a bien été enregistrée.",
+    "contact": "Nous vous contacterons par téléphone afin de confirmer les disponibilités, valider votre réservation et convenir ensemble des modalités de versement de l’acompte.",
+    "pending": "Votre réservation sera confirmée après notre échange.",
+    "soon": "À très bientôt chez The Horse Farm !",
+    "ride": "Balade",
+    "date": "Date",
+    "time": "Horaire",
+    "riders": "Cavaliers",
+    "total": "Prix total",
+    "deposit": "Acompte à prévoir",
+    "balance": "Solde à régler sur place",
+    "note": "Aucun paiement n’est effectué sur ce site. L’acompte sera convenu par téléphone.",
+    "home": "Retour à l’accueil"
+  },
+  "en": {
+    "title": "Your request has been received!",
+    "thanks": "Thank you for your trust!",
+    "hello": "Thank you",
+    "registered": "Your booking request has been recorded.",
+    "contact": "We will contact you by phone to check availability, confirm your booking and agree on how to pay the deposit.",
+    "pending": "Your booking will be confirmed after we have spoken.",
+    "soon": "See you soon at The Horse Farm!",
+    "ride": "Ride",
+    "date": "Date",
+    "time": "Time",
+    "riders": "Riders",
+    "total": "Total price",
+    "deposit": "Deposit to arrange",
+    "balance": "Balance payable on site",
+    "note": "No payment is made on this website. We will arrange the deposit by phone.",
+    "home": "Back to home"
+  },
+  "de": {
+    "title": "Ihre Anfrage wurde registriert!",
+    "thanks": "Vielen Dank für Ihr Vertrauen!",
+    "hello": "Vielen Dank",
+    "registered": "Ihre Buchungsanfrage ist bei uns eingegangen.",
+    "contact": "Wir kontaktieren Sie telefonisch, um die Verfügbarkeit zu prüfen, Ihre Buchung zu bestätigen und die Anzahlung mit Ihnen zu vereinbaren.",
+    "pending": "Ihre Buchung wird nach unserem Gespräch bestätigt.",
+    "soon": "Bis bald bei The Horse Farm!",
+    "ride": "Ausritt",
+    "date": "Datum",
+    "time": "Uhrzeit",
+    "riders": "Reiter",
+    "total": "Gesamtpreis",
+    "deposit": "Vorgesehene Anzahlung",
+    "balance": "Restzahlung vor Ort",
+    "note": "Auf dieser Website erfolgt keine Zahlung. Die Anzahlung vereinbaren wir telefonisch.",
+    "home": "Zur Startseite"
+  },
+  "es": {
+    "title": "¡Hemos recibido su solicitud!",
+    "thanks": "¡Gracias por su confianza!",
+    "hello": "Gracias",
+    "registered": "Hemos registrado su solicitud de reserva.",
+    "contact": "Nos pondremos en contacto con usted por teléfono para comprobar la disponibilidad, confirmar la reserva y acordar cómo realizar el depósito.",
+    "pending": "Su reserva quedará confirmada después de hablar con nosotros.",
+    "soon": "¡Hasta pronto en The Horse Farm!",
+    "ride": "Paseo a caballo",
+    "date": "Fecha",
+    "time": "Hora",
+    "riders": "Jinetes",
+    "total": "Precio total",
+    "deposit": "Depósito previsto",
+    "balance": "Saldo a pagar en el lugar",
+    "note": "No se realiza ningún pago en este sitio web. Acordaremos el depósito por teléfono.",
+    "home": "Volver al inicio"
+  },
+  "it": {
+    "title": "La tua richiesta è stata registrata!",
+    "thanks": "Grazie per la fiducia!",
+    "hello": "Grazie",
+    "registered": "Abbiamo ricevuto la tua richiesta di prenotazione.",
+    "contact": "Ti contatteremo telefonicamente per verificare la disponibilità, confermare la prenotazione e concordare le modalità di versamento dell’acconto.",
+    "pending": "La prenotazione sarà confermata dopo il nostro contatto telefonico.",
+    "soon": "A presto da The Horse Farm!",
+    "ride": "Passeggiata a cavallo",
+    "date": "Data",
+    "time": "Orario",
+    "riders": "Cavalieri",
+    "total": "Prezzo totale",
+    "deposit": "Acconto previsto",
+    "balance": "Saldo da pagare sul posto",
+    "note": "Non viene effettuato alcun pagamento su questo sito. Concorderemo l’acconto per telefono.",
+    "home": "Torna alla home"
+  },
+  "nl": {
+    "title": "Uw aanvraag is ontvangen!",
+    "thanks": "Bedankt voor uw vertrouwen!",
+    "hello": "Bedankt",
+    "registered": "Uw reserveringsaanvraag is geregistreerd.",
+    "contact": "Wij nemen telefonisch contact met u op om de beschikbaarheid te controleren, uw reservering te bevestigen en de aanbetaling af te spreken.",
+    "pending": "Uw reservering wordt bevestigd nadat wij u hebben gesproken.",
+    "soon": "Tot binnenkort bij The Horse Farm!",
+    "ride": "Buitenrit",
+    "date": "Datum",
+    "time": "Tijd",
+    "riders": "Ruiters",
+    "total": "Totaalprijs",
+    "deposit": "Af te spreken aanbetaling",
+    "balance": "Restbedrag ter plaatse",
+    "note": "Via deze website vindt geen betaling plaats. Wij spreken de aanbetaling telefonisch af.",
+    "home": "Terug naar de startpagina"
+  }
+};
+(function () {
+  const supported = ['fr', 'en', 'de', 'es', 'it', 'nl'];
+  let chosen = 'fr';
+  try {
+    const params = new URLSearchParams(window.location.search);
+    const requested = params.get('lang');
+    const saved = localStorage.getItem('horsefarm_language') || localStorage.getItem('siteLanguage') || localStorage.getItem('lang') || sessionStorage.getItem('horsefarm_language');
+    const candidate = (requested || saved || 'fr').toLowerCase().split('-')[0];
+    if (supported.includes(candidate)) chosen = candidate;
+    localStorage.setItem('horsefarm_language', chosen);
+    localStorage.setItem('siteLanguage', chosen);
+    localStorage.setItem('lang', chosen);
+  } catch (e) {}
+  document.documentElement.lang = chosen;
+  const words = confirmationTranslations[chosen];
+  document.querySelectorAll('[data-i18n]').forEach(function (element) {
+    const key = element.getAttribute('data-i18n');
+    if (Object.prototype.hasOwnProperty.call(words, key)) element.textContent = words[key];
+  });
+  const homeLink = document.querySelector('a.button');
+  if (homeLink) homeLink.href = '/?lang=' + encodeURIComponent(chosen);
+})();
+</script>
+</body>
+</html>
