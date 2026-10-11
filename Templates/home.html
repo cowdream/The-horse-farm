@@ -71,16 +71,20 @@ nav a{display:inline-block;margin:5px}
 <script>
 function changerLangue(langue) {
   localStorage.setItem("horsefarm_langue", langue);
+
   if (langue === "fr") {
-    location.href = location.pathname;
-  } else {
-    location.href = "https://the-horse-farm-com.translate.goog"
-      + location.pathname
-      + "?_x_tr_sl=fr&_x_tr_tl=" + langue
-      + "&_x_tr_hl=fr";
+    window.location.href = "/";
+    return;
   }
+
+  const adresse = window.location.origin + "/";
+  window.location.href =
+    "https://translate.google.com/translate?sl=fr&tl="
+    + encodeURIComponent(langue)
+    + "&u=" + encodeURIComponent(adresse);
 }
 </script>
+
 
 <header>
 <div class="logo">
