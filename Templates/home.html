@@ -58,7 +58,7 @@ nav a{display:inline-block;margin:5px}
 <body>
 <div style="position:absolute;top:12px;right:12px;z-index:9999;">
   <select id="langue-site" aria-label="Choisir la langue"
-    onchange="changerLangue(this.value)"
+    onchange="traduireSite(this.value)"
     style="padding:6px;border-radius:6px;font-size:14px;">
     <option value="fr">🇫🇷 Français</option>
     <option value="en">🇬🇧 English</option>
@@ -69,21 +69,94 @@ nav a{display:inline-block;margin:5px}
   </select>
 </div>
 <script>
-function changerLangue(langue) {
-  localStorage.setItem("horsefarm_langue", langue);
-
-  if (langue === "fr") {
-    window.location.href = "/";
-    return;
+const traductions = {
+  fr: {
+    balades: "Balades",
+    reserver: "Réserver",
+    contact: "Contact",
+    pension: "Pension",
+    elevage: "Élevage",
+    debourrage: "Débourrage",
+    cadre: "Un cadre unique"
+  },
+  en: {
+    balades: "Horseback riding",
+    reserver: "Book",
+    contact: "Contact",
+    pension: "Boarding",
+    elevage: "Breeding",
+    debourrage: "Horse training",
+    cadre: "A unique setting"
+  },
+  de: {
+    balades: "Ausritte",
+    reserver: "Buchen",
+    contact: "Kontakt",
+    pension: "Pferdepension",
+    elevage: "Zucht",
+    debourrage: "Pferdeausbildung",
+    cadre: "Eine einzigartige Umgebung"
+  },
+  es: {
+    balades: "Paseos a caballo",
+    reserver: "Reservar",
+    contact: "Contacto",
+    pension: "Pensión",
+    elevage: "Cría",
+    debourrage: "Doma",
+    cadre: "Un entorno único"
+  },
+  it: {
+    balades: "Passeggiate a cavallo",
+    reserver: "Prenotare",
+    contact: "Contatti",
+    pension: "Pensione",
+    elevage: "Allevamento",
+    debourrage: "Addestramento",
+    cadre: "Un ambiente unico"
+  },
+  nl: {
+    balades: "Paardrijtochten",
+    reserver: "Reserveren",
+    contact: "Contact",
+    pension: "Paardenpension",
+    elevage: "Fokkerij",
+    debourrage: "Paardentraining",
+    cadre: "Een unieke omgeving"
   }
+};
 
-  const adresse = window.location.origin + "/";
-  window.location.href =
-    "https://translate.google.com/translate?sl=fr&tl="
-    + encodeURIComponent(langue)
-    + "&u=" + encodeURIComponent(adresse);
+function traduireSite(langue) {
+  const textes = traductions[langue];
+  if (!textes) return;
+
+  const liens = document.querySelectorAll("header nav a");
+  const cles = [
+    "balades", "reserver", "contact", "pension",
+    "elevage", "debourrage", "cadre"
+  ];
+
+  liens.forEach((lien, index) => {
+    if (cles[index]) {
+      lien.textContent = textes[cles[index]];
+    }
+  });
+
+  document.documentElement.lang = langue;
+  localStorage.setItem("horsefarm_langue", langue);
 }
+document.addEventListener("DOMContentLoaded", function() {
+  const langue = localStorage.getItem("horsefarm_langue") || "fr";
+  const menu = document.getElementById("langue-site");
+
+  if (menu && traductions[langue]) {
+    menu.value = langue;
+    traduireSite(langue);
+  }
+});
+
 </script>
+
 
 
 <header>
