@@ -56,155 +56,9 @@ nav a{display:inline-block;margin:5px}
 </head>
 
 <body>
-<div style="position:absolute;top:12px;right:12px;z-index:9999;">
-  <select id="langue-site" aria-label="Choisir la langue"
-    onchange="traduireSite(this.value)"
-    style="padding:6px;border-radius:6px;font-size:14px;">
-    <option value="fr">🇫🇷 Français</option>
-    <option value="en">🇬🇧 English</option>
-    <option value="de">🇩🇪 Deutsch</option>
-    <option value="es">🇪🇸 Español</option>
-    <option value="it">🇮🇹 Italiano</option>
-    <option value="nl">🇳🇱 Nederlands</option>
-  </select>
-</div>
-<script>
-const traductions = {
-  fr: {
-    balades: "Balades",
-    reserver: "Réserver",
-    contact: "Contact",
-    pension: "Pension",
-    elevage: "Élevage",
-    debourrage: "Débourrage",
-    cadre: "Un cadre unique",
-heroEsprit: "🐴 Respect du cheval · Nature · Esprit western",
-heroBalades: "Balades à cheval",
-heroDescription: "Venez découvrir nos chevaux et profiter d'une balade dans un cadre naturel, dans le respect du cheval.",
-heroReserver: "Demander ma réservation"
-
-  },
-  en: {
-    balades: "Horseback riding",
-    reserver: "Book",
-    contact: "Contact",
-    pension: "Boarding",
-    elevage: "Breeding",
-    debourrage: "Horse training",
-    cadre: "A unique setting",
-heroEsprit: "🐴 Respect for horses · Nature · Western spirit",
-heroBalades: "Horseback riding",
-heroDescription: "Come and discover our horses and enjoy a ride in a natural setting, with respect for the horse.",
-heroReserver: "Request my booking"
-
-  },
-  de: {
-    balades: "Ausritte",
-    reserver: "Buchen",
-    contact: "Kontakt",
-    pension: "Pferdepension",
-    elevage: "Zucht",
-    debourrage: "Pferdeausbildung",
-    cadre: "Eine einzigartige Umgebung",
-heroEsprit: "🐴 Respekt vor dem Pferd · Natur · Western-Flair",
-heroBalades: "Ausritte",
-heroDescription: "Entdecken Sie unsere Pferde und genießen Sie einen Ausritt in natürlicher Umgebung, mit Respekt vor dem Pferd.",
-heroReserver: "Reservierung anfragen"
-
-  },
-  es: {
-    balades: "Paseos a caballo",
-    reserver: "Reservar",
-    contact: "Contacto",
-    pension: "Pensión",
-    elevage: "Cría",
-    debourrage: "Doma",
-    cadre: "Un entorno único",
-heroEsprit: "🐴 Respeto por el caballo · Naturaleza · Espíritu western",
-heroBalades: "Paseos a caballo",
-heroDescription: "Ven a conocer nuestros caballos y disfruta de un paseo en un entorno natural, respetando siempre al caballo.",
-heroReserver: "Solicitar mi reserva"
-
-  },
-  it: {
-    balades: "Passeggiate a cavallo",
-    reserver: "Prenotare",
-    contact: "Contatti",
-    pension: "Pensione",
-    elevage: "Allevamento",
-    debourrage: "Addestramento",
-    cadre: "Un ambiente unico",
-heroEsprit: "🐴 Rispetto per il cavallo · Natura · Spirito western",
-heroBalades: "Passeggiate a cavallo",
-heroDescription: "Vieni a conoscere i nostri cavalli e goditi una passeggiata immerso nella natura, nel rispetto del cavallo.",
-heroReserver: "Richiedi la mia prenotazione"
-
-  },
-  nl: {
-    balades: "Paardrijtochten",
-    reserver: "Reserveren",
-    contact: "Contact",
-    pension: "Paardenpension",
-    elevage: "Fokkerij",
-    debourrage: "Paardentraining",
-    cadre: "Een unieke omgeving",
-heroEsprit: "🐴 Respect voor het paard · Natuur · Westernsfeer",
-heroBalades: "Paardrijtochten",
-heroDescription: "Kom kennismaken met onze paarden en geniet van een buitenrit in een natuurlijke omgeving, met respect voor het paard.",
-heroReserver: "Mijn reservering aanvragen"
-
-  }
-};
-
-function traduireSite(langue) {
-  const textes = traductions[langue];
-  if (!textes) return;
-
-  const liens = document.querySelectorAll("header nav a");
-  const cles = [
-    "balades", "reserver", "contact", "pension",
-    "elevage", "debourrage", "cadre"
-  ];
-
-  liens.forEach((lien, index) => {
-    if (cles[index]) {
-      lien.textContent = textes[cles[index]];
-    }
-  });
-
-  const elementsHero = {
-  "hero-esprit": textes.heroEsprit,
-  "hero-balades": textes.heroBalades,
-  "hero-description": textes.heroDescription,
-  "hero-reserver": textes.heroReserver
-};
-
-Object.entries(elementsHero).forEach(([id, texte]) => {
-  const element = document.getElementById(id);
-  if (element && texte) {
-    element.textContent = texte;
-  }
-});
-
-  document.documentElement.lang = langue;
-  localStorage.setItem("horsefarm_langue", langue);
-}
-document.addEventListener("DOMContentLoaded", function() {
-  const langue = "fr";
-  const menu = document.getElementById("langue-site");
-
-  if (menu && traductions[langue]) {
-    menu.value = langue;
-    traduireSite(langue);
-  }
-});
-
-</script>
-
-
 
 <header>
-<div class="logo notranslate" translate="no">
+<div class="logo">
 THE HORSE FARM
 <small>PORT DE BOUC</small>
 </div>
@@ -221,16 +75,14 @@ THE HORSE FARM
 
 <section class="hero">
 <div class="container">
-<p id="hero-esprit">🐴 Respect du cheval · Nature · Esprit western</p>
-
-<h1 class="notranslate" translate="no">THE HORSE FARM</h1>
-<h2 id="hero-balades">Balades à cheval</h2>
-<p id="hero-description">
+<p>🐴 Respect du cheval • Nature • Esprit western</p>
+<h1>THE HORSE FARM</h1>
+<h2>Balades à cheval</h2>
+<p>
 Venez découvrir nos chevaux et profiter d'une balade
 dans un cadre naturel, dans le respect du cheval.
 </p>
-<a class="button" href="#reservation" id="hero-reserver">Demander ma réservation</a>
-
+<a class="button" href="#reservation">Demander ma réservation</a>
 </div>
 </section>
 <section>
