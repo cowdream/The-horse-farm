@@ -56,6 +56,31 @@ nav a{display:inline-block;margin:5px}
 </head>
 
 <body>
+<div style="position:absolute;top:12px;right:12px;z-index:9999;">
+  <select id="langue-site" aria-label="Choisir la langue"
+    onchange="changerLangue(this.value)"
+    style="padding:6px;border-radius:6px;font-size:14px;">
+    <option value="fr">🇫🇷 Français</option>
+    <option value="en">🇬🇧 English</option>
+    <option value="de">🇩🇪 Deutsch</option>
+    <option value="es">🇪🇸 Español</option>
+    <option value="it">🇮🇹 Italiano</option>
+    <option value="nl">🇳🇱 Nederlands</option>
+  </select>
+</div>
+<script>
+function changerLangue(langue) {
+  localStorage.setItem("horsefarm_langue", langue);
+  if (langue === "fr") {
+    location.href = location.pathname;
+  } else {
+    location.href = "https://the-horse-farm-com.translate.goog"
+      + location.pathname
+      + "?_x_tr_sl=fr&_x_tr_tl=" + langue
+      + "&_x_tr_hl=fr";
+  }
+}
+</script>
 
 <header>
 <div class="logo">
