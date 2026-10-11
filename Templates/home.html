@@ -77,7 +77,12 @@ const traductions = {
     pension: "Pension",
     elevage: "Élevage",
     debourrage: "Débourrage",
-    cadre: "Un cadre unique"
+    cadre: "Un cadre unique",
+heroEsprit: "🐴 Respect du cheval · Nature · Esprit western",
+heroBalades: "Balades à cheval",
+heroDescription: "Venez découvrir nos chevaux et profiter d'une balade dans un cadre naturel, dans le respect du cheval.",
+heroReserver: "Demander ma réservation"
+
   },
   en: {
     balades: "Horseback riding",
@@ -86,7 +91,12 @@ const traductions = {
     pension: "Boarding",
     elevage: "Breeding",
     debourrage: "Horse training",
-    cadre: "A unique setting"
+    cadre: "A unique setting",
+heroEsprit: "🐴 Respect for horses · Nature · Western spirit",
+heroBalades: "Horseback riding",
+heroDescription: "Come and discover our horses and enjoy a ride in a natural setting, with respect for the horse.",
+heroReserver: "Request my booking"
+
   },
   de: {
     balades: "Ausritte",
@@ -95,7 +105,12 @@ const traductions = {
     pension: "Pferdepension",
     elevage: "Zucht",
     debourrage: "Pferdeausbildung",
-    cadre: "Eine einzigartige Umgebung"
+    cadre: "Eine einzigartige Umgebung",
+heroEsprit: "🐴 Respekt vor dem Pferd · Natur · Western-Flair",
+heroBalades: "Ausritte",
+heroDescription: "Entdecken Sie unsere Pferde und genießen Sie einen Ausritt in natürlicher Umgebung, mit Respekt vor dem Pferd.",
+heroReserver: "Reservierung anfragen"
+
   },
   es: {
     balades: "Paseos a caballo",
@@ -104,7 +119,12 @@ const traductions = {
     pension: "Pensión",
     elevage: "Cría",
     debourrage: "Doma",
-    cadre: "Un entorno único"
+    cadre: "Un entorno único",
+heroEsprit: "🐴 Respeto por el caballo · Naturaleza · Espíritu western",
+heroBalades: "Paseos a caballo",
+heroDescription: "Ven a conocer nuestros caballos y disfruta de un paseo en un entorno natural, respetando siempre al caballo.",
+heroReserver: "Solicitar mi reserva"
+
   },
   it: {
     balades: "Passeggiate a cavallo",
@@ -113,7 +133,12 @@ const traductions = {
     pension: "Pensione",
     elevage: "Allevamento",
     debourrage: "Addestramento",
-    cadre: "Un ambiente unico"
+    cadre: "Un ambiente unico",
+heroEsprit: "🐴 Rispetto per il cavallo · Natura · Spirito western",
+heroBalades: "Passeggiate a cavallo",
+heroDescription: "Vieni a conoscere i nostri cavalli e goditi una passeggiata immerso nella natura, nel rispetto del cavallo.",
+heroReserver: "Richiedi la mia prenotazione"
+
   },
   nl: {
     balades: "Paardrijtochten",
@@ -122,7 +147,12 @@ const traductions = {
     pension: "Paardenpension",
     elevage: "Fokkerij",
     debourrage: "Paardentraining",
-    cadre: "Een unieke omgeving"
+    cadre: "Een unieke omgeving",
+heroEsprit: "🐴 Respect voor het paard · Natuur · Westernsfeer",
+heroBalades: "Paardrijtochten",
+heroDescription: "Kom kennismaken met onze paarden en geniet van een buitenrit in een natuurlijke omgeving, met respect voor het paard.",
+heroReserver: "Mijn reservering aanvragen"
+
   }
 };
 
@@ -141,6 +171,20 @@ function traduireSite(langue) {
       lien.textContent = textes[cles[index]];
     }
   });
+
+  const elementsHero = {
+  "hero-esprit": textes.heroEsprit,
+  "hero-balades": textes.heroBalades,
+  "hero-description": textes.heroDescription,
+  "hero-reserver": textes.heroReserver
+};
+
+Object.entries(elementsHero).forEach(([id, texte]) => {
+  const element = document.getElementById(id);
+  if (element && texte) {
+    element.textContent = texte;
+  }
+});
 
   document.documentElement.lang = langue;
   localStorage.setItem("horsefarm_langue", langue);
@@ -177,14 +221,16 @@ THE HORSE FARM
 
 <section class="hero">
 <div class="container">
-<p>🐴 Respect du cheval • Nature • Esprit western</p>
+<p id="hero-esprit">🐴 Respect du cheval · Nature · Esprit western</p>
+
 <h1 class="notranslate" translate="no">THE HORSE FARM</h1>
-<h2>Balades à cheval</h2>
-<p>
+<h2 id="hero-balades">Balades à cheval</h2>
+<p id="hero-description">
 Venez découvrir nos chevaux et profiter d'une balade
 dans un cadre naturel, dans le respect du cheval.
 </p>
-<a class="button" href="#reservation">Demander ma réservation</a>
+<a class="button" href="#reservation" id="hero-reserver">Demander ma réservation</a>
+
 </div>
 </section>
 <section>
