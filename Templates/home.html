@@ -42,6 +42,7 @@ input,select{width:100%;padding:13px;border:1px solid #cdbda7;border-radius:5px;
 .row{display:flex;justify-content:space-between;padding:5px}
 .total{font-size:20px;font-weight:bold;border-top:1px solid #d5c6b3;margin-top:8px;padding-top:10px}
 .submit{width:100%;margin-top:20px}
+.booking-alert{background:#fff3e6;border-left:5px solid #a96836;padding:14px 18px;margin:0 0 20px;border-radius:5px;color:#633c1e;line-height:1.5}
 #contact{background:#30271f;color:white;text-align:center}
 #contact a{color:#e3bd7e}
 footer{background:#211c18;color:#ccc;text-align:center;padding:18px}
@@ -106,6 +107,8 @@ const horseFarmTranslations = {
   "book_sub": "Choisissez votre balade, votre date et votre horaire.",
   "book_confirm": "Votre demande sera confirmée après vérification de la disponibilité de nos chevaux.",
    "advance_notice": "Réservation obligatoire au minimum 24 heures à l’avance.",
+   "no_slots": "Aucun horaire disponible pour cette date et ce nombre de cavaliers. Essayez une autre date ou réduisez le nombre de cavaliers.",
+   "booking_error": "Votre demande n’a pas pu être enregistrée. Vérifiez les informations et choisissez un autre créneau.",
   "field_ride": "Balade",
   "choose": "Choisir",
   "opt_1": "1 heure — 30 €",
@@ -184,6 +187,8 @@ const horseFarmTranslations = {
   "book_sub": "Choose your ride, date and time.",
   "book_confirm": "Your request will be confirmed after we check our horses' availability.",
    "advance_notice": "Bookings must be requested at least 24 hours in advance.",
+   "no_slots": "No times are available for this date and number of riders. Try another date or fewer riders.",
+   "booking_error": "Your request could not be saved. Check your details and choose another time.",
   "field_ride": "Ride",
   "choose": "Choose",
   "opt_1": "1 hour — €30",
@@ -262,6 +267,8 @@ const horseFarmTranslations = {
   "book_sub": "Wählen Sie Ihren Ausritt, das Datum und die Uhrzeit.",
   "book_confirm": "Ihre Anfrage wird nach Prüfung der Verfügbarkeit unserer Pferde bestätigt.",
    "advance_notice": "Reservierungen müssen mindestens 24 Stunden im Voraus angefragt werden.",
+   "no_slots": "Für dieses Datum und diese Reiterzahl sind keine Zeiten verfügbar. Bitte wählen Sie ein anderes Datum oder weniger Reiter.",
+   "booking_error": "Ihre Anfrage konnte nicht gespeichert werden. Prüfen Sie Ihre Angaben und wählen Sie eine andere Uhrzeit.",
   "field_ride": "Ausritt",
   "choose": "Auswählen",
   "opt_1": "1 Stunde — 30 €",
@@ -340,6 +347,8 @@ const horseFarmTranslations = {
   "book_sub": "Elige tu paseo, fecha y horario.",
   "book_confirm": "Confirmaremos tu solicitud tras comprobar la disponibilidad de nuestros caballos.",
    "advance_notice": "Las reservas deben solicitarse con al menos 24 horas de antelación.",
+   "no_slots": "No hay horarios disponibles para esta fecha y este número de jinetes. Prueba otra fecha o menos jinetes.",
+   "booking_error": "No se pudo registrar tu solicitud. Comprueba los datos y elige otro horario.",
   "field_ride": "Paseo",
   "choose": "Elegir",
   "opt_1": "1 hora — 30 €",
@@ -418,6 +427,8 @@ const horseFarmTranslations = {
   "book_sub": "Scegli la passeggiata, la data e l'orario.",
   "book_confirm": "La richiesta sarà confermata dopo aver verificato la disponibilità dei cavalli.",
    "advance_notice": "Le prenotazioni devono essere richieste con almeno 24 ore di anticipo.",
+   "no_slots": "Nessun orario disponibile per questa data e questo numero di cavalieri. Prova un’altra data o meno cavalieri.",
+   "booking_error": "Non è stato possibile registrare la richiesta. Controlla i dati e scegli un altro orario.",
   "field_ride": "Passeggiata",
   "choose": "Scegli",
   "opt_1": "1 ora — 30 €",
@@ -496,6 +507,8 @@ const horseFarmTranslations = {
   "book_sub": "Kies uw buitenrit, datum en tijd.",
   "book_confirm": "Uw aanvraag wordt bevestigd nadat we de beschikbaarheid van onze paarden hebben gecontroleerd.",
    "advance_notice": "Reserveringen moeten minstens 24 uur van tevoren worden aangevraagd.",
+   "no_slots": "Geen tijden beschikbaar voor deze datum en dit aantal ruiters. Kies een andere datum of minder ruiters.",
+   "booking_error": "Uw aanvraag kon niet worden opgeslagen. Controleer uw gegevens en kies een ander tijdstip.",
   "field_ride": "Buitenrit",
   "choose": "Kiezen",
   "opt_1": "1 uur — €30",
@@ -748,6 +761,14 @@ Confiance, patience et respect guident notre approche, dans un environnement nat
 <p data-i18n="advance_notice" style="color:#7a481f;font-weight:bold;">Réservation obligatoire au minimum 24 heures à l’avance.</p>
 </div>
 <div class="booking">
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+<div class="booking-alert" role="alert" id="server-booking-error">
+{% for message in messages %}<p style="margin:4px 0">{{ message }}</p>{% endfor %}
+</div>
+{% endif %}
+{% endwith %}
+<div id="no-times-message" class="booking-alert" role="status" style="display:none" data-i18n="no_slots">Aucun horaire disponible pour cette date et ce nombre de cavaliers. Essayez une autre date ou réduisez le nombre de cavaliers.</div>
 <form action="{{ url_for('reserve') }}" class="form" method="POST">
 <div class="field">
 <label data-i18n="field_ride" for="duration">Balade</label>
@@ -935,6 +956,8 @@ function updateSummary(){
 }
 
 async function loadTimes(){
+    const noTimesMessage=document.getElementById('no-times-message');
+    noTimesMessage.style.display='none';
 
     if(!dateInput.value){
         timeSelect.innerHTML='<option value="">'+i18nText('choose_date')+'</option>';
@@ -967,6 +990,8 @@ async function loadTimes(){
             ? ["09:00","14:00"]
             : ["09:00","10:00","14:00","15:00"];
 
+        const requestedRiders=parseInt(riders.value||'1',10);
+        let suitableCount=0;
         data.slots.forEach(function(slot){
 
             if(!allowed.includes(slot.time)) return;
@@ -987,8 +1012,13 @@ async function loadTimes(){
                     " "+i18nText("places");
             }
 
+            if(slot.remaining>0 && slot.remaining<requestedRiders){
+                option.disabled=true;
+            }
+            if(!option.disabled) suitableCount++;
             timeSelect.appendChild(option);
         });
+        noTimesMessage.style.display=suitableCount===0?'block':'none';
 
     }catch(error){
 
@@ -1004,6 +1034,7 @@ duration.addEventListener("change",function(){
 
 riders.addEventListener("change", function(){
     updateSummary();
+    loadTimes();
 
     const n = parseInt(riders.value || "0");
 
@@ -1016,7 +1047,7 @@ riders.addEventListener("change", function(){
     if(n < 2) weight2.value = "";
     if(n < 3) weight3.value = "";
 });
-document.querySelector('form[action="{{ url_for('reserve') }}"]').addEventListener('submit',function(event){
+document.querySelector('#reservation form').addEventListener('submit',function(event){
     if(!bookingAtLeast24HoursAway(dateInput.value,timeSelect.value)){
         event.preventDefault();
         alert(i18nText('advance_notice'));
