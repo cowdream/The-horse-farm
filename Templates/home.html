@@ -1,12 +1,12 @@
 
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>The Horse Farm | Balades à cheval à Port-de-Bouc, Saint-Mitre et Martigues</title>
-<meta name="description" content="The Horse Farm : balades à cheval, pension pour chevaux, élevage de Quarter Horse et Paint Horse, débourrage et travail du cheval à Port-de-Bouc, Saint-Mitre-les-Remparts et Martigues.">
-
+<meta content="The Horse Farm : balades à cheval, pension pour chevaux, élevage de Quarter Horse et Paint Horse, débourrage et travail du cheval à Port-de-Bouc, Saint-Mitre-les-Remparts et Martigues." name="description"/>
 <style>
 *{box-sizing:border-box}
 body{margin:0;font-family:Georgia,serif;background:linear-gradient(rgba(245,240,230,.86),rgba(245,240,230,.86)),url('/static/file_00000000b6d4820abc07ff3c42c3512e.png') center -400px/cover fixed no-repeat;color:#33291f}
@@ -54,294 +54,769 @@ nav a{display:inline-block;margin:5px}
 }
 </style>
 </head>
-
 <body>
+<div style="position:absolute;top:12px;right:12px;z-index:9999;">
+<select aria-label="Choisir la langue / Choose language" id="langue-site" onchange="traduireSite(this.value)" style="padding:6px;border-radius:6px;font-size:14px;">
+<option value="fr">🇫🇷 Français</option>
+<option value="en">🇬🇧 English</option>
+<option value="de">🇩🇪 Deutsch</option>
+<option value="es">🇪🇸 Español</option>
+<option value="it">🇮🇹 Italiano</option>
+<option value="nl">🇳🇱 Nederlands</option>
+</select>
+</div>
 
-<header>
-<div class="logo">
+<script>
+const horseFarmTranslations = {
+ "fr": {
+  "nav_rides": "Balades",
+  "nav_book": "Réserver",
+  "nav_contact": "Contact",
+  "nav_board": "Pension",
+  "nav_breed": "Élevage",
+  "nav_train": "Débourrage",
+  "nav_setting": "Un cadre unique",
+  "hero_spirit": "🐴 Respect du cheval · Nature · Esprit western",
+  "hero_title": "Balades à cheval",
+  "hero_desc": "Venez découvrir nos chevaux et profiter d'une balade dans un cadre naturel, dans le respect du cheval.",
+  "book_request": "Demander ma réservation",
+  "intro_title": "The Horse Farm en quelques mots",
+  "intro_desc": "Balades à cheval, pension, élevage de Quarter Horse et Paint Horse, débourrage et travail du cheval dans un environnement naturel privilégié.",
+  "rides_title": "Nos balades",
+  "rides_sub": "Tous niveaux • Maximum 3 cavaliers",
+  "ride_1": "Balade 1 heure",
+  "ride_15": "Balade 1 heure 30",
+  "ride_2": "Balade 2 heures",
+  "all_levels": "Tous niveaux",
+  "max_riders": "Maximum 3 cavaliers",
+  "deposit10": "Acompte : 10 € par cavalier",
+  "deposit15": "Acompte : 15 € par cavalier",
+  "deposit20": "Acompte : 20 € par cavalier",
+  "choose_ride": "Choisir cette balade",
+  "other_prefix": "Pour toute autre demande, veuillez",
+  "contact_us": "nous contacter",
+  "spirit_title": "Notre esprit",
+  "spirit_p1": "À The Horse Farm, le respect du cheval est au cœur de notre façon de travailler.",
+  "spirit_p2": "Confiance, patience et respect guident notre approche, dans un environnement naturel et un véritable esprit western.",
+  "universe": "L'univers The Horse Farm",
+  "click_category": "Cliquez sur une rubrique pour la découvrir",
+  "card_board": "Notre pension",
+  "card_breed": "Notre élevage",
+  "card_train": "Débourrage & travail du cheval",
+  "book_sub": "Choisissez votre balade, votre date et votre horaire.",
+  "book_confirm": "Votre demande sera confirmée après vérification de la disponibilité de nos chevaux.",
+  "field_ride": "Balade",
+  "choose": "Choisir",
+  "opt_1": "1 heure — 30 €",
+  "opt_15": "1 heure 30 — 40 €",
+  "opt_2": "2 heures — 50 €",
+  "field_riders": "Nombre de cavaliers",
+  "rider_1": "1 cavalier",
+  "rider_2": "2 cavaliers",
+  "rider_3": "3 cavaliers",
+  "field_date": "Date",
+  "field_time": "Horaire",
+  "choose_date": "Choisir une date",
+  "choose_ride_first": "Choisir la balade",
+  "loading": "Chargement...",
+  "choose_time": "Choisir un horaire",
+  "load_error": "Erreur de chargement",
+  "full": "complet",
+  "places": "place(s) disponible(s)",
+  "field_name": "Nom et prénom",
+  "placeholder_name": "Votre nom",
+  "field_phone": "Téléphone",
+  "field_email": "E-mail",
+  "field_weight": "Poids approximatif du/des cavalier(s)",
+  "weight_1": "Cavalier 1 — choisir",
+  "weight_2": "Cavalier 2 — choisir",
+  "weight_3": "Cavalier 3 — choisir",
+  "under50": "Moins de 50 kg",
+  "range5065": "50 à 65 kg",
+  "range6580": "65 à 80 kg",
+  "range8095": "80 à 95 kg",
+  "over95": "Plus de 95 kg",
+  "weight_help": "Pour nous permettre de vous attribuer le cheval le plus adapté.",
+  "summary_riders": "Cavaliers",
+  "summary_total": "Total",
+  "summary_deposit": "Acompte",
+  "summary_balance": "Solde sur place",
+  "age_policy": "Balades accessibles à partir de 10 ans. Pour les cavaliers mineurs, une autorisation parentale est nécessaire. Les cavaliers de 10 à 15 ans doivent être accompagnés à cheval par un adulte responsable. Le niveau, la taille et le poids de chaque cavalier sont pris en compte afin d’attribuer un cheval adapté.",
+  "contact_title": "Nous contacter",
+  "maps": "Voir l’itinéraire sur Google Maps"
+ },
+ "en": {
+  "nav_rides": "Rides",
+  "nav_book": "Book",
+  "nav_contact": "Contact",
+  "nav_board": "Boarding",
+  "nav_breed": "Breeding",
+  "nav_train": "Training",
+  "nav_setting": "A unique setting",
+  "hero_spirit": "🐴 Respect for horses · Nature · Western spirit",
+  "hero_title": "Horseback riding",
+  "hero_desc": "Come meet our horses and enjoy a ride in a natural setting, with respect for the horse.",
+  "book_request": "Request a booking",
+  "intro_title": "The Horse Farm at a glance",
+  "intro_desc": "Horseback rides, boarding, Quarter Horse and Paint Horse breeding, starting and training horses in a beautiful natural setting.",
+  "rides_title": "Our rides",
+  "rides_sub": "All levels • Maximum 3 riders",
+  "ride_1": "1-hour ride",
+  "ride_15": "1.5-hour ride",
+  "ride_2": "2-hour ride",
+  "all_levels": "All levels",
+  "max_riders": "Maximum 3 riders",
+  "deposit10": "Deposit: €10 per rider",
+  "deposit15": "Deposit: €15 per rider",
+  "deposit20": "Deposit: €20 per rider",
+  "choose_ride": "Choose this ride",
+  "other_prefix": "For any other request, please",
+  "contact_us": "contact us",
+  "spirit_title": "Our philosophy",
+  "spirit_p1": "At The Horse Farm, respect for the horse is at the heart of everything we do.",
+  "spirit_p2": "Trust, patience and respect guide our approach, in a natural environment with a true Western spirit.",
+  "universe": "The Horse Farm world",
+  "click_category": "Select a category to explore",
+  "card_board": "Our boarding",
+  "card_breed": "Our breeding",
+  "card_train": "Starting & training horses",
+  "book_sub": "Choose your ride, date and time.",
+  "book_confirm": "Your request will be confirmed after we check our horses' availability.",
+  "field_ride": "Ride",
+  "choose": "Choose",
+  "opt_1": "1 hour — €30",
+  "opt_15": "1.5 hours — €40",
+  "opt_2": "2 hours — €50",
+  "field_riders": "Number of riders",
+  "rider_1": "1 rider",
+  "rider_2": "2 riders",
+  "rider_3": "3 riders",
+  "field_date": "Date",
+  "field_time": "Time",
+  "choose_date": "Choose a date",
+  "choose_ride_first": "Choose a ride",
+  "loading": "Loading...",
+  "choose_time": "Choose a time",
+  "load_error": "Loading error",
+  "full": "fully booked",
+  "places": "place(s) available",
+  "field_name": "Full name",
+  "placeholder_name": "Your name",
+  "field_phone": "Phone",
+  "field_email": "Email",
+  "field_weight": "Approximate rider weight(s)",
+  "weight_1": "Rider 1 — choose",
+  "weight_2": "Rider 2 — choose",
+  "weight_3": "Rider 3 — choose",
+  "under50": "Under 50 kg",
+  "range5065": "50 to 65 kg",
+  "range6580": "65 to 80 kg",
+  "range8095": "80 to 95 kg",
+  "over95": "Over 95 kg",
+  "weight_help": "This helps us match you with the most suitable horse.",
+  "summary_riders": "Riders",
+  "summary_total": "Total",
+  "summary_deposit": "Deposit",
+  "summary_balance": "Balance due on site",
+  "age_policy": "Rides are available from age 10. Minors need parental permission. Riders aged 10 to 15 must be accompanied on horseback by a responsible adult. Each rider's experience, height and weight are considered to assign a suitable horse.",
+  "contact_title": "Contact us",
+  "maps": "Get directions on Google Maps"
+ },
+ "de": {
+  "nav_rides": "Ausritte",
+  "nav_book": "Buchen",
+  "nav_contact": "Kontakt",
+  "nav_board": "Pferdepension",
+  "nav_breed": "Zucht",
+  "nav_train": "Ausbildung",
+  "nav_setting": "Eine einzigartige Umgebung",
+  "hero_spirit": "🐴 Respekt vor Pferden · Natur · Western-Flair",
+  "hero_title": "Ausritte",
+  "hero_desc": "Lernen Sie unsere Pferde kennen und genießen Sie einen Ausritt in der Natur, mit Respekt vor dem Pferd.",
+  "book_request": "Reservierung anfragen",
+  "intro_title": "The Horse Farm im Überblick",
+  "intro_desc": "Ausritte, Pferdepension, Quarter-Horse- und Paint-Horse-Zucht sowie Anreiten und Ausbildung in einer besonderen natürlichen Umgebung.",
+  "rides_title": "Unsere Ausritte",
+  "rides_sub": "Alle Niveaus • Maximal 3 Reiter",
+  "ride_1": "1-stündiger Ausritt",
+  "ride_15": "1,5-stündiger Ausritt",
+  "ride_2": "2-stündiger Ausritt",
+  "all_levels": "Alle Niveaus",
+  "max_riders": "Maximal 3 Reiter",
+  "deposit10": "Anzahlung: 10 € pro Reiter",
+  "deposit15": "Anzahlung: 15 € pro Reiter",
+  "deposit20": "Anzahlung: 20 € pro Reiter",
+  "choose_ride": "Diesen Ausritt wählen",
+  "other_prefix": "Für andere Anfragen bitte",
+  "contact_us": "kontaktieren Sie uns",
+  "spirit_title": "Unsere Philosophie",
+  "spirit_p1": "Bei The Horse Farm steht der Respekt vor dem Pferd im Mittelpunkt unserer Arbeit.",
+  "spirit_p2": "Vertrauen, Geduld und Respekt prägen unseren Ansatz in natürlicher Umgebung mit echtem Western-Flair.",
+  "universe": "Die Welt von The Horse Farm",
+  "click_category": "Wählen Sie einen Bereich aus",
+  "card_board": "Unsere Pferdepension",
+  "card_breed": "Unsere Zucht",
+  "card_train": "Anreiten & Pferdeausbildung",
+  "book_sub": "Wählen Sie Ihren Ausritt, das Datum und die Uhrzeit.",
+  "book_confirm": "Ihre Anfrage wird nach Prüfung der Verfügbarkeit unserer Pferde bestätigt.",
+  "field_ride": "Ausritt",
+  "choose": "Auswählen",
+  "opt_1": "1 Stunde — 30 €",
+  "opt_15": "1,5 Stunden — 40 €",
+  "opt_2": "2 Stunden — 50 €",
+  "field_riders": "Anzahl der Reiter",
+  "rider_1": "1 Reiter",
+  "rider_2": "2 Reiter",
+  "rider_3": "3 Reiter",
+  "field_date": "Datum",
+  "field_time": "Uhrzeit",
+  "choose_date": "Datum wählen",
+  "choose_ride_first": "Ausritt wählen",
+  "loading": "Wird geladen...",
+  "choose_time": "Uhrzeit wählen",
+  "load_error": "Fehler beim Laden",
+  "full": "ausgebucht",
+  "places": "Platz/Plätze frei",
+  "field_name": "Vor- und Nachname",
+  "placeholder_name": "Ihr Name",
+  "field_phone": "Telefon",
+  "field_email": "E-Mail",
+  "field_weight": "Ungefähres Gewicht der Reiter",
+  "weight_1": "Reiter 1 — wählen",
+  "weight_2": "Reiter 2 — wählen",
+  "weight_3": "Reiter 3 — wählen",
+  "under50": "Unter 50 kg",
+  "range5065": "50 bis 65 kg",
+  "range6580": "65 bis 80 kg",
+  "range8095": "80 bis 95 kg",
+  "over95": "Über 95 kg",
+  "weight_help": "Damit wir Ihnen das passende Pferd zuweisen können.",
+  "summary_riders": "Reiter",
+  "summary_total": "Gesamt",
+  "summary_deposit": "Anzahlung",
+  "summary_balance": "Restzahlung vor Ort",
+  "age_policy": "Ausritte sind ab 10 Jahren möglich. Minderjährige benötigen die Zustimmung der Eltern. Reiter von 10 bis 15 Jahren müssen von einem verantwortlichen Erwachsenen zu Pferd begleitet werden. Erfahrung, Größe und Gewicht jedes Reiters werden bei der Pferdeauswahl berücksichtigt.",
+  "contact_title": "Kontaktieren Sie uns",
+  "maps": "Route auf Google Maps anzeigen"
+ },
+ "es": {
+  "nav_rides": "Paseos",
+  "nav_book": "Reservar",
+  "nav_contact": "Contacto",
+  "nav_board": "Pensión",
+  "nav_breed": "Cría",
+  "nav_train": "Doma",
+  "nav_setting": "Un entorno único",
+  "hero_spirit": "🐴 Respeto por los caballos · Naturaleza · Espíritu western",
+  "hero_title": "Paseos a caballo",
+  "hero_desc": "Ven a conocer a nuestros caballos y disfruta de un paseo en plena naturaleza, respetando al caballo.",
+  "book_request": "Solicitar una reserva",
+  "intro_title": "The Horse Farm en pocas palabras",
+  "intro_desc": "Paseos a caballo, pensión, cría de Quarter Horse y Paint Horse, doma y entrenamiento en un entorno natural privilegiado.",
+  "rides_title": "Nuestros paseos",
+  "rides_sub": "Todos los niveles • Máximo 3 jinetes",
+  "ride_1": "Paseo de 1 hora",
+  "ride_15": "Paseo de 1 hora y media",
+  "ride_2": "Paseo de 2 horas",
+  "all_levels": "Todos los niveles",
+  "max_riders": "Máximo 3 jinetes",
+  "deposit10": "Depósito: 10 € por jinete",
+  "deposit15": "Depósito: 15 € por jinete",
+  "deposit20": "Depósito: 20 € por jinete",
+  "choose_ride": "Elegir este paseo",
+  "other_prefix": "Para cualquier otra consulta, por favor",
+  "contact_us": "contactarnos",
+  "spirit_title": "Nuestra filosofía",
+  "spirit_p1": "En The Horse Farm, el respeto por el caballo está en el centro de nuestro trabajo.",
+  "spirit_p2": "La confianza, la paciencia y el respeto guían nuestro enfoque, en un entorno natural con auténtico espíritu western.",
+  "universe": "El universo The Horse Farm",
+  "click_category": "Haz clic en una sección para descubrirla",
+  "card_board": "Nuestra pensión",
+  "card_breed": "Nuestra cría",
+  "card_train": "Doma y entrenamiento del caballo",
+  "book_sub": "Elige tu paseo, fecha y horario.",
+  "book_confirm": "Confirmaremos tu solicitud tras comprobar la disponibilidad de nuestros caballos.",
+  "field_ride": "Paseo",
+  "choose": "Elegir",
+  "opt_1": "1 hora — 30 €",
+  "opt_15": "1 hora y media — 40 €",
+  "opt_2": "2 horas — 50 €",
+  "field_riders": "Número de jinetes",
+  "rider_1": "1 jinete",
+  "rider_2": "2 jinetes",
+  "rider_3": "3 jinetes",
+  "field_date": "Fecha",
+  "field_time": "Horario",
+  "choose_date": "Elegir una fecha",
+  "choose_ride_first": "Elegir un paseo",
+  "loading": "Cargando...",
+  "choose_time": "Elegir un horario",
+  "load_error": "Error de carga",
+  "full": "completo",
+  "places": "plaza(s) disponible(s)",
+  "field_name": "Nombre y apellidos",
+  "placeholder_name": "Tu nombre",
+  "field_phone": "Teléfono",
+  "field_email": "Correo electrónico",
+  "field_weight": "Peso aproximado de los jinetes",
+  "weight_1": "Jinete 1 — elegir",
+  "weight_2": "Jinete 2 — elegir",
+  "weight_3": "Jinete 3 — elegir",
+  "under50": "Menos de 50 kg",
+  "range5065": "50 a 65 kg",
+  "range6580": "65 a 80 kg",
+  "range8095": "80 a 95 kg",
+  "over95": "Más de 95 kg",
+  "weight_help": "Para poder asignarte el caballo más adecuado.",
+  "summary_riders": "Jinetes",
+  "summary_total": "Total",
+  "summary_deposit": "Depósito",
+  "summary_balance": "Saldo a pagar en el lugar",
+  "age_policy": "Los paseos están disponibles a partir de los 10 años. Los menores necesitan autorización de sus padres. Los jinetes de 10 a 15 años deben ir acompañados a caballo por un adulto responsable. Se tienen en cuenta el nivel, la altura y el peso de cada jinete para asignar un caballo adecuado.",
+  "contact_title": "Contáctanos",
+  "maps": "Ver indicaciones en Google Maps"
+ },
+ "it": {
+  "nav_rides": "Passeggiate",
+  "nav_book": "Prenotare",
+  "nav_contact": "Contatti",
+  "nav_board": "Pensione",
+  "nav_breed": "Allevamento",
+  "nav_train": "Addestramento",
+  "nav_setting": "Un ambiente unico",
+  "hero_spirit": "🐴 Rispetto per i cavalli · Natura · Spirito western",
+  "hero_title": "Passeggiate a cavallo",
+  "hero_desc": "Vieni a conoscere i nostri cavalli e goditi una passeggiata nella natura, nel rispetto del cavallo.",
+  "book_request": "Richiedi una prenotazione",
+  "intro_title": "The Horse Farm in breve",
+  "intro_desc": "Passeggiate a cavallo, pensione, allevamento di Quarter Horse e Paint Horse, doma e addestramento in uno splendido ambiente naturale.",
+  "rides_title": "Le nostre passeggiate",
+  "rides_sub": "Tutti i livelli • Massimo 3 cavalieri",
+  "ride_1": "Passeggiata di 1 ora",
+  "ride_15": "Passeggiata di 1 ora e mezza",
+  "ride_2": "Passeggiata di 2 ore",
+  "all_levels": "Tutti i livelli",
+  "max_riders": "Massimo 3 cavalieri",
+  "deposit10": "Acconto: 10 € per cavaliere",
+  "deposit15": "Acconto: 15 € per cavaliere",
+  "deposit20": "Acconto: 20 € per cavaliere",
+  "choose_ride": "Scegli questa passeggiata",
+  "other_prefix": "Per qualsiasi altra richiesta, vi preghiamo di",
+  "contact_us": "contattarci",
+  "spirit_title": "La nostra filosofia",
+  "spirit_p1": "A The Horse Farm, il rispetto per il cavallo è al centro del nostro lavoro.",
+  "spirit_p2": "Fiducia, pazienza e rispetto guidano il nostro approccio, in un ambiente naturale dal vero spirito western.",
+  "universe": "Il mondo di The Horse Farm",
+  "click_category": "Seleziona una sezione per scoprirla",
+  "card_board": "La nostra pensione",
+  "card_breed": "Il nostro allevamento",
+  "card_train": "Doma e addestramento del cavallo",
+  "book_sub": "Scegli la passeggiata, la data e l'orario.",
+  "book_confirm": "La richiesta sarà confermata dopo aver verificato la disponibilità dei cavalli.",
+  "field_ride": "Passeggiata",
+  "choose": "Scegli",
+  "opt_1": "1 ora — 30 €",
+  "opt_15": "1 ora e mezza — 40 €",
+  "opt_2": "2 ore — 50 €",
+  "field_riders": "Numero di cavalieri",
+  "rider_1": "1 cavaliere",
+  "rider_2": "2 cavalieri",
+  "rider_3": "3 cavalieri",
+  "field_date": "Data",
+  "field_time": "Orario",
+  "choose_date": "Scegli una data",
+  "choose_ride_first": "Scegli una passeggiata",
+  "loading": "Caricamento...",
+  "choose_time": "Scegli un orario",
+  "load_error": "Errore di caricamento",
+  "full": "completo",
+  "places": "posto/i disponibile/i",
+  "field_name": "Nome e cognome",
+  "placeholder_name": "Il tuo nome",
+  "field_phone": "Telefono",
+  "field_email": "E-mail",
+  "field_weight": "Peso approssimativo dei cavalieri",
+  "weight_1": "Cavaliere 1 — scegli",
+  "weight_2": "Cavaliere 2 — scegli",
+  "weight_3": "Cavaliere 3 — scegli",
+  "under50": "Meno di 50 kg",
+  "range5065": "Da 50 a 65 kg",
+  "range6580": "Da 65 a 80 kg",
+  "range8095": "Da 80 a 95 kg",
+  "over95": "Più di 95 kg",
+  "weight_help": "Per assegnarti il cavallo più adatto.",
+  "summary_riders": "Cavalieri",
+  "summary_total": "Totale",
+  "summary_deposit": "Acconto",
+  "summary_balance": "Saldo da pagare sul posto",
+  "age_policy": "Le passeggiate sono accessibili dai 10 anni. I minorenni necessitano dell'autorizzazione dei genitori. I cavalieri dai 10 ai 15 anni devono essere accompagnati a cavallo da un adulto responsabile. Livello, altezza e peso di ogni cavaliere sono considerati per assegnare un cavallo adatto.",
+  "contact_title": "Contattaci",
+  "maps": "Visualizza il percorso su Google Maps"
+ },
+ "nl": {
+  "nav_rides": "Buitenritten",
+  "nav_book": "Reserveren",
+  "nav_contact": "Contact",
+  "nav_board": "Pensionstalling",
+  "nav_breed": "Fokkerij",
+  "nav_train": "Training",
+  "nav_setting": "Een unieke omgeving",
+  "hero_spirit": "🐴 Respect voor paarden · Natuur · Westernsfeer",
+  "hero_title": "Paardrijtochten",
+  "hero_desc": "Maak kennis met onze paarden en geniet van een buitenrit in de natuur, met respect voor het paard.",
+  "book_request": "Reservering aanvragen",
+  "intro_title": "The Horse Farm in het kort",
+  "intro_desc": "Buitenritten, pensionstalling, fokkerij van Quarter Horses en Paint Horses, zadelmak maken en training in een prachtige natuurlijke omgeving.",
+  "rides_title": "Onze buitenritten",
+  "rides_sub": "Alle niveaus • Maximaal 3 ruiters",
+  "ride_1": "Buitenrit van 1 uur",
+  "ride_15": "Buitenrit van 1,5 uur",
+  "ride_2": "Buitenrit van 2 uur",
+  "all_levels": "Alle niveaus",
+  "max_riders": "Maximaal 3 ruiters",
+  "deposit10": "Aanbetaling: €10 per ruiter",
+  "deposit15": "Aanbetaling: €15 per ruiter",
+  "deposit20": "Aanbetaling: €20 per ruiter",
+  "choose_ride": "Kies deze buitenrit",
+  "other_prefix": "Voor andere vragen kunt u",
+  "contact_us": "contact met ons opnemen",
+  "spirit_title": "Onze filosofie",
+  "spirit_p1": "Bij The Horse Farm staat respect voor het paard centraal in alles wat we doen.",
+  "spirit_p2": "Vertrouwen, geduld en respect bepalen onze aanpak, in een natuurlijke omgeving met een echte westernsfeer.",
+  "universe": "De wereld van The Horse Farm",
+  "click_category": "Klik op een onderdeel om het te ontdekken",
+  "card_board": "Onze pensionstalling",
+  "card_breed": "Onze fokkerij",
+  "card_train": "Zadelmak maken en paardentraining",
+  "book_sub": "Kies uw buitenrit, datum en tijd.",
+  "book_confirm": "Uw aanvraag wordt bevestigd nadat we de beschikbaarheid van onze paarden hebben gecontroleerd.",
+  "field_ride": "Buitenrit",
+  "choose": "Kiezen",
+  "opt_1": "1 uur — €30",
+  "opt_15": "1,5 uur — €40",
+  "opt_2": "2 uur — €50",
+  "field_riders": "Aantal ruiters",
+  "rider_1": "1 ruiter",
+  "rider_2": "2 ruiters",
+  "rider_3": "3 ruiters",
+  "field_date": "Datum",
+  "field_time": "Tijd",
+  "choose_date": "Kies een datum",
+  "choose_ride_first": "Kies een buitenrit",
+  "loading": "Laden...",
+  "choose_time": "Kies een tijd",
+  "load_error": "Fout bij laden",
+  "full": "volgeboekt",
+  "places": "plaats(en) beschikbaar",
+  "field_name": "Voor- en achternaam",
+  "placeholder_name": "Uw naam",
+  "field_phone": "Telefoon",
+  "field_email": "E-mail",
+  "field_weight": "Geschat gewicht van de ruiters",
+  "weight_1": "Ruiter 1 — kiezen",
+  "weight_2": "Ruiter 2 — kiezen",
+  "weight_3": "Ruiter 3 — kiezen",
+  "under50": "Minder dan 50 kg",
+  "range5065": "50 tot 65 kg",
+  "range6580": "65 tot 80 kg",
+  "range8095": "80 tot 95 kg",
+  "over95": "Meer dan 95 kg",
+  "weight_help": "Zo kunnen we het meest geschikte paard voor u kiezen.",
+  "summary_riders": "Ruiters",
+  "summary_total": "Totaal",
+  "summary_deposit": "Aanbetaling",
+  "summary_balance": "Restbedrag ter plaatse",
+  "age_policy": "Buitenritten zijn mogelijk vanaf 10 jaar. Minderjarigen hebben toestemming van hun ouders nodig. Ruiters van 10 tot 15 jaar moeten te paard worden begeleid door een verantwoordelijke volwassene. Ervaring, lengte en gewicht worden meegewogen om een geschikt paard toe te wijzen.",
+  "contact_title": "Neem contact op",
+  "maps": "Route bekijken op Google Maps"
+ }
+};
+let currentHorseFarmLanguage = 'fr';
+function i18nText(key) {
+  return (horseFarmTranslations[currentHorseFarmLanguage] || horseFarmTranslations.fr)[key] || horseFarmTranslations.fr[key] || key;
+}
+function traduireSite(language) {
+  currentHorseFarmLanguage = horseFarmTranslations[language] ? language : 'fr';
+  document.documentElement.lang = currentHorseFarmLanguage;
+  document.querySelectorAll('[data-i18n]').forEach(function(element) {
+    element.textContent = i18nText(element.getAttribute('data-i18n'));
+  });
+  document.querySelectorAll('[data-i18n-placeholder]').forEach(function(element) {
+    element.placeholder = i18nText(element.getAttribute('data-i18n-placeholder'));
+  });
+  document.querySelectorAll('[data-i18n-alt]').forEach(function(element) {
+    element.alt = i18nText(element.getAttribute('data-i18n-alt'));
+  });
+  const special = document.querySelector('[data-i18n-prefix]');
+  if (special) {
+    for (const node of special.childNodes) {
+      if (node.nodeType === Node.TEXT_NODE && node.textContent.trim()) {
+        node.textContent = i18nText('other_prefix') + ' ';
+        break;
+      }
+    }
+  }
+  const menu = document.getElementById('langue-site');
+  if (menu) menu.value = currentHorseFarmLanguage;
+  // Refresh available-time labels without altering the selected booking details.
+  if (typeof loadTimes === 'function' && document.getElementById('date')?.value && document.getElementById('duration')?.value) {
+    loadTimes();
+  } else {
+    const time = document.getElementById('time');
+    if (time && time.options.length === 1 && !time.options[0].value) {
+      time.options[0].textContent = i18nText('choose_date');
+    }
+  }
+}
+document.addEventListener('DOMContentLoaded', function() {
+  traduireSite('fr');
+});
+</script><header>
+<div class="logo notranslate" translate="no">
 THE HORSE FARM
 <small>PORT DE BOUC</small>
 </div>
 <nav>
-<a href="#balades">Balades</a>
-<a href="#reservation">Réserver</a>
-<a href="#contact">Contact</a>
-    <a href="/pension-chevaux">Pension</a>
-    <a href="/elevage-quarter-horse">Élevage</a>
-    <a href="/debourrage-travail-cheval">Débourrage</a>
-    <a href="/cadre-unique">Un cadre unique</a>
+<a data-i18n="nav_rides" href="#balades">Balades</a>
+<a data-i18n="nav_book" href="#reservation">Réserver</a>
+<a data-i18n="nav_contact" href="#contact">Contact</a>
+<a data-i18n="nav_board" href="/pension-chevaux">Pension</a>
+<a data-i18n="nav_breed" href="/elevage-quarter-horse">Élevage</a>
+<a data-i18n="nav_train" href="/debourrage-travail-cheval">Débourrage</a>
+<a data-i18n="nav_setting" href="/cadre-unique">Un cadre unique</a>
 </nav>
 </header>
-
 <section class="hero">
 <div class="container">
-<p>🐴 Respect du cheval • Nature • Esprit western</p>
-<h1>THE HORSE FARM</h1>
-<h2>Balades à cheval</h2>
-<p>
+<p data-i18n="hero_spirit" id="hero-esprit">🐴 Respect du cheval · Nature · Esprit western</p>
+<h1 class="notranslate" translate="no">THE HORSE FARM</h1>
+<h2 data-i18n="hero_title" id="hero-balades">Balades à cheval</h2>
+<p data-i18n="hero_desc" id="hero-description">
 Venez découvrir nos chevaux et profiter d'une balade
 dans un cadre naturel, dans le respect du cheval.
 </p>
-<a class="button" href="#reservation">Demander ma réservation</a>
+<a class="button" data-i18n="book_request" href="#reservation" id="hero-reserver">Demander ma réservation</a>
 </div>
 </section>
 <section>
-  <div class="container">
-    <div class="title">
-      <h2>The Horse Farm en quelques mots</h2>
-      <p>
+<div class="container">
+<div class="title">
+<h2 data-i18n="intro_title">The Horse Farm en quelques mots</h2>
+<p data-i18n="intro_desc">
         Balades à cheval, pension, élevage de Quarter Horse et Paint Horse,
         débourrage et travail du cheval dans un environnement naturel privilégié.
       </p>
-    </div>
-  </div>
+</div>
+</div>
 </section>
 <section id="balades">
 <div class="container">
 <div class="title">
-<h2>Nos balades</h2>
-<p>Tous niveaux • Maximum 3 cavaliers</p>
+<h2 data-i18n="rides_title">Nos balades</h2>
+<p data-i18n="rides_sub">Tous niveaux • Maximum 3 cavaliers</p>
 </div>
-
 <div class="cards">
-
 <div class="card">
-<h3>Balade 1 heure</h3>
+<h3 data-i18n="ride_1">Balade 1 heure</h3>
 <div class="price">30 €</div>
 <ul>
-<li>Tous niveaux</li>
-<li>Maximum 3 cavaliers</li>
-<li>Acompte : 10 € par cavalier</li>
+<li data-i18n="all_levels">Tous niveaux</li>
+<li data-i18n="max_riders">Maximum 3 cavaliers</li>
+<li data-i18n="deposit10">Acompte : 10 € par cavalier</li>
 </ul>
-<a class="button" href="#reservation">Choisir cette balade</a>
+<a class="button" data-i18n="choose_ride" href="#reservation">Choisir cette balade</a>
 </div>
 <div class="card">
-  <h3>Balade 1 heure 30</h3>
-  <div class="price">40 €</div>
-  <ul>
-    <li>Tous niveaux</li>
-    <li>Maximum 3 cavaliers</li>
-    <li>Acompte : 15 € par cavalier</li>
-  </ul>
-  <a class="button" href="#reservation">Choisir cette balade</a>
+<h3 data-i18n="ride_15">Balade 1 heure 30</h3>
+<div class="price">40 €</div>
+<ul>
+<li data-i18n="all_levels">Tous niveaux</li>
+<li data-i18n="max_riders">Maximum 3 cavaliers</li>
+<li data-i18n="deposit15">Acompte : 15 € par cavalier</li>
+</ul>
+<a class="button" data-i18n="choose_ride" href="#reservation">Choisir cette balade</a>
 </div>
 <div class="card">
-<h3>Balade 2 heures</h3>
+<h3 data-i18n="ride_2">Balade 2 heures</h3>
 <div class="price">50 €</div>
 <ul>
-<li>Tous niveaux</li>
-<li>Maximum 3 cavaliers</li>
-<li>Acompte : 20 € par cavalier</li>
+<li data-i18n="all_levels">Tous niveaux</li>
+<li data-i18n="max_riders">Maximum 3 cavaliers</li>
+<li data-i18n="deposit20">Acompte : 20 € par cavalier</li>
 </ul>
-<a class="button" href="#reservation">Choisir cette balade</a>
-</div>
-
+<a class="button" data-i18n="choose_ride" href="#reservation">Choisir cette balade</a>
 </div>
 </div>
-<p style="text-align:center;margin-top:25px;">
-  Pour toute autre demande, veuillez <a href="#contact" style="color:#7a481f;font-weight:bold;text-decoration:underline;">nous contacter</a>.
+</div>
+<p data-i18n-prefix="other_prefix" style="text-align:center;margin-top:25px;"> Pour toute autre demande, veuillez <a data-i18n="contact_us" href="#contact" style="color:#7a481f;font-weight:bold;text-decoration:underline;">nous contacter</a>.
 </p>
 </section>
-
 <section id="esprit">
 <div class="about">
-<h2>Notre esprit</h2>
-<p>
+<h2 data-i18n="spirit_title">Notre esprit</h2>
+<p data-i18n="spirit_p1">
 À The Horse Farm, le respect du cheval est au cœur de notre façon de travailler.
 </p>
-<p>
+<p data-i18n="spirit_p2">
 Confiance, patience et respect guident notre approche, dans un environnement naturel et un véritable esprit western.
 </p>
 </div>
 </section>
 <section>
-  <div class="container">
-    <div class="title">
-      <h2>L'univers The Horse Farm</h2>
-    </div>
-<p style="text-align:center;color:#7a481f;font-style:italic;margin:-20px 0 25px;">Cliquez sur une rubrique pour la découvrir</p>
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px;">
+<div class="container">
+<div class="title">
+<h2 data-i18n="universe">L'univers The Horse Farm</h2>
+</div>
+<p data-i18n="click_category" style="text-align:center;color:#7a481f;font-style:italic;margin:-20px 0 25px;">Cliquez sur une rubrique pour la découvrir</p>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px;">
 <a href="#reservation" style="text-decoration:none;color:inherit;">
-      <div class="card">
-        <img src="/static/file_00000000c22c81f4a1f5598bde3b6598.jpg"
-             alt="Balades à cheval"
-             style="width:100%;height:260px;object-fit:cover;border-radius:12px;">
-        <h3>Balades à cheval</h3>
-      </div>
+<div class="card">
+<img alt="Balades à cheval" data-i18n-alt="hero_title" src="/static/file_00000000c22c81f4a1f5598bde3b6598.jpg" style="width:100%;height:260px;object-fit:cover;border-radius:12px;"/>
+<h3 data-i18n="hero_title">Balades à cheval</h3>
+</div>
 </a>
-        <a href="/pension-chevaux" style="text-decoration:none;color:inherit;">
-      <div class="card">
-        <img src="/static/pension-1.jpg"
-             alt="Pension pour chevaux"
-             style="width:100%;height:260px;object-fit:cover;border-radius:12px;">
-        <h3>Notre pension</h3>
-      </div>
-        </a>
-        <a href="/elevage-quarter-horse" style="text-decoration:none;color:inherit;">
-      <div class="card">
-        <img src="/static/IMG_20260929_230152.jpg"
-             alt="Élevage de Quarter Horse et Paint Horse"
-             style="width:100%;height:260px;object-fit:cover;border-radius:12px;">
-        <h3>Notre élevage</h3>
-      </div>
-        </a>
-        <a href="/debourrage-travail-cheval" style="text-decoration:none;color:inherit;">
-      <div class="card">
-        <img src="/static/IMG_20260930_172925.jpg"
-             alt="Débourrage et travail du cheval"
-             style="width:100%;height:260px;object-fit:cover;border-radius:12px;">
-        <h3>Débourrage &amp; travail du cheval</h3>
-      </div>
-        </a>
-    </div>
-  </div>
+<a href="/pension-chevaux" style="text-decoration:none;color:inherit;">
+<div class="card">
+<img alt="Pension pour chevaux" data-i18n-alt="nav_board" src="/static/pension-1.jpg" style="width:100%;height:260px;object-fit:cover;border-radius:12px;"/>
+<h3 data-i18n="card_board">Notre pension</h3>
+</div>
+</a>
+<a href="/elevage-quarter-horse" style="text-decoration:none;color:inherit;">
+<div class="card">
+<img alt="Élevage de Quarter Horse et Paint Horse" data-i18n-alt="card_breed" src="/static/IMG_20260929_230152.jpg" style="width:100%;height:260px;object-fit:cover;border-radius:12px;"/>
+<h3 data-i18n="card_breed">Notre élevage</h3>
+</div>
+</a>
+<a href="/debourrage-travail-cheval" style="text-decoration:none;color:inherit;">
+<div class="card">
+<img alt="Débourrage et travail du cheval" data-i18n-alt="card_train" src="/static/IMG_20260930_172925.jpg" style="width:100%;height:260px;object-fit:cover;border-radius:12px;"/>
+<h3 data-i18n="card_train">Débourrage &amp; travail du cheval</h3>
+</div>
+</a>
+</div>
+</div>
 </section>
 <section id="reservation">
 <div class="container">
-
 <div class="title">
-<h2>Demander ma réservation</h2>
-<p>Choisissez votre balade, votre date et votre horaire.</p>
-    <p style="color:#7a481f;font-weight:bold;">Votre demande sera confirmée après vérification de la disponibilité de nos chevaux.</p>
+<h2 data-i18n="book_request">Demander ma réservation</h2>
+<p data-i18n="book_sub">Choisissez votre balade, votre date et votre horaire.</p>
+<p data-i18n="book_confirm" style="color:#7a481f;font-weight:bold;">Votre demande sera confirmée après vérification de la disponibilité de nos chevaux.</p>
 </div>
-
 <div class="booking">
-
-<form class="form" action="{{ url_for('reserve') }}" method="POST">
-
+<form action="{{ url_for('reserve') }}" class="form" method="POST">
 <div class="field">
-<label for="duration">Balade</label>
-<select id="duration" name="duration" required>
-<option value="">Choisir</option>
-<option value="1h">1 heure — 30 €</option>
-<option value="1h30">1 heure 30 — 40 €</option>
-<option value="2h">2 heures — 50 €</option>
+<label data-i18n="field_ride" for="duration">Balade</label>
+<select id="duration" name="duration" required="">
+<option data-i18n="choose" value="">Choisir</option>
+<option data-i18n="opt_1" value="1h">1 heure — 30 €</option>
+<option data-i18n="opt_15" value="1h30">1 heure 30 — 40 €</option>
+<option data-i18n="opt_2" value="2h">2 heures — 50 €</option>
 </select>
 </div>
-
 <div class="field">
-<label for="riders">Nombre de cavaliers</label>
-<select id="riders" name="riders" required>
-<option value="">Choisir</option>
-<option value="1">1 cavalier</option>
-<option value="2">2 cavaliers</option>
-<option value="3">3 cavaliers</option>
+<label data-i18n="field_riders" for="riders">Nombre de cavaliers</label>
+<select id="riders" name="riders" required="">
+<option data-i18n="choose" value="">Choisir</option>
+<option data-i18n="rider_1" value="1">1 cavalier</option>
+<option data-i18n="rider_2" value="2">2 cavaliers</option>
+<option data-i18n="rider_3" value="3">3 cavaliers</option>
 </select>
 </div>
-
 <div class="field">
-<label for="date">Date</label>
-<input type="date" id="date" name="date" required>
+<label data-i18n="field_date" for="date">Date</label>
+<input id="date" name="date" required="" type="date"/>
 </div>
-
 <div class="field">
-<label for="time">Horaire</label>
-<select id="time" name="time" required>
-<option value="">Choisir une date</option>
+<label data-i18n="field_time" for="time">Horaire</label>
+<select id="time" name="time" required="">
+<option data-i18n="choose_date" value="">Choisir une date</option>
 </select>
 </div>
-
 <div class="field">
-<label for="name">Nom et prénom</label>
-<input type="text" id="name" name="name" placeholder="Votre nom" required>
+<label data-i18n="field_name" for="name">Nom et prénom</label>
+<input data-i18n-placeholder="placeholder_name" id="name" name="name" placeholder="Votre nom" required="" type="text"/>
 </div>
-
 <div class="field">
-<label for="phone">Téléphone</label>
-<input type="tel" id="phone" name="phone" placeholder="06..." required>
+<label data-i18n="field_phone" for="phone">Téléphone</label>
+<input id="phone" name="phone" placeholder="06..." required="" type="tel"/>
 </div>
-
 <div class="field">
-    <label for="email">E-mail</label>
-    <input type="email" id="email" name="email" placeholder="votre@email.fr" required>
+<label data-i18n="field_email" for="email">E-mail</label>
+<input id="email" name="email" placeholder="votre@email.fr" required="" type="email"/>
 </div>
-
 <div class="field" id="weightsField">
-    <label>Poids approximatif du/des cavalier(s)</label>
-
-    <select id="weight1" name="weight1" required>
-        <option value="">Cavalier 1 — choisir</option>
-        <option value="moins-50">Moins de 50 kg</option>
-        <option value="50-65">50 à 65 kg</option>
-        <option value="65-80">65 à 80 kg</option>
-        <option value="80-95">80 à 95 kg</option>
-        <option value="plus-95">Plus de 95 kg</option>
-    </select>
-
-    <select id="weight2" name="weight2" style="display:none; margin-top:8px;">
-        <option value="">Cavalier 2 — choisir</option>
-        <option value="moins-50">Moins de 50 kg</option>
-        <option value="50-65">50 à 65 kg</option>
-        <option value="65-80">65 à 80 kg</option>
-        <option value="80-95">80 à 95 kg</option>
-        <option value="plus-95">Plus de 95 kg</option>
-    </select>
-
-    <select id="weight3" name="weight3" style="display:none; margin-top:8px;">
-        <option value="">Cavalier 3 — choisir</option>
-        <option value="moins-50">Moins de 50 kg</option>
-        <option value="50-65">50 à 65 kg</option>
-        <option value="65-80">65 à 80 kg</option>
-        <option value="80-95">80 à 95 kg</option>
-        <option value="plus-95">Plus de 95 kg</option>
-    </select>
-
-    <small>Pour nous permettre de vous attribuer le cheval le plus adapté.</small>
+<label data-i18n="field_weight">Poids approximatif du/des cavalier(s)</label>
+<select id="weight1" name="weight1" required="">
+<option data-i18n="weight_1" value="">Cavalier 1 — choisir</option>
+<option data-i18n="under50" value="moins-50">Moins de 50 kg</option>
+<option data-i18n="range5065" value="50-65">50 à 65 kg</option>
+<option data-i18n="range6580" value="65-80">65 à 80 kg</option>
+<option data-i18n="range8095" value="80-95">80 à 95 kg</option>
+<option data-i18n="over95" value="plus-95">Plus de 95 kg</option>
+</select>
+<select id="weight2" name="weight2" style="display:none; margin-top:8px;">
+<option data-i18n="weight_2" value="">Cavalier 2 — choisir</option>
+<option data-i18n="under50" value="moins-50">Moins de 50 kg</option>
+<option data-i18n="range5065" value="50-65">50 à 65 kg</option>
+<option data-i18n="range6580" value="65-80">65 à 80 kg</option>
+<option data-i18n="range8095" value="80-95">80 à 95 kg</option>
+<option data-i18n="over95" value="plus-95">Plus de 95 kg</option>
+</select>
+<select id="weight3" name="weight3" style="display:none; margin-top:8px;">
+<option data-i18n="weight_3" value="">Cavalier 3 — choisir</option>
+<option data-i18n="under50" value="moins-50">Moins de 50 kg</option>
+<option data-i18n="range5065" value="50-65">50 à 65 kg</option>
+<option data-i18n="range6580" value="65-80">65 à 80 kg</option>
+<option data-i18n="range8095" value="80-95">80 à 95 kg</option>
+<option data-i18n="over95" value="plus-95">Plus de 95 kg</option>
+</select>
+<small data-i18n="weight_help">Pour nous permettre de vous attribuer le cheval le plus adapté.</small>
 </div>
-
 <div class="summary full">
 <div class="row">
-<span>Cavaliers</span>
+<span data-i18n="summary_riders">Cavaliers</span>
 <strong id="summaryRiders">—</strong>
 </div>
-
 <div class="row">
-<span>Total</span>
+<span data-i18n="summary_total">Total</span>
 <strong id="summaryTotal">—</strong>
 </div>
-
 <div class="row">
-<span>Acompte</span>
+<span data-i18n="summary_deposit">Acompte</span>
 <strong id="summaryDeposit">—</strong>
 </div>
-
 <div class="row total">
-<span>Solde sur place</span>
+<span data-i18n="summary_balance">Solde sur place</span>
 <strong id="summaryBalance">—</strong>
 </div>
 </div>
-
 <div class="full">
-<button class="button submit" type="submit">
+<button class="button submit" data-i18n="book_request" type="submit">
 Demander ma réservation
 </button>
 </div>
-
 </form>
-    <p style="margin-top:20px; text-align:center; color:#7a481f; font-weight:bold; line-height:1.6;">
+<p data-i18n="age_policy" style="margin-top:20px; text-align:center; color:#7a481f; font-weight:bold; line-height:1.6;">
 Balades accessibles à partir de 10 ans. Pour les cavaliers mineurs, une autorisation parentale est nécessaire. Les cavaliers de 10 à 15 ans doivent être accompagnés à cheval par un adulte responsable. Le niveau, la taille et le poids de chaque cavalier sont pris en compte afin d’attribuer un cheval adapté.
 </p>
-
 </div>
 </div>
 </section>
-
 <section id="contact">
 <div class="container" style="font-size:1.2rem;">
-<h2>Nous contacter</h2>
+<h2 data-i18n="contact_title">Nous contacter</h2>
 <p>📍 Port de Bouc</p>
-<p>🗺️ <a href="https://maps.app.goo.gl/b8PGCQtU7L5jHTDo7" target="_blank" rel="noopener">Voir l’itinéraire sur Google Maps</a></p>
+<p>🗺️ <a data-i18n="maps" href="https://maps.app.goo.gl/b8PGCQtU7L5jHTDo7" rel="noopener" target="_blank">Voir l’itinéraire sur Google Maps</a></p>
 <p>📞 <a href="tel:0648767010">06 48 76 70 10</a></p>
 <p>✉️ <a href="mailto:lukyluke13@neuf.fr">lukyluke13@neuf.fr</a></p>
 <p><a href="https://www.facebook.com/share/1E6mD8qeVs/">Facebook - The Horse Farm</a></p>
 <p><a href="https://www.instagram.com/thehorsefarm13?stkn=NXVtNGF4NDduMnU2">Instagram - The Horse Farm</a></p>
 </div>
 </section>
-
 <footer>
 © 2026 The Horse Farm
 </footer>
-
 <script>
 const duration=document.getElementById("duration");
 const riders=document.getElementById("riders");
@@ -383,16 +858,16 @@ function updateSummary(){
 async function loadTimes(){
 
     if(!dateInput.value){
-        timeSelect.innerHTML='<option value="">Choisir une date</option>';
+        timeSelect.innerHTML='<option value="">'+i18nText('choose_date')+'</option>';
         return;
     }
 
     if(!duration.value){
-        timeSelect.innerHTML='<option value="">Choisir la balade</option>';
+        timeSelect.innerHTML='<option value="">'+i18nText('choose_ride_first')+'</option>';
         return;
     }
 
-    timeSelect.innerHTML='<option value="">Chargement...</option>';
+    timeSelect.innerHTML='<option value="">'+i18nText('loading')+'</option>';
 
     try{
 
@@ -406,7 +881,7 @@ async function loadTimes(){
         const data=await response.json();
 
         timeSelect.innerHTML=
-            '<option value="">Choisir un horaire</option>';
+            '<option value="">'+i18nText('choose_time')+'</option>';
 
         const allowed=
             duration.value==="2h" || duration.value==="1h30"
@@ -422,14 +897,14 @@ async function loadTimes(){
             option.value=slot.time;
 
             if(slot.remaining<=0){
-                option.textContent=slot.time+" — complet";
+                option.textContent=slot.time+" — "+i18nText("full");
                 option.disabled=true;
             }else{
                 option.textContent=
                     slot.time+
                     " — "+
                     slot.remaining+
-                    " place(s) disponible(s)";
+                    " "+i18nText("places");
             }
 
             timeSelect.appendChild(option);
@@ -438,7 +913,7 @@ async function loadTimes(){
     }catch(error){
 
         timeSelect.innerHTML=
-            '<option value="">Erreur de chargement</option>';
+            '<option value="">'+i18nText('load_error')+'</option>';
     }
 }
 
@@ -470,7 +945,5 @@ dateInput.min=
     String(today.getDate()).padStart(2,"0");
 
 </script>
-
-
 </body>
 </html>
