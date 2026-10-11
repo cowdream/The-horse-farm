@@ -525,7 +525,7 @@ function traduireSite(language) {
   const chosen = Object.prototype.hasOwnProperty.call(horseFarmPensionTranslations,language) ? language : 'fr';
   const words = horseFarmPensionTranslations[chosen];
   document.documentElement.lang=chosen;
-  try { localStorage.setItem('horsefarm_language', chosen); localStorage.setItem('siteLanguage', chosen); } catch(e) {}
+  try { localStorage.setItem('horsefarm_language', chosen); localStorage.setItem('siteLanguage', chosen); localStorage.setItem('lang', chosen); } catch(e) {}
   document.querySelectorAll('[data-i18n]').forEach(function(el) {
     const key=el.getAttribute('data-i18n');
     if(Object.prototype.hasOwnProperty.call(words,key)) el.textContent=words[key];
@@ -534,9 +534,12 @@ function traduireSite(language) {
 }
 document.addEventListener('DOMContentLoaded',function(){
   const urlLanguage=new URLSearchParams(window.location.search).get('lang');
+  const supportedLanguages = ['fr','en','de','es','it','nl'];
+  const browserLanguage = (navigator.language || 'fr').slice(0,2).toLowerCase();
   let savedLanguage = 'fr';
   try { savedLanguage = localStorage.getItem('horsefarm_language') || localStorage.getItem('siteLanguage') || localStorage.getItem('lang') || 'fr'; } catch(e) {}
-  traduireSite(urlLanguage || savedLanguage);
+  const initialLanguage = supportedLanguages.includes(urlLanguage) ? urlLanguage : (supportedLanguages.includes(savedLanguage) && savedLanguage !== 'fr' ? savedLanguage : (supportedLanguages.includes(browserLanguage) ? browserLanguage : 'fr'));
+  traduireSite(initialLanguage);
   document.querySelectorAll('a[href^="/"]').forEach(function(link) {
     link.addEventListener('click', function() {
       try { const url = new URL(link.href); url.searchParams.set('lang', document.documentElement.lang); link.href = url.pathname + url.search + url.hash; } catch(e) {}
