@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Notre bétail | The Horse Farm</title>
+    <title data-i18n="page_title">Notre bétail | The Horse Farm</title>
 
     <style>
         * { box-sizing: border-box; }
@@ -87,32 +87,135 @@
 <body>
 
     <header class="hero">
-        <h1>Notre bétail</h1>
-        <p>L'esprit ranch au cœur de The Horse Farm</p>
+        <h1 data-i18n="hero_title">Notre bétail</h1>
+        <p data-i18n="hero_subtitle">L'esprit ranch au cœur de The Horse Farm</p>
     </header>
 
     <main class="container">
 
         <div class="intro">
-            <h2>Le bétail de The Horse Farm</h2>
-            <p>
+            <h2 data-i18n="intro_title">Le bétail de The Horse Farm</h2>
+            <p data-i18n="intro_text">
                 Découvrez notre bétail et l'univers western de The Horse Farm,
                 où chevaux et bétail font partie intégrante de la vie du ranch.
             </p>
         </div>
 
         <div class="photos">
-            <img src="/static/file_000000001a38820ab6599ea47cdcefc0.jpg" alt="Bétail The Horse Farm">
-            <img src="/static/file_000000009f84820a92df6d41d7004fcf.jpg" alt="Vache The Horse Farm">
-            <img src="/static/file_000000000724821090e11bf9fbe804b3.jpg" alt="Bétail au ranch">
-            <img src="/static/file_00000000452881f4ba84cf804537812d.jpg" alt="Travail du bétail à cheval">
+            <img src="/static/file_000000001a38820ab6599ea47cdcefc0.jpg" alt="Bétail The Horse Farm" data-i18n-alt="photo_1">
+            <img src="/static/file_000000009f84820a92df6d41d7004fcf.jpg" alt="Vache The Horse Farm" data-i18n-alt="photo_2">
+            <img src="/static/file_000000000724821090e11bf9fbe804b3.jpg" alt="Bétail au ranch" data-i18n-alt="photo_3">
+            <img src="/static/file_00000000452881f4ba84cf804537812d.jpg" alt="Travail du bétail à cheval" data-i18n-alt="photo_4">
         </div>
 
         <div class="retour">
-            <a href="/pension-chevaux">← Retour à notre pension</a>
+            <a href="/pension-chevaux" data-i18n="return_pension">← Retour à notre pension</a>
         </div>
 
     </main>
 
+    <script>
+    // La langue est choisie uniquement sur la page d'accueil.
+    const translations = {
+  "fr": {
+    "page_title": "Notre bétail | The Horse Farm",
+    "hero_title": "Notre bétail",
+    "hero_subtitle": "L’esprit ranch au cœur de The Horse Farm",
+    "intro_title": "Le bétail de The Horse Farm",
+    "intro_text": "Découvrez notre bétail et l’univers western de The Horse Farm, où chevaux et bétail font partie intégrante de la vie du ranch.",
+    "return_pension": "← Retour à notre pension",
+    "photo_1": "Bétail The Horse Farm",
+    "photo_2": "Vache The Horse Farm",
+    "photo_3": "Bétail au ranch",
+    "photo_4": "Travail du bétail à cheval"
+  },
+  "en": {
+    "page_title": "Our cattle | The Horse Farm",
+    "hero_title": "Our cattle",
+    "hero_subtitle": "The ranch spirit at the heart of The Horse Farm",
+    "intro_title": "The cattle at The Horse Farm",
+    "intro_text": "Discover our cattle and the Western world of The Horse Farm, where horses and cattle are an integral part of ranch life.",
+    "return_pension": "← Back to our boarding page",
+    "photo_1": "Cattle at The Horse Farm",
+    "photo_2": "Cow at The Horse Farm",
+    "photo_3": "Cattle at the ranch",
+    "photo_4": "Horseback cattle work"
+  },
+  "de": {
+    "page_title": "Unser Rinderbestand | The Horse Farm",
+    "hero_title": "Unsere Rinder",
+    "hero_subtitle": "Ranch-Atmosphäre im Herzen von The Horse Farm",
+    "intro_title": "Die Rinder von The Horse Farm",
+    "intro_text": "Entdecken Sie unsere Rinder und die Westernwelt von The Horse Farm, wo Pferde und Rinder zum Ranchleben dazugehören.",
+    "return_pension": "← Zurück zu unserer Pferdepension",
+    "photo_1": "Rinder bei The Horse Farm",
+    "photo_2": "Kuh bei The Horse Farm",
+    "photo_3": "Rinder auf der Ranch",
+    "photo_4": "Rinderarbeit zu Pferd"
+  },
+  "es": {
+    "page_title": "Nuestro ganado | The Horse Farm",
+    "hero_title": "Nuestro ganado",
+    "hero_subtitle": "El espíritu ranchero en el corazón de The Horse Farm",
+    "intro_title": "El ganado de The Horse Farm",
+    "intro_text": "Descubre nuestro ganado y el mundo western de The Horse Farm, donde los caballos y el ganado forman parte de la vida del rancho.",
+    "return_pension": "← Volver a nuestra pensión equina",
+    "photo_1": "Ganado de The Horse Farm",
+    "photo_2": "Vaca de The Horse Farm",
+    "photo_3": "Ganado en el rancho",
+    "photo_4": "Trabajo con ganado a caballo"
+  },
+  "it": {
+    "page_title": "Il nostro bestiame | The Horse Farm",
+    "hero_title": "Il nostro bestiame",
+    "hero_subtitle": "Lo spirito del ranch nel cuore di The Horse Farm",
+    "intro_title": "Il bestiame di The Horse Farm",
+    "intro_text": "Scopri il nostro bestiame e il mondo western di The Horse Farm, dove cavalli e bestiame sono parte integrante della vita del ranch.",
+    "return_pension": "← Torna alla nostra pensione per cavalli",
+    "photo_1": "Bestiame di The Horse Farm",
+    "photo_2": "Mucca di The Horse Farm",
+    "photo_3": "Bestiame al ranch",
+    "photo_4": "Lavoro con il bestiame a cavallo"
+  },
+  "nl": {
+    "page_title": "Ons vee | The Horse Farm",
+    "hero_title": "Ons vee",
+    "hero_subtitle": "De ranchsfeer in het hart van The Horse Farm",
+    "intro_title": "Het vee van The Horse Farm",
+    "intro_text": "Ontdek ons vee en de westernwereld van The Horse Farm, waar paarden en vee een belangrijk onderdeel zijn van het ranchleven.",
+    "return_pension": "← Terug naar onze paardenpension",
+    "photo_1": "Vee bij The Horse Farm",
+    "photo_2": "Koe bij The Horse Farm",
+    "photo_3": "Vee op de ranch",
+    "photo_4": "Vee drijven te paard"
+  }
+};
+    (function () {
+        const supported = Object.keys(translations);
+        const params = new URLSearchParams(window.location.search);
+        const explicit = params.get('lang') || params.get('language');
+        let stored = '';
+        try {
+            stored = localStorage.getItem('horsefarm_language') ||
+                     sessionStorage.getItem('horsefarm_language') ||
+                     localStorage.getItem('siteLanguage') ||
+                     localStorage.getItem('lang') || '';
+        } catch (error) {}
+        const language = supported.includes(explicit) ? explicit :
+                         supported.includes(stored) ? stored : 'fr';
+        const strings = translations[language];
+        document.documentElement.lang = language;
+        document.querySelectorAll('[data-i18n]').forEach(element => {
+            const key = element.getAttribute('data-i18n');
+            if (strings[key]) element.textContent = strings[key];
+        });
+        document.querySelectorAll('[data-i18n-alt]').forEach(element => {
+            const key = element.getAttribute('data-i18n-alt');
+            if (strings[key]) element.alt = strings[key];
+        });
+        const backLink = document.querySelector('.retour a');
+        if (backLink) backLink.href = '/pension-chevaux?lang=' + encodeURIComponent(language);
+    })();
+    </script>
 </body>
 </html>
