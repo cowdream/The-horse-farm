@@ -191,6 +191,18 @@
         height: 280px;
     }
 }
+
+/* Affichage téléphone uniquement : aucune photo coupée. */
+@media (max-width: 700px) {
+ .elevage-gallery { padding: 12px; margin: 20px auto; }
+ .elevage-photos { grid-template-columns: minmax(0, 1fr); gap: 22px; }
+ .elevage-photos > * { min-width: 0; }
+ .elevage-photos img { display:block; width:100%; height:auto; max-width:100%; object-fit:contain; }
+ .respect > div { flex-direction:column; align-items:stretch; gap:24px !important; }
+ .respect > div > div { width:100% !important; min-width:0; }
+ .respect > div img { display:block; width:100% !important; height:auto !important; object-fit:contain !important; }
+ header img { height:auto !important; object-fit:contain !important; }
+}
  </style>
 <style>
 .horsefarm-language-picker{position:absolute;top:12px;right:12px;z-index:9999}
