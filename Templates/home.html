@@ -48,15 +48,45 @@ input,select{width:100%;padding:13px;border:1px solid #cdbda7;border-radius:5px;
 footer{background:#211c18;color:#ccc;text-align:center;padding:18px}
 
 @media(max-width:700px){
-.cards,.form{grid-template-columns:1fr}
+/* Mise en page mobile : même contenu, sans défilement horizontal */
+html,body{max-width:100%;overflow-x:clip}
+header{padding:16px 12px}
+.logo{font-size:clamp(20px,6vw,28px);overflow-wrap:anywhere}
+nav{display:flex;flex-wrap:wrap;justify-content:center;gap:6px 12px;margin-top:12px}
+nav a{display:inline-block;margin:0;padding:5px 2px;font-size:14px;line-height:1.4}
+.hero{padding:65px 16px;min-height:55vh}
+.hero h1{font-size:clamp(30px,9vw,42px);line-height:1.12;overflow-wrap:break-word}
+.hero h2{font-size:clamp(22px,6vw,30px)}
+.hero p{line-height:1.55}
+section{padding:38px 14px}
+.container{width:100%;min-width:0}
+.title h2{font-size:clamp(25px,7vw,34px)}
+.cards,.form{grid-template-columns:minmax(0,1fr)}
 .full{grid-column:auto}
-.hero h1{font-size:42px}
-nav a{display:inline-block;margin:5px}
+.card,.booking{padding:18px;min-width:0}
+.card h3{font-size:23px}
+.field{min-width:0}
+input,select{max-width:100%;min-width:0}
+.button{max-width:100%;text-align:center;white-space:normal}
+.summary{padding:12px}
+.summary .row{gap:12px;align-items:baseline}
+.summary .row>*{min-width:0;overflow-wrap:anywhere}
+#contact{overflow-wrap:anywhere}
+/* Le sélecteur de langue reste sur l'accueil, sans couvrir le menu. */
+#horsefarm-language-wrapper{position:relative!important;top:auto!important;right:auto!important;display:flex;justify-content:flex-end;padding:8px 12px;background:#30271f}
+#horsefarm-language-wrapper select{width:auto;max-width:100%}
+}
+@media(max-width:380px){
+nav{gap:4px 9px}
+nav a{font-size:13px}
+.hero{padding:48px 12px}
+.card,.booking{padding:14px}
+section{padding:30px 10px}
 }
 </style>
 </head>
 <body>
-<div style="position:absolute;top:12px;right:12px;z-index:9999;">
+<div id="horsefarm-language-wrapper" style="position:absolute;top:12px;right:12px;z-index:9999;">
 <select aria-label="Choisir la langue / Choose language" id="langue-site" onchange="traduireSite(this.value)" style="padding:6px;border-radius:6px;font-size:14px;">
 <option value="fr">🇫🇷 Français</option>
 <option value="en">🇬🇧 English</option>
