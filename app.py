@@ -319,6 +319,7 @@ def cadre_unique():
 @app.route("/qui-suis-je")
 def qui_suis_je():
     return render_template("qui-suis-je.html")
+
 @app.route("/elevage-quarter-horse")
 def elevage_quarter_horse():
     return render_template("elevage-quarter-horse.html")
