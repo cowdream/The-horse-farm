@@ -315,6 +315,10 @@ def notre_betail():
 @app.route("/cadre-unique")
 def cadre_unique():
     return render_template("cadre-unique.html")
+
+ @app.route("/qui-suis-je")
+def qui_suis_je():
+    return render_template("qui-suis-je.html")
 @app.route("/elevage-quarter-horse")
 def elevage_quarter_horse():
     return render_template("elevage-quarter-horse.html")
