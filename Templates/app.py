@@ -1,8 +1,6 @@
 
 import os
 import json
-from datetime import datetime, timedelta
-from zoneinfo import ZoneInfo
 from urllib.request import Request, urlopen
 from urllib.parse import urlencode
 from urllib.error import HTTPError, URLError
@@ -65,16 +63,16 @@ print("SUPABASE CONFIG :", bool(SUPABASE_URL), bool(SUPABASE_SECRET_KEY))
 # =========================================================
 
 PRICES = {
-    "1h": 30,
-    "1h30": 40,
-    "2h": 50
+    "1h": 40,
+    "1h30": 50,
+    "2h": 60
 }
 
 
 DEPOSITS = {
-    "1h": 10,
-    "1h30": 15,
-    "2h": 20
+    "1h": 15,
+    "1h30": 20,
+    "2h": 25
 }
 
 
@@ -317,6 +315,11 @@ def notre_betail():
 @app.route("/cadre-unique")
 def cadre_unique():
     return render_template("cadre-unique.html")
+
+@app.route("/qui-suis-je")
+def qui_suis_je():
+    return render_template("qui-suis-je.html")
+
 @app.route("/elevage-quarter-horse")
 def elevage_quarter_horse():
     return render_template("elevage-quarter-horse.html")
@@ -571,19 +574,6 @@ def reserve():
             url_for("home")
         )
 
-
-    # Les balades doivent être demandées au moins 24 heures avant le départ.
-    try:
-        requested_start = datetime.fromisoformat(f"{date}T{time}").replace(
-            tzinfo=ZoneInfo("Europe/Paris")
-        )
-        farm_now = datetime.now(ZoneInfo("Europe/Paris"))
-        if requested_start.astimezone(ZoneInfo("UTC")) - farm_now.astimezone(ZoneInfo("UTC")) < timedelta(hours=24):
-            flash("Merci de réserver votre balade au minimum 24 heures à l'avance.")
-            return redirect(url_for("home"))
-    except (ValueError, TypeError):
-        flash("Date ou horaire invalide.")
-        return redirect(url_for("home"))
 
     # Vérification des chevaux
 
